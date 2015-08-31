@@ -274,7 +274,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ATA22_ELAC.cpp" />
+    <ClCompile Include="ATA34_ADIRU.cpp" />
     <ClCompile Include="SDK210Tests.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ATA22_ELAC.h" />
+    <ClInclude Include="ATA34_ADIRU.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
