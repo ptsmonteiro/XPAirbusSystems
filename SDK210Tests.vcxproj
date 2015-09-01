@@ -276,6 +276,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="A320.cpp" />
+    <ClCompile Include="AirbusComponent.cpp" />
     <ClCompile Include="ATA22_ELAC.cpp" />
     <ClCompile Include="ATA31_DMC.cpp" />
     <ClCompile Include="ATA31_DU.cpp" />
@@ -287,10 +288,12 @@
     <ClCompile Include="ATA31_SDAC.cpp" />
     <ClCompile Include="ATA32_LGCIU.cpp" />
     <ClCompile Include="ATA34_ADIRU.cpp" />
+    <ClCompile Include="ATA34_RadioAlt.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="A320.h" />
+    <ClInclude Include="AirbusComponent.h" />
     <ClInclude Include="ATA22_ELAC.h" />
     <ClInclude Include="ATA31_DMC.h" />
     <ClInclude Include="ATA31_DU.h" />
@@ -302,6 +305,7 @@
     <ClInclude Include="ATA31_SDAC.h" />
     <ClInclude Include="ATA32_LGCIU.h" />
     <ClInclude Include="ATA34_ADIRU.h" />
+    <ClInclude Include="ATA34_RadioAlt.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

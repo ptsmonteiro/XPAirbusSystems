@@ -2,8 +2,9 @@
 
 
 
-ATA31_DMC::ATA31_DMC()
+ATA31_DMC::ATA31_DMC(int number)
 {
+	this->number = number;
 }
 
 

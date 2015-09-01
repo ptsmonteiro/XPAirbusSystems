@@ -2,8 +2,9 @@
 
 
 
-ATA32_LGCIU::ATA32_LGCIU()
+ATA32_LGCIU::ATA32_LGCIU(int number)
 {
+	this->number = number;
 }
 
 

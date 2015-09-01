@@ -42,6 +42,8 @@ But we will not be supporting it or any other headers usage in this example.
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "A320.h"
+
 #if IBM
 #include <windows.h>
 #include <stdio.h>
@@ -57,6 +59,8 @@ But we will not be supporting it or any other headers usage in this example.
 #endif
 
 //---------------------------------------------------------------------------
+
+A320 myPlane;
 
 enum
 {
@@ -170,6 +174,8 @@ PLUGIN_API int XPluginStart(
 	strcpy(outName, "AirbusSystems");
 	strcpy(outSig, "matiasmonteiro.projects.AirbusSystems");
 	strcpy(outDesc, "Airbus Systems Plugin");
+
+	//myPlane->start();
 
 	// Register the callback for errors
 	XPLMSetErrorCallback(SDK210TestsErrorCB);

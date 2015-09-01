@@ -2,8 +2,9 @@
 
 
 
-ATA31_FWC::ATA31_FWC()
+ATA31_FWC::ATA31_FWC(int number)
 {
+	this->number = number;
 }
 
 
