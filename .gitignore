@@ -8,5 +8,5 @@
 *.sdf
 *.opensdf
 /Debug
-/out/*.xpl
-/src/Debug/64
+/out/*.*
+/src/Debug/
