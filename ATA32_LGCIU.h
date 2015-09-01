@@ -1,4 +1,6 @@
 #pragma once
+
+// Landing Gear Control Interface Unit
 class ATA32_LGCIU
 {
 public:

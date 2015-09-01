@@ -275,13 +275,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="A320.cpp" />
     <ClCompile Include="ATA22_ELAC.cpp" />
+    <ClCompile Include="ATA31_DMC.cpp" />
+    <ClCompile Include="ATA31_DU.cpp" />
+    <ClCompile Include="ATA31_EWD.cpp" />
+    <ClCompile Include="ATA31_FWC.cpp" />
+    <ClCompile Include="ATA31_ND.cpp" />
+    <ClCompile Include="ATA31_PFD.cpp" />
+    <ClCompile Include="ATA31_SD.cpp" />
+    <ClCompile Include="ATA31_SDAC.cpp" />
     <ClCompile Include="ATA32_LGCIU.cpp" />
     <ClCompile Include="ATA34_ADIRU.cpp" />
-    <ClCompile Include="SDK210Tests.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="A320.h" />
     <ClInclude Include="ATA22_ELAC.h" />
+    <ClInclude Include="ATA31_DMC.h" />
+    <ClInclude Include="ATA31_DU.h" />
+    <ClInclude Include="ATA31_EWD.h" />
+    <ClInclude Include="ATA31_FWC.h" />
+    <ClInclude Include="ATA31_ND.h" />
+    <ClInclude Include="ATA31_PFD.h" />
+    <ClInclude Include="ATA31_SD.h" />
+    <ClInclude Include="ATA31_SDAC.h" />
     <ClInclude Include="ATA32_LGCIU.h" />
     <ClInclude Include="ATA34_ADIRU.h" />
   </ItemGroup>
