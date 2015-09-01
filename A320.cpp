@@ -26,3 +26,8 @@ A320::A320()
 A320::~A320()
 {
 }
+
+void A320::update()
+{
+	// fazer cenas aqui
+}

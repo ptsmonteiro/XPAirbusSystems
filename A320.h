@@ -19,6 +19,8 @@ public:
 	A320();
 	~A320();
 
+	void update();
+
 protected:
 	ATA22_ELAC * elac1;
 	ATA22_ELAC * elac2;

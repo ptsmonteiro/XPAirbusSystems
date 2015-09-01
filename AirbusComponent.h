@@ -5,6 +5,8 @@ public:
 	AirbusComponent();
 	~AirbusComponent();
 
+	void update();
+
 protected:
 	int number;
 };

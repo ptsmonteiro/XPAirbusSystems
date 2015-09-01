@@ -16,3 +16,8 @@ void ATA22_ELAC::connect(ATA34_ADIRU * ADIRU)
 {
 
 }
+
+void update()
+{
+	
+}
