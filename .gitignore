@@ -9,3 +9,4 @@
 *.opensdf
 /Debug
 /out/*.xpl
+/src/Debug/64

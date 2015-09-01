@@ -28,16 +28,16 @@ But we will not be supporting it or any other headers usage in this example.
 
 //---------------------------------------------------------------------------
 
-#include "XPLMPlugin.h"
-#include "XPLMDisplay.h"
-#include "XPLMProcessing.h"
-#include "XPLMDataAccess.h"
-#include "XPLMMenus.h"
-#include "XPLMUtilities.h"
-#include "XPWidgets.h"
-#include "XPStandardWidgets.h"
-#include "XPLMScenery.h"
-#include "XPLMPlanes.h"
+#include "XPLM\XPLMPlugin.h"
+#include "XPLM\XPLMDisplay.h"
+#include "XPLM\XPLMProcessing.h"
+#include "XPLM\XPLMDataAccess.h"
+#include "XPLM\XPLMMenus.h"
+#include "XPLM\XPLMUtilities.h"
+#include "Widgets\XPWidgets.h"
+#include "Widgets\XPStandardWidgets.h"
+#include "XPLM\XPLMScenery.h"
+#include "XPLM\XPLMPlanes.h"
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
