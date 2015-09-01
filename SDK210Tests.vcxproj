@@ -22,6 +22,7 @@
     <SccProjectName />
     <SccLocalPath />
     <ProjectGuid>{6C3E3DE3-03BB-4599-8EFC-0C833131D72A}</ProjectGuid>
+    <ProjectName>XPAirbusSystems</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -275,11 +276,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ATA22_ELAC.cpp" />
+    <ClCompile Include="ATA32_LGCIU.cpp" />
     <ClCompile Include="ATA34_ADIRU.cpp" />
     <ClCompile Include="SDK210Tests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ATA22_ELAC.h" />
+    <ClInclude Include="ATA32_LGCIU.h" />
     <ClInclude Include="ATA34_ADIRU.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

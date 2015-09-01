@@ -4,4 +4,5 @@
 
 /Release
 /SDK
-/.vs/SDK210Tests/v14
+/.vs
+*.sdf
