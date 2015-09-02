@@ -1,5 +1,5 @@
 #include "ATA22_ELAC.h"
-#include "ATA34_ADIRU.h"
+#include "ADIRU.h"
 
 
 
@@ -14,7 +14,7 @@ ATA22_ELAC::~ATA22_ELAC()
 {
 }
 
-void ATA22_ELAC::connect(ATA34_ADIRU * ADIRU)
+void ATA22_ELAC::connect(ADIRU * ADIRU)
 {
 
 }

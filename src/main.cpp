@@ -1,4 +1,8 @@
 
+#pragma warning(disable:4477)
+#pragma warning(disable:4313)
+
+
 /*
 SDK210Tests Example
 Tests the new SDK 2.10 functions.

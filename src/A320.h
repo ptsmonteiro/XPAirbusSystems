@@ -11,14 +11,11 @@
 #include "systems\ATA31_SD.h"
 #include "systems\ATA31_SDAC.h"
 #include "systems\ATA32_LGCIU.h"
-#include "systems\ATA34_ADIRU.h"
+#include "systems\ADIRU.h"
 #include "systems\ATA34_RadioAlt.h"
-#include "systems\ATA34_PitotProbe.h"
-#include "systems\ATA34_StaticProbe.h"
-#include "systems\ATA34_AOAProbe.h"
-#include "systems\ATA34_PitotProbe.h"
-#include "systems\ATA34_TATProbe.h"
 #include "systems\ATA22_FMGC.h"
+#include "systems\AirDataProbes.h"
+
 
 class A320
 {
@@ -52,27 +49,16 @@ protected:
 	ATA31_FWC * fwc1;
 	ATA31_FWC * fwc2;
 
-	// ATA 34 - Navigation
-	ATA34_StaticProbe * capt_static_probe1;
-	ATA34_StaticProbe * capt_static_probe2;
-	ATA34_StaticProbe * fo_static_probe1;
-	ATA34_StaticProbe * fo_static_probe2;
-	ATA34_StaticProbe * standby_static_probe1;
-	ATA34_StaticProbe * standby_static_probe2;
+	// ATA 34 - Navigation Sensors
 
-	ATA34_AOAProbe * capt_aoa_probe;
-	ATA34_AOAProbe * fo_aoa_probe;
-	ATA34_AOAProbe * standby_aoa_probe;
-
-	ATA34_TATProbe * capt_tat_probe;
-	ATA34_TATProbe * fo_tat_probe;
+	AirDataProbes * airDataProbes;
 
 	ATA34_RadioAlt * ra1;
 	ATA34_RadioAlt * ra2;
 
-	ATA34_ADIRU * adiru1;
-	ATA34_ADIRU * adiru2;
-	ATA34_ADIRU * adiru3;
+	ADIRU * adiru1;
+	ADIRU * adiru2;
+	ADIRU * adiru3;
 
 	void updateSystemsHealth();
 	void propagateSignals();

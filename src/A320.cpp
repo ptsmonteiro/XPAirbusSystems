@@ -1,4 +1,5 @@
 #include "A320.h"
+#include "messages/AirDataProbesMessage.h"
 #include <vector>
 
 A320::A320()
@@ -52,22 +53,6 @@ void A320::propagateSignals()
 }
 
 
-void A320::updateProbes()
-{
-
-}
-
-void A320::updateComputers()
-{
-
-}
-
-void A320::updateDisplays()
-{
-
-}
-
-
 /*
 	Updates each component:
 		1. Probes and Sensors
@@ -86,6 +71,22 @@ void A320::updateSystems()
 	updateDisplays();
 }
 
+void A320::updateProbes()
+{
+	AirDataProbesMessage* adpm = (AirDataProbesMessage*) this->airDataProbes->update();
+
+	this->adiru1->inputMessage(adpm);
+	this->adiru2->inputMessage(adpm);
+	this->adiru3->inputMessage(adpm);
+}
+
+void A320::updateComputers()
+{
+}
+
+void A320::updateDisplays()
+{
+}
 
 /*
 	Reconfigures system connections:

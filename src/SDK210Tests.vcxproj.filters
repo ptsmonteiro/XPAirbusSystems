@@ -15,16 +15,14 @@
     <ClCompile Include="systems\ATA31_SD.cpp" />
     <ClCompile Include="systems\ATA31_SDAC.cpp" />
     <ClCompile Include="systems\ATA32_LGCIU.cpp" />
-    <ClCompile Include="systems\ATA34_ADIRU.cpp" />
     <ClCompile Include="systems\ATA34_RadioAlt.cpp" />
     <ClCompile Include="messages\RadioAltimeterData.cpp" />
-    <ClCompile Include="systems\ATA34_StaticProbe.cpp" />
-    <ClCompile Include="systems\ATA34_AOAProbe.cpp" />
-    <ClCompile Include="systems\ATA34_PitotProbe.cpp" />
-    <ClCompile Include="systems\ATA34_TATProbe.cpp" />
     <ClCompile Include="systems\ATA22_FMGC.cpp" />
     <ClCompile Include="sim_interface\SimulatorInterface.cpp" />
     <ClCompile Include="sim_interface\XPlaneInterface.cpp" />
+    <ClCompile Include="systems\ADIRU.cpp" />
+    <ClCompile Include="messages\AirDataProbesMessage.cpp" />
+    <ClCompile Include="systems\AirDataProbes.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="A320.h" />
@@ -41,15 +39,13 @@
     <ClInclude Include="systems\ATA31_SD.h" />
     <ClInclude Include="systems\ATA31_SDAC.h" />
     <ClInclude Include="systems\ATA32_LGCIU.h" />
-    <ClInclude Include="systems\ATA34_ADIRU.h" />
     <ClInclude Include="messages\RadioAltimeterData.h" />
-    <ClInclude Include="systems\ATA34_StaticProbe.h" />
-    <ClInclude Include="systems\ATA34_AOAProbe.h" />
-    <ClInclude Include="systems\ATA34_PitotProbe.h" />
-    <ClInclude Include="systems\ATA34_TATProbe.h" />
     <ClInclude Include="systems\ATA22_FMGC.h" />
     <ClInclude Include="sim_interface\SimulatorInterface.h" />
     <ClInclude Include="sim_interface\XPlaneInterface.h" />
+    <ClInclude Include="systems\ADIRU.h" />
+    <ClInclude Include="messages\AirDataProbesMessage.h" />
+    <ClInclude Include="systems\AirDataProbes.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

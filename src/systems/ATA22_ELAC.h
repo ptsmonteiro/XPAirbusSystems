@@ -1,7 +1,7 @@
 #pragma once
 
 #include "AirbusComponent.h"
-#include "ATA34_ADIRU.h"
+#include "ADIRU.h"
 #include "ATA32_LGCIU.h"
 #include "messages\RadioAltimeterData.h"
 
@@ -20,15 +20,15 @@ public:
 	float getRollOrder();
 	float getYawRateOrder();
 
-	void connect(ATA34_ADIRU *);
+	void connect(ADIRU *);
 	void connect(ATA32_LGCIU *);
 
 	void inputMessage(RadioAltimeterData *);
 
 protected:
 
-	ATA34_ADIRU * m_ADIRU;
-	ATA34_ADIRU *getADIRU();
+	ADIRU * m_ADIRU;
+	ADIRU *getADIRU();
 
 	void getFMGC();
 
