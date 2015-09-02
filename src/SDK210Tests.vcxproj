@@ -277,6 +277,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="A320.cpp" />
+    <ClCompile Include="systems\ATA34_AOAProbe.cpp" />
+    <ClCompile Include="systems\ATA34_PitotProbe.cpp" />
+    <ClCompile Include="systems\ATA34_TATProbe.cpp" />
+    <ClCompile Include="systems\ATA34_StaticProbe.cpp" />
     <ClCompile Include="Messages\BaseMessage.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="messages\RadioAltimeterData.cpp" />
@@ -296,6 +300,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="A320.h" />
+    <ClInclude Include="systems\ATA34_AOAProbe.h" />
+    <ClInclude Include="systems\ATA34_PitotProbe.h" />
+    <ClInclude Include="systems\ATA34_TATProbe.h" />
+    <ClInclude Include="systems\ATA34_StaticProbe.h" />
     <ClInclude Include="Messages\BaseMessage.h" />
     <ClInclude Include="messages\RadioAltimeterData.h" />
     <ClInclude Include="systems\AirbusComponent.h" />
@@ -311,6 +319,9 @@
     <ClInclude Include="systems\ATA32_LGCIU.h" />
     <ClInclude Include="systems\ATA34_ADIRU.h" />
     <ClInclude Include="systems\ATA34_RadioAlt.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

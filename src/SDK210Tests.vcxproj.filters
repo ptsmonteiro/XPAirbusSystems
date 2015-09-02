@@ -18,6 +18,10 @@
     <ClCompile Include="systems\ATA34_ADIRU.cpp" />
     <ClCompile Include="systems\ATA34_RadioAlt.cpp" />
     <ClCompile Include="messages\RadioAltimeterData.cpp" />
+    <ClCompile Include="systems\ATA34_StaticProbe.cpp" />
+    <ClCompile Include="systems\ATA34_AOAProbe.cpp" />
+    <ClCompile Include="systems\ATA34_PitotProbe.cpp" />
+    <ClCompile Include="systems\ATA34_TATProbe.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="A320.h" />
@@ -36,5 +40,12 @@
     <ClInclude Include="systems\ATA32_LGCIU.h" />
     <ClInclude Include="systems\ATA34_ADIRU.h" />
     <ClInclude Include="messages\RadioAltimeterData.h" />
+    <ClInclude Include="systems\ATA34_StaticProbe.h" />
+    <ClInclude Include="systems\ATA34_AOAProbe.h" />
+    <ClInclude Include="systems\ATA34_PitotProbe.h" />
+    <ClInclude Include="systems\ATA34_TATProbe.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>
