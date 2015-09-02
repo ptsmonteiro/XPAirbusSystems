@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="A320.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Messages\BaseMessage.cpp" />
+    <ClCompile Include="systems\AirbusComponent.cpp" />
+    <ClCompile Include="systems\ATA22_ELAC.cpp" />
+    <ClCompile Include="systems\ATA31_DMC.cpp" />
+    <ClCompile Include="systems\ATA31_DU.cpp" />
+    <ClCompile Include="systems\ATA31_EWD.cpp" />
+    <ClCompile Include="systems\ATA31_FWC.cpp" />
+    <ClCompile Include="systems\ATA31_ND.cpp" />
+    <ClCompile Include="systems\ATA31_PFD.cpp" />
+    <ClCompile Include="systems\ATA31_SD.cpp" />
+    <ClCompile Include="systems\ATA31_SDAC.cpp" />
+    <ClCompile Include="systems\ATA32_LGCIU.cpp" />
+    <ClCompile Include="systems\ATA34_ADIRU.cpp" />
+    <ClCompile Include="systems\ATA34_RadioAlt.cpp" />
+    <ClCompile Include="messages\RadioAltimeterData.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="A320.h" />
+    <ClInclude Include="Messages\BaseMessage.h" />
+    <ClInclude Include="systems\ATA34_RadioAlt.h" />
+    <ClInclude Include="systems\AirbusComponent.h" />
+    <ClInclude Include="systems\ATA22_ELAC.h" />
+    <ClInclude Include="systems\ATA31_DMC.h" />
+    <ClInclude Include="systems\ATA31_DU.h" />
+    <ClInclude Include="systems\ATA31_EWD.h" />
+    <ClInclude Include="systems\ATA31_FWC.h" />
+    <ClInclude Include="systems\ATA31_ND.h" />
+    <ClInclude Include="systems\ATA31_PFD.h" />
+    <ClInclude Include="systems\ATA31_SD.h" />
+    <ClInclude Include="systems\ATA31_SDAC.h" />
+    <ClInclude Include="systems\ATA32_LGCIU.h" />
+    <ClInclude Include="systems\ATA34_ADIRU.h" />
+    <ClInclude Include="messages\RadioAltimeterData.h" />
+  </ItemGroup>
+</Project>

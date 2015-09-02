@@ -1,17 +1,18 @@
 #pragma once
 
-#include "ATA22_ELAC.h"
-#include "ATA31_DMC.h"
-#include "ATA31_DU.h"
-#include "ATA31_EWD.h"
-#include "ATA31_FWC.h"
-#include "ATA31_ND.h"
-#include "ATA31_PFD.h"
-#include "ATA31_SD.h"
-#include "ATA31_SDAC.h"
-#include "ATA32_LGCIU.h"
-#include "ATA34_ADIRU.h"
-#include "ATA34_RadioAlt.h"
+#include "systems\AirbusComponent.h"
+#include "systems\ATA22_ELAC.h"
+#include "systems\ATA31_DMC.h"
+#include "systems\ATA31_DU.h"
+#include "systems\ATA31_EWD.h"
+#include "systems\ATA31_FWC.h"
+#include "systems\ATA31_ND.h"
+#include "systems\ATA31_PFD.h"
+#include "systems\ATA31_SD.h"
+#include "systems\ATA31_SDAC.h"
+#include "systems\ATA32_LGCIU.h"
+#include "systems\ATA34_ADIRU.h"
+#include "systems\ATA34_RadioAlt.h"
 
 class A320
 {
@@ -20,6 +21,8 @@ public:
 	~A320();
 
 	void update();
+	void updateSystemsHealth();
+	void propagateSignals();
 
 protected:
 	ATA22_ELAC * elac1;

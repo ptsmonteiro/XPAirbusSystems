@@ -95,7 +95,7 @@
     <TargetName>win</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>..\out</OutDir>
+    <OutDir>..\out\</OutDir>
     <IntDir>.\Debug\64\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <TargetExt>.xpl</TargetExt>
@@ -240,7 +240,7 @@
       <Optimization>Disabled</Optimization>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>OldStyle</DebugInformationFormat>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);..\usr\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);..\usr\include;.\;</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;SIMDATA_EXPORTS;IBM=1;XPLM200=1;XPLM210=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\Debug\64\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>.\Debug\64\SDK210Tests.pch</PrecompiledHeaderOutputFile>
@@ -277,36 +277,40 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="A320.cpp" />
-    <ClCompile Include="AirbusComponent.cpp" />
-    <ClCompile Include="ATA22_ELAC.cpp" />
-    <ClCompile Include="ATA31_DMC.cpp" />
-    <ClCompile Include="ATA31_DU.cpp" />
-    <ClCompile Include="ATA31_EWD.cpp" />
-    <ClCompile Include="ATA31_FWC.cpp" />
-    <ClCompile Include="ATA31_ND.cpp" />
-    <ClCompile Include="ATA31_PFD.cpp" />
-    <ClCompile Include="ATA31_SD.cpp" />
-    <ClCompile Include="ATA31_SDAC.cpp" />
-    <ClCompile Include="ATA32_LGCIU.cpp" />
-    <ClCompile Include="ATA34_ADIRU.cpp" />
-    <ClCompile Include="ATA34_RadioAlt.cpp" />
+    <ClCompile Include="Messages\BaseMessage.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="messages\RadioAltimeterData.cpp" />
+    <ClCompile Include="systems\AirbusComponent.cpp" />
+    <ClCompile Include="systems\ATA22_ELAC.cpp" />
+    <ClCompile Include="systems\ATA31_DMC.cpp" />
+    <ClCompile Include="systems\ATA31_DU.cpp" />
+    <ClCompile Include="systems\ATA31_EWD.cpp" />
+    <ClCompile Include="systems\ATA31_FWC.cpp" />
+    <ClCompile Include="systems\ATA31_ND.cpp" />
+    <ClCompile Include="systems\ATA31_PFD.cpp" />
+    <ClCompile Include="systems\ATA31_SD.cpp" />
+    <ClCompile Include="systems\ATA31_SDAC.cpp" />
+    <ClCompile Include="systems\ATA32_LGCIU.cpp" />
+    <ClCompile Include="systems\ATA34_ADIRU.cpp" />
+    <ClCompile Include="systems\ATA34_RadioAlt.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="A320.h" />
-    <ClInclude Include="AirbusComponent.h" />
-    <ClInclude Include="ATA22_ELAC.h" />
-    <ClInclude Include="ATA31_DMC.h" />
-    <ClInclude Include="ATA31_DU.h" />
-    <ClInclude Include="ATA31_EWD.h" />
-    <ClInclude Include="ATA31_FWC.h" />
-    <ClInclude Include="ATA31_ND.h" />
-    <ClInclude Include="ATA31_PFD.h" />
-    <ClInclude Include="ATA31_SD.h" />
-    <ClInclude Include="ATA31_SDAC.h" />
-    <ClInclude Include="ATA32_LGCIU.h" />
-    <ClInclude Include="ATA34_ADIRU.h" />
-    <ClInclude Include="ATA34_RadioAlt.h" />
+    <ClInclude Include="Messages\BaseMessage.h" />
+    <ClInclude Include="messages\RadioAltimeterData.h" />
+    <ClInclude Include="systems\AirbusComponent.h" />
+    <ClInclude Include="systems\ATA22_ELAC.h" />
+    <ClInclude Include="systems\ATA31_DMC.h" />
+    <ClInclude Include="systems\ATA31_DU.h" />
+    <ClInclude Include="systems\ATA31_EWD.h" />
+    <ClInclude Include="systems\ATA31_FWC.h" />
+    <ClInclude Include="systems\ATA31_ND.h" />
+    <ClInclude Include="systems\ATA31_PFD.h" />
+    <ClInclude Include="systems\ATA31_SD.h" />
+    <ClInclude Include="systems\ATA31_SDAC.h" />
+    <ClInclude Include="systems\ATA32_LGCIU.h" />
+    <ClInclude Include="systems\ATA34_ADIRU.h" />
+    <ClInclude Include="systems\ATA34_RadioAlt.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

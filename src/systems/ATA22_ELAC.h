@@ -3,21 +3,27 @@
 #include "AirbusComponent.h"
 #include "ATA34_ADIRU.h"
 #include "ATA32_LGCIU.h"
+#include "messages\RadioAltimeterData.h"
 
-class ATA22_ELAC : AirbusComponent
+class ATA22_ELAC : public AirbusComponent
 {
+private:
+	int currentRadioAltimeterHeightFt;
+
+
 public:
 	ATA22_ELAC(int);
 	~ATA22_ELAC();
 
 	float getAileronPos();
 	float getElevatorPos();
-
 	float getRollOrder();
 	float getYawRateOrder();
 
 	void connect(ATA34_ADIRU *);
 	void connect(ATA32_LGCIU *);
+
+	void inputMessage(RadioAltimeterData *);
 
 protected:
 

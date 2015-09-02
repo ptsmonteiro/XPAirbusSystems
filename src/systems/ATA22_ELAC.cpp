@@ -2,6 +2,8 @@
 #include "ATA34_ADIRU.h"
 
 
+
+
 ATA22_ELAC::ATA22_ELAC(int number)
 {
 	this->number = number;
@@ -20,4 +22,9 @@ void ATA22_ELAC::connect(ATA34_ADIRU * ADIRU)
 void update()
 {
 	
+}
+
+void ATA22_ELAC::inputMessage(RadioAltimeterData *message)
+{
+	this->currentRadioAltimeterHeightFt = message->altitude;
 }
