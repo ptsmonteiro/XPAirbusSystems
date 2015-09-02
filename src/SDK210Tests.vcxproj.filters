@@ -23,6 +23,8 @@
     <ClCompile Include="systems\ATA34_PitotProbe.cpp" />
     <ClCompile Include="systems\ATA34_TATProbe.cpp" />
     <ClCompile Include="systems\ATA22_FMGC.cpp" />
+    <ClCompile Include="sim_interface\SimulatorInterface.cpp" />
+    <ClCompile Include="sim_interface\XPlaneInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="A320.h" />
@@ -46,6 +48,8 @@
     <ClInclude Include="systems\ATA34_PitotProbe.h" />
     <ClInclude Include="systems\ATA34_TATProbe.h" />
     <ClInclude Include="systems\ATA22_FMGC.h" />
+    <ClInclude Include="sim_interface\SimulatorInterface.h" />
+    <ClInclude Include="sim_interface\XPlaneInterface.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

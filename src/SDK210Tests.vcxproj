@@ -277,6 +277,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="A320.cpp" />
+    <ClCompile Include="sim_interface\SimulatorInterface.cpp" />
     <ClCompile Include="systems\ATA22_FMGC.cpp" />
     <ClCompile Include="systems\ATA34_AOAProbe.cpp" />
     <ClCompile Include="systems\ATA34_PitotProbe.cpp" />
@@ -298,9 +299,11 @@
     <ClCompile Include="systems\ATA32_LGCIU.cpp" />
     <ClCompile Include="systems\ATA34_ADIRU.cpp" />
     <ClCompile Include="systems\ATA34_RadioAlt.cpp" />
+    <ClCompile Include="sim_interface\XPlaneInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="A320.h" />
+    <ClInclude Include="sim_interface\SimulatorInterface.h" />
     <ClInclude Include="systems\ATA22_FMGC.h" />
     <ClInclude Include="systems\ATA34_AOAProbe.h" />
     <ClInclude Include="systems\ATA34_PitotProbe.h" />
@@ -321,6 +324,7 @@
     <ClInclude Include="systems\ATA32_LGCIU.h" />
     <ClInclude Include="systems\ATA34_ADIRU.h" />
     <ClInclude Include="systems\ATA34_RadioAlt.h" />
+    <ClInclude Include="sim_interface\XPlaneInterface.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

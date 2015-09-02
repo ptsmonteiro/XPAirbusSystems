@@ -20,3 +20,7 @@ BaseMessage* AirbusComponent:: update()
 {
 	return nullptr;
 }
+
+void AirbusComponent::setSimInterface(SimulatorInterface *)
+{
+}
