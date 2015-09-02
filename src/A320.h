@@ -18,6 +18,7 @@
 #include "systems\ATA34_AOAProbe.h"
 #include "systems\ATA34_PitotProbe.h"
 #include "systems\ATA34_TATProbe.h"
+#include "systems\ATA22_FMGC.h"
 
 class A320
 {
@@ -26,14 +27,15 @@ public:
 	~A320();
 
 	void update();
-	void updateSystemsHealth();
-	void propagateSignals();
 
 protected:
 
 	// ATA 22 - Auto Flight
 	ATA22_ELAC * elac1;
 	ATA22_ELAC * elac2;
+
+	ATA22_FMGC * fmgc1;
+	ATA22_FMGC * fmgc2;
 
 	// ATA 32 - Landing Gear
 	ATA32_LGCIU * lgciu1;
@@ -68,8 +70,17 @@ protected:
 	ATA34_RadioAlt * ra1;
 	ATA34_RadioAlt * ra2;
 
+	ATA34_ADIRU * adiru1;
+	ATA34_ADIRU * adiru2;
+	ATA34_ADIRU * adiru3;
 
+	void updateSystemsHealth();
+	void propagateSignals();
 
-
+	void updateSystems();
+	void reconfigureSystems();
+	void updateProbes();
+	void updateComputers();
+	void updateDisplays();
 
 };

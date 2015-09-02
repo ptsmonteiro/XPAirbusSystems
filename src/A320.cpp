@@ -29,8 +29,6 @@ A320::A320()
 
 A320::~A320()
 {
-	updateSystemsHealth();
-	propagateSignals();
 }
 
 void A320::updateSystemsHealth()
@@ -53,6 +51,58 @@ void A320::propagateSignals()
 	}
 }
 
+
+void A320::updateProbes()
+{
+
+}
+
+void A320::updateComputers()
+{
+
+}
+
+void A320::updateDisplays()
+{
+
+}
+
+
+/*
+	Updates each component:
+		1. Probes and Sensors
+		2. Computers
+		3. Displays and Indicators
+*/
+void A320::updateSystems()
+{
+	// Probes and Sensors
+	updateProbes();
+
+	// Computers
+	updateComputers();
+
+	// Displays and Indicators
+	updateDisplays();
+}
+
+
+/*
+	Reconfigures system connections:
+		1. Failover connections
+		2. Control Law changes
+		3. Elec emergency configuration
+*/
+void A320::reconfigureSystems()
+{
+
+}
+
 void A320::update()
 {
+	updateSystems();
+	reconfigureSystems();
+
+	//updateSystemsHealth();
+	//propagateSignals();
 }
