@@ -1,9 +1,20 @@
 #pragma once
+#include <iostream>
+#include <map>
 #include "SimulatorInterface.h"
+
+enum DATAREF_LIST {
+	AOA_ANGLE,
+	TEMPERATURE_LE,
+	TEMPERATURE_AMBIENT,
+	RADIO_ALTITUDE_CAPT,
+};
 
 class XPlaneInterface :
 	public SimulatorInterface
 {
+	std::map<DATAREF_LIST, XPLMDataRef> DataRefMap;
+
 public:
 	XPlaneInterface();
 	~XPlaneInterface();
@@ -12,11 +23,11 @@ public:
 	float getStaticAirTemperatureKelvin();
 	float getTotalAirTemperatureKelvin();
 	int getRadioAltitudeFt();
+	
 
 protected:
-	static XPLMDataRef findDataRefByName(char * datarefName);
-
-
-
+	XPLMDataRef findDataRefByName(char * datarefName);
+	XPLMDataRef findDataRefByCode(DATAREF_LIST value);
 };
+
 

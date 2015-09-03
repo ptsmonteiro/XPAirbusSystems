@@ -2,6 +2,10 @@
 
 XPlaneInterface::XPlaneInterface()
 {
+	DataRefMap[AOA_ANGLE] = findDataRefByName("sim/flightmodel2/misc/AoA_angle_degrees");
+	DataRefMap[TEMPERATURE_LE] = findDataRefByName("sim/weather/temperature_le_c");
+	DataRefMap[TEMPERATURE_AMBIENT] = findDataRefByName("sim/weather/temperature_le_c");
+	DataRefMap[RADIO_ALTITUDE_CAPT] = findDataRefByName("sim/cockpit2/gauges/indicators/radio_altimeter_height_ft_pilot");
 }
 
 
@@ -9,21 +13,20 @@ XPlaneInterface::~XPlaneInterface()
 {
 }
 
-XPLMDataRef findDataRefByName(char * datarefName)
+XPLMDataRef XPlaneInterface::findDataRefByName(char * datarefName)
 {
 	return XPLMFindDataRef(datarefName);
 }
 
-
 float XPlaneInterface::getAOADegrees()
 {
-	float value = XPLMGetDataf(findDataRefByName("sim/flightmodel2/misc/AoA_angle_degrees"));
+	float value = XPLMGetDataf(findDataRefByCode(AOA_ANGLE));
 	return value;
 }
 
 float XPlaneInterface::getTotalAirTemperatureKelvin()
 {
-	float value = XPLMGetDataf(findDataRefByName("sim/weather/temperature_le_c"));
+	float value = XPLMGetDataf(findDataRefByCode(TEMPERATURE_LE));
 
 	// Convert to kelvin
 	return value + CELSIUS_TO_KELVIN_FACTOR;
@@ -31,7 +34,7 @@ float XPlaneInterface::getTotalAirTemperatureKelvin()
 
 float XPlaneInterface::getStaticAirTemperatureKelvin()
 {
-	float value = XPLMGetDataf(findDataRefByName("sim/weather/temperature_ambient_c"));
+	float value = XPLMGetDataf(findDataRefByCode(TEMPERATURE_AMBIENT));
 
 	// Convert to kelvin
 	return value + CELSIUS_TO_KELVIN_FACTOR;
@@ -40,11 +43,10 @@ float XPlaneInterface::getStaticAirTemperatureKelvin()
 int XPlaneInterface::getRadioAltitudeFt()
 {
 	// this should be improved
-	float value = XPLMGetDataf(findDataRefByName("sim/cockpit2/gauges/indicators/radio_altimeter_height_ft_pilot"));
+	float value = XPLMGetDataf(findDataRefByCode(RADIO_ALTITUDE_CAPT));
 	return (int) value;
 }
 
-XPLMDataRef XPlaneInterface::findDataRefByName(char * datarefName)
-{
-	return XPLMDataRef();
+XPLMDataRef XPlaneInterface::findDataRefByCode(DATAREF_LIST value) {
+	return DataRefMap[value];
 }
