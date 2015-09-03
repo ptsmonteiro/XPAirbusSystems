@@ -11,3 +11,8 @@ ATA32_LGCIU::ATA32_LGCIU(int number)
 ATA32_LGCIU::~ATA32_LGCIU()
 {
 }
+
+void ATA32_LGCIU::update()
+{
+
+}

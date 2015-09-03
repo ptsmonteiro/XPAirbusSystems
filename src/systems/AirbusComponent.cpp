@@ -16,9 +16,8 @@ ComponentHealth AirbusComponent::getHealth()
 	return this->currentHealth;
 }
 
-BaseMessage* AirbusComponent:: update()
+void AirbusComponent::update()
 {
-	return nullptr;
 }
 
 void AirbusComponent::setSimInterface(SimulatorInterface *)

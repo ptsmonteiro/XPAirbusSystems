@@ -3,7 +3,6 @@
   <ItemGroup>
     <ClCompile Include="A320.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Messages\BaseMessage.cpp" />
     <ClCompile Include="systems\AirbusComponent.cpp" />
     <ClCompile Include="systems\ATA22_ELAC.cpp" />
     <ClCompile Include="systems\ATA31_DMC.cpp" />
@@ -16,17 +15,17 @@
     <ClCompile Include="systems\ATA31_SDAC.cpp" />
     <ClCompile Include="systems\ATA32_LGCIU.cpp" />
     <ClCompile Include="systems\ATA34_RadioAlt.cpp" />
-    <ClCompile Include="messages\RadioAltimeterData.cpp" />
     <ClCompile Include="systems\ATA22_FMGC.cpp" />
     <ClCompile Include="sim_interface\SimulatorInterface.cpp" />
     <ClCompile Include="sim_interface\XPlaneInterface.cpp" />
     <ClCompile Include="systems\ADIRU.cpp" />
-    <ClCompile Include="messages\AirDataProbesMessage.cpp" />
-    <ClCompile Include="systems\AirDataProbes.cpp" />
+    <ClCompile Include="systems\ATA34\AOAProbe.cpp" />
+    <ClCompile Include="systems\ATA34\PitotProbe.cpp" />
+    <ClCompile Include="systems\ATA34\StaticProbe.cpp" />
+    <ClCompile Include="systems\ATA34\TATProbe.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="A320.h" />
-    <ClInclude Include="Messages\BaseMessage.h" />
     <ClInclude Include="systems\ATA34_RadioAlt.h" />
     <ClInclude Include="systems\AirbusComponent.h" />
     <ClInclude Include="systems\ATA22_ELAC.h" />
@@ -39,13 +38,14 @@
     <ClInclude Include="systems\ATA31_SD.h" />
     <ClInclude Include="systems\ATA31_SDAC.h" />
     <ClInclude Include="systems\ATA32_LGCIU.h" />
-    <ClInclude Include="messages\RadioAltimeterData.h" />
     <ClInclude Include="systems\ATA22_FMGC.h" />
     <ClInclude Include="sim_interface\SimulatorInterface.h" />
     <ClInclude Include="sim_interface\XPlaneInterface.h" />
     <ClInclude Include="systems\ADIRU.h" />
-    <ClInclude Include="messages\AirDataProbesMessage.h" />
-    <ClInclude Include="systems\AirDataProbes.h" />
+    <ClInclude Include="systems\ATA34\AOAProbe.h" />
+    <ClInclude Include="systems\ATA34\PitotProbe.h" />
+    <ClInclude Include="systems\ATA34\StaticProbe.h" />
+    <ClInclude Include="systems\ATA34\TATProbe.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

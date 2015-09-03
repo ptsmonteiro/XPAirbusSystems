@@ -1,5 +1,4 @@
 #pragma once
-#include "messages/BaseMessage.h"
 #include "sim_interface/SimulatorInterface.h"
 
 enum ComponentHealth : int {
@@ -16,7 +15,7 @@ public:
 	~AirbusComponent();
 
 	ComponentHealth getHealth();
-	virtual BaseMessage* update();
+	virtual void update();
 
 protected:
 	int number;

@@ -14,8 +14,10 @@
 #include "systems\ADIRU.h"
 #include "systems\ATA34_RadioAlt.h"
 #include "systems\ATA22_FMGC.h"
-#include "systems\AirDataProbes.h"
-
+#include "systems\ATA34\AOAProbe.h"
+#include "systems\ATA34\TATProbe.h"
+#include "systems\ATA34\PitotProbe.h"
+#include "systems\ATA34\StaticProbe.h"
 
 class A320
 {
@@ -51,7 +53,23 @@ protected:
 
 	// ATA 34 - Navigation Sensors
 
-	AirDataProbes * airDataProbes;
+	TATProbe * tatProbeCapt;
+	TATProbe * tatProbeFO;
+
+	AOAProbe * aoaProbeCapt;
+	AOAProbe * aoaProbeFO;
+	AOAProbe * aoaProbeStandby;
+
+	StaticProbe * staticProbeCapt1;
+	StaticProbe * staticProbeCapt2;
+	StaticProbe * staticProbeFO1;
+	StaticProbe * staticProbeFO2;
+	StaticProbe * staticProbeStandby1;
+	StaticProbe * staticProbeStandby2;
+
+	PitotProbe * pitotProbeCapt;
+	PitotProbe * pitotProbeFO;
+	PitotProbe * pitotProbeStandby;
 
 	ATA34_RadioAlt * ra1;
 	ATA34_RadioAlt * ra2;

@@ -16,15 +16,20 @@ ATA22_ELAC::~ATA22_ELAC()
 
 void ATA22_ELAC::connect(ADIRU * ADIRU)
 {
-
+	this->myADIRU = ADIRU;
 }
 
-void update()
+void ATA22_ELAC::connect(ATA32_LGCIU *lgciu)
 {
-	
+	this->LGCIU = lgciu;
 }
 
-void ATA22_ELAC::inputMessage(RadioAltimeterData *message)
+void ATA22_ELAC::connect(ATA34_RadioAlt *ra)
 {
-	this->currentRadioAltimeterHeightFt = message->altitude;
+	this->radioAlt = ra;
+}
+
+void ATA22_ELAC::update()
+{
+	this->currentRadioAltimeterHeightFt = this->radioAlt->getAltitudeFt();
 }

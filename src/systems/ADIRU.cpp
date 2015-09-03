@@ -10,12 +10,28 @@ ADIRU::~ADIRU()
 {
 }
 
-void ADIRU::inputMessage(AirDataProbesMessage *message)
+void ADIRU::setAOAsource(AOAProbe *src)
 {
-	this->tatValue = message->totalAirTemperatureKelvin;
+	this->AOASrc = src;
 }
 
-BaseMessage* ADIRU::update() {
+void ADIRU::setTATsource(TATProbe *src)
+{
+	this->TATSrc = src;
+}
+
+void ADIRU::setPitotSource(PitotProbe *src)
+{
+	this->PitotSrc = src;
+}
+
+void ADIRU::setStaticSource(StaticProbe *src)
+{
+	this->StaticSrc = src;
+}
+
+void ADIRU::update() 
+{
 
 	// Dummy values....
 	double machNumber = 0.333;
@@ -24,8 +40,4 @@ BaseMessage* ADIRU::update() {
 	double factor = 1 + ((ratioSpecHeats - 1) / 2) * machNumber * machNumber;
 	double staticAirTemp = this->tatValue / factor;
 
-
-
-	// Return my calculated values.
-	return nullptr;
 }

@@ -4,14 +4,14 @@
 class SimulatorInterface
 {
 public:
-	static float getTotalAirTemperatureKelvin();
-
-
-
-	static XPLMDataRef SimulatorInterface::findDataRefByName(char * datarefName);
-
 	SimulatorInterface();
 	~SimulatorInterface();
+
+	const float CELSIUS_TO_KELVIN_FACTOR = 273.15;
+
+	virtual float getTotalAirTemperatureKelvin() = 0;
+	virtual float getAOADegrees() = 0;
+	virtual int getRadioAltitudeFt() = 0;
 
 };
 

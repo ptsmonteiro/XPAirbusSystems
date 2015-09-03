@@ -1,12 +1,8 @@
 #include "A320.h"
-#include "messages/AirDataProbesMessage.h"
 #include <vector>
 
 A320::A320()
 {
-
-
-
 	this->elac1 = new ATA22_ELAC(1);
 	this->elac2 = new ATA22_ELAC(2);
 
@@ -39,19 +35,6 @@ void A320::updateSystemsHealth()
 	return;
 }
 
-void A320::propagateSignals()
-{
-	BaseMessage* message;
-	
-	/// ATA34 Information (Nav Data)
-	// RA 1
-	if (this->ra1->getHealth() == Online)
-	{
-		this->elac1->inputMessage((RadioAltimeterData*) this->ra1->update());
-		this->elac2->inputMessage((RadioAltimeterData*) this->ra1->update());
-	}
-}
-
 
 /*
 	Updates each component:
@@ -73,15 +56,44 @@ void A320::updateSystems()
 
 void A320::updateProbes()
 {
-	AirDataProbesMessage* adpm = (AirDataProbesMessage*) this->airDataProbes->update();
+	this->aoaProbeCapt->update();
+	this->aoaProbeFO->update();
+	this->aoaProbeStandby->update();
 
-	this->adiru1->inputMessage(adpm);
-	this->adiru2->inputMessage(adpm);
-	this->adiru3->inputMessage(adpm);
+	this->tatProbeCapt->update();
+	this->tatProbeFO->update();
+
+	this->pitotProbeCapt->update();
+	this->pitotProbeFO->update();
+	this->pitotProbeStandby->update();
+
+	this->staticProbeCapt1->update();
+	this->staticProbeCapt2->update();
+	this->staticProbeFO1->update();
+	this->staticProbeFO2->update();
+	this->staticProbeStandby1->update();
+	this->staticProbeStandby2->update();
+
+	this->ra1->update();
+	this->ra2->update();
+
+
+
 }
 
 void A320::updateComputers()
 {
+	this->lgciu1->update();
+	this->lgciu2->update();
+
+	this->adiru1->update();
+	this->adiru2->update();
+	this->adiru3->update();
+
+	this->elac1->update();
+	this->elac2->update();
+
+
 }
 
 void A320::updateDisplays()

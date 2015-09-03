@@ -1,10 +1,11 @@
 #pragma once
 #include "systems\AirbusComponent.h"
-class ATA22_FMGC : public AirbusComponent
+class TATProbe :
+	public AirbusComponent
 {
 public:
-	ATA22_FMGC(int);
-	~ATA22_FMGC();
+	TATProbe();
+	~TATProbe();
 
 	void update();
 };

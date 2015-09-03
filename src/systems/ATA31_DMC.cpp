@@ -9,3 +9,7 @@ ATA31_DMC::ATA31_DMC(int number)
 ATA31_DMC::~ATA31_DMC()
 {
 }
+
+void ATA31_DMC::update()
+{
+}

@@ -1,5 +1,4 @@
 #include "ATA34_RadioAlt.h"
-#include "messages/RadioAltimeterData.h"
 
 
 ATA34_RadioAlt::ATA34_RadioAlt(int number)
@@ -8,17 +7,14 @@ ATA34_RadioAlt::ATA34_RadioAlt(int number)
 	this->number = number;
 }
  
-BaseMessage* ATA34_RadioAlt::update()
+void ATA34_RadioAlt::update()
 {
-	if (this->currentHealth == Online) {
-		RadioAltimeterData* rad = new RadioAltimeterData();
+	this->altitudeFt = this->simInterface->getRadioAltitudeFt();
+}
 
-		rad->altitude = 50;	// Get this from a dataref.
-		return rad;
-	}
-	else {
-		return nullptr;
-	}
+int ATA34_RadioAlt::getAltitudeFt()
+{
+	return 0;
 }
 
  

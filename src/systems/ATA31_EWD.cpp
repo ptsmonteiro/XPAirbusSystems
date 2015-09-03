@@ -9,3 +9,7 @@ ATA31_EWD::ATA31_EWD(int number)
 ATA31_EWD::~ATA31_EWD()
 {
 }
+
+void ATA31_EWD::update()
+{
+}

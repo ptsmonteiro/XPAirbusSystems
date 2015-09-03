@@ -8,10 +8,12 @@ public:
 	ATA34_RadioAlt(int);
 	~ATA34_RadioAlt();
 
-	virtual BaseMessage* update();
+	void update();
+	int getAltitudeFt();
 	
 protected:
 
 	int number;
+	int altitudeFt;
 };
 

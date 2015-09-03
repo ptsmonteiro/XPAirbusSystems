@@ -7,5 +7,15 @@ class XPlaneInterface :
 public:
 	XPlaneInterface();
 	~XPlaneInterface();
+
+	float getAOADegrees();
+	float getTotalAirTemperatureKelvin();
+	int getRadioAltitudeFt();
+
+protected:
+	static XPLMDataRef findDataRefByName(char * datarefName);
+
+
+
 };
 

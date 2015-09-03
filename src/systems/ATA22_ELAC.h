@@ -3,13 +3,12 @@
 #include "AirbusComponent.h"
 #include "ADIRU.h"
 #include "ATA32_LGCIU.h"
-#include "messages\RadioAltimeterData.h"
+#include "ATA34_RadioAlt.h"
 
 class ATA22_ELAC : public AirbusComponent
 {
 private:
 	int currentRadioAltimeterHeightFt;
-
 
 public:
 	ATA22_ELAC(int);
@@ -22,23 +21,22 @@ public:
 
 	void connect(ADIRU *);
 	void connect(ATA32_LGCIU *);
+	void connect(ATA34_RadioAlt *);
 
-	void inputMessage(RadioAltimeterData *);
+	void update();
 
 protected:
 
-	ADIRU * m_ADIRU;
-	ADIRU *getADIRU();
+	ADIRU * myADIRU;
+	ATA34_RadioAlt * radioAlt;
+	ATA32_LGCIU * LGCIU;
+
 
 	void getFMGC();
 
 	float getAccelX();
 	float getAccelY();
 	float getAccelZ();
-
-	void getLGCIU();
-
-	void getRadioAlt();
 
 	float getSideStickX();
 	float getSideStickY();
