@@ -7,6 +7,8 @@ public:
 	TATProbe();
 	~TATProbe();
 
+	float totalAirTemperatureKelvin;
+
 	void update();
 };
 

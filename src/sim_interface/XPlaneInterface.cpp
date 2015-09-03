@@ -23,8 +23,15 @@ float XPlaneInterface::getAOADegrees()
 
 float XPlaneInterface::getTotalAirTemperatureKelvin()
 {
-	// Load Dataref sim/weather/temperature_le_c
 	float value = XPLMGetDataf(findDataRefByName("sim/weather/temperature_le_c"));
+
+	// Convert to kelvin
+	return value + CELSIUS_TO_KELVIN_FACTOR;
+}
+
+float XPlaneInterface::getStaticAirTemperatureKelvin()
+{
+	float value = XPLMGetDataf(findDataRefByName("sim/weather/temperature_ambient_c"));
 
 	// Convert to kelvin
 	return value + CELSIUS_TO_KELVIN_FACTOR;

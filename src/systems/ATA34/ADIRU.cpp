@@ -36,12 +36,4 @@ void ADIRU::setStaticSource(StaticProbe *src)
 
 void ADIRU::update() 
 {
-
-	// Dummy values....
-	double machNumber = 0.333;
-	double ratioSpecHeats = 1.444f;
-
-	double factor = 1 + ((ratioSpecHeats - 1) / 2) * machNumber * machNumber;
-	double staticAirTemp = this->tatValue / factor;
-
 }

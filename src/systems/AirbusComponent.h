@@ -15,12 +15,12 @@ public:
 	AirbusComponent(int);
 	~AirbusComponent();
 
-	ComponentHealth getHealth();
+	ComponentHealth currentHealth;
 	virtual void update();
 
 protected:
 	int number;
-	ComponentHealth currentHealth;
+	
 
 	SimulatorInterface *simInterface;
 	void setSimInterface(SimulatorInterface *);

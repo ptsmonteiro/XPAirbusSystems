@@ -9,6 +9,7 @@ public:
 	~XPlaneInterface();
 
 	float getAOADegrees();
+	float getStaticAirTemperatureKelvin();
 	float getTotalAirTemperatureKelvin();
 	int getRadioAltitudeFt();
 

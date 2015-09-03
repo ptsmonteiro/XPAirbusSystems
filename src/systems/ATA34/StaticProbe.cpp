@@ -1,11 +1,9 @@
 #include "StaticProbe.h"
 
 
-
 StaticProbe::StaticProbe()
 {
 }
-
 
 StaticProbe::~StaticProbe()
 {
