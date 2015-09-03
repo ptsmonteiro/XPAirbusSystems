@@ -24,6 +24,7 @@ protected:
 
 public:
 	ADIRU();
+	ADIRU(int);
 	~ADIRU();
 
 	void setAOAsource(AOAProbe *);

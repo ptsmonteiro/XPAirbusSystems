@@ -36,12 +36,34 @@ void ATA22_ELAC::update()
 
 void ATA22_ELAC::processPitch()
 {
-
+	switch (this->pitchControlMode)
+	{
+		case GROUND:
+			break;
+		case GROUND_TO_FLIGHT:
+			break;
+		case FLIGHT:
+			break;
+		case FLIGHT_TO_FLARE:
+			break;
+		case FLARE_TO_GROUND:
+			break;
+	};
 }
 
 void ATA22_ELAC::processRoll()
 {
-
+	switch (this->pitchControlMode)
+	{
+		case GROUND:
+			break;
+		case GROUND_TO_FLIGHT:
+			break;
+		case FLIGHT:
+			break;
+		case FLIGHT_TO_GROUND:
+			break;
+	}
 }
 
 void ATA22_ELAC::processYaw()

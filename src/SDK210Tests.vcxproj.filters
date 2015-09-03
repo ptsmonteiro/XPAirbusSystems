@@ -47,7 +47,4 @@
     <ClInclude Include="systems\ATA34\RadioAlt.h" />
     <ClInclude Include="systems\ATA34\ADIRU.h" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
-  </ItemGroup>
 </Project>

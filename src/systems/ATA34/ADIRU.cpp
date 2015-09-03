@@ -4,6 +4,12 @@ ADIRU::ADIRU()
 {
 }
 
+ADIRU::ADIRU(int number)
+{
+	this->number = number;
+}
+
+
 ADIRU::~ADIRU()
 {
 }

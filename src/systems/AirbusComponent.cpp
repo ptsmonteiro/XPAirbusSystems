@@ -1,9 +1,13 @@
 #include "AirbusComponent.h"
 
 
-
 AirbusComponent::AirbusComponent()
 {
+}
+
+AirbusComponent::AirbusComponent(int number)
+{
+	this->number = number;
 }
 
 

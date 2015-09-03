@@ -12,6 +12,7 @@ class AirbusComponent
 
 public:
 	AirbusComponent();
+	AirbusComponent(int);
 	~AirbusComponent();
 
 	ComponentHealth getHealth();
