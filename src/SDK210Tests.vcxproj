@@ -294,7 +294,7 @@
     <ClCompile Include="systems\ATA31_SD.cpp" />
     <ClCompile Include="systems\ATA31_SDAC.cpp" />
     <ClCompile Include="systems\ATA32_LGCIU.cpp" />
-    <ClCompile Include="systems\ADIRU.cpp" />
+    <ClCompile Include="systems\ATA34\ADIRU.cpp" />
     <ClCompile Include="systems\ATA34\RadioAlt.cpp" />
     <ClCompile Include="sim_interface\XPlaneInterface.cpp" />
     <ClCompile Include="systems\ATA34\TATProbe.cpp" />
@@ -317,7 +317,7 @@
     <ClInclude Include="systems\ATA31_SD.h" />
     <ClInclude Include="systems\ATA31_SDAC.h" />
     <ClInclude Include="systems\ATA32_LGCIU.h" />
-    <ClInclude Include="systems\ADIRU.h" />
+    <ClInclude Include="systems\ATA34\ADIRU.h" />
     <ClInclude Include="systems\ATA34\RadioAlt.h" />
     <ClInclude Include="sim_interface\XPlaneInterface.h" />
     <ClInclude Include="systems\ATA34\TATProbe.h" />

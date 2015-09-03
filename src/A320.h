@@ -11,7 +11,7 @@
 #include "systems\ATA31_SD.h"
 #include "systems\ATA31_SDAC.h"
 #include "systems\ATA32_LGCIU.h"
-#include "systems\ADIRU.h"
+#include "systems\ATA34\ADIRU.h"
 #include "systems\ATA34\RadioAlt.h"
 #include "systems\ATA22_FMGC.h"
 #include "systems\ATA34\AOAProbe.h"

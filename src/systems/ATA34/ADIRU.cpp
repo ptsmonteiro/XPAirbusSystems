@@ -1,7 +1,5 @@
 #include "ADIRU.h"
 
-
-
 ADIRU::ADIRU()
 {
 }

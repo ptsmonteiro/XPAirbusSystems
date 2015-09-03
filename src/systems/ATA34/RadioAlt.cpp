@@ -14,7 +14,7 @@ void RadioAlt::update()
 
 int RadioAlt::getAltitudeFt()
 {
-	return 0;
+	return this->altitudeFt;
 }
 
  

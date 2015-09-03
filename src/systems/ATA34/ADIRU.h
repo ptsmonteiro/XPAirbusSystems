@@ -1,9 +1,9 @@
 #pragma once
-#include "AirbusComponent.h"
-#include "ATA34\AOAProbe.h"
-#include "ATA34\PitotProbe.h"
-#include "ATA34\StaticProbe.h"
-#include "ATA34\TATProbe.h"
+#include "systems/AirbusComponent.h"
+#include "systems/ATA34\AOAProbe.h"
+#include "systems/ATA34\PitotProbe.h"
+#include "systems/ATA34\StaticProbe.h"
+#include "systems/ATA34\TATProbe.h"
 
 /*
  * ATA34 :: ADIRU

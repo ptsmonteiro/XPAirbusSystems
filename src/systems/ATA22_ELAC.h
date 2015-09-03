@@ -1,7 +1,7 @@
 #pragma once
 
 #include "AirbusComponent.h"
-#include "ADIRU.h"
+#include "systems/ATA34/ADIRU.h"
 #include "ATA32_LGCIU.h"
 #include "systems\ATA34\RadioAlt.h"
 
