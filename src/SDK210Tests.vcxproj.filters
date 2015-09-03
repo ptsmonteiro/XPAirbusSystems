@@ -14,7 +14,6 @@
     <ClCompile Include="systems\ATA31_SD.cpp" />
     <ClCompile Include="systems\ATA31_SDAC.cpp" />
     <ClCompile Include="systems\ATA32_LGCIU.cpp" />
-    <ClCompile Include="systems\ATA34_RadioAlt.cpp" />
     <ClCompile Include="systems\ATA22_FMGC.cpp" />
     <ClCompile Include="sim_interface\SimulatorInterface.cpp" />
     <ClCompile Include="sim_interface\XPlaneInterface.cpp" />
@@ -23,10 +22,10 @@
     <ClCompile Include="systems\ATA34\PitotProbe.cpp" />
     <ClCompile Include="systems\ATA34\StaticProbe.cpp" />
     <ClCompile Include="systems\ATA34\TATProbe.cpp" />
+    <ClCompile Include="systems\ATA34\RadioAlt.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="A320.h" />
-    <ClInclude Include="systems\ATA34_RadioAlt.h" />
     <ClInclude Include="systems\AirbusComponent.h" />
     <ClInclude Include="systems\ATA22_ELAC.h" />
     <ClInclude Include="systems\ATA31_DMC.h" />
@@ -46,6 +45,7 @@
     <ClInclude Include="systems\ATA34\PitotProbe.h" />
     <ClInclude Include="systems\ATA34\StaticProbe.h" />
     <ClInclude Include="systems\ATA34\TATProbe.h" />
+    <ClInclude Include="systems\ATA34\RadioAlt.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

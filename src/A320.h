@@ -12,7 +12,7 @@
 #include "systems\ATA31_SDAC.h"
 #include "systems\ATA32_LGCIU.h"
 #include "systems\ADIRU.h"
-#include "systems\ATA34_RadioAlt.h"
+#include "systems\ATA34\RadioAlt.h"
 #include "systems\ATA22_FMGC.h"
 #include "systems\ATA34\AOAProbe.h"
 #include "systems\ATA34\TATProbe.h"
@@ -71,8 +71,8 @@ protected:
 	PitotProbe * pitotProbeFO;
 	PitotProbe * pitotProbeStandby;
 
-	ATA34_RadioAlt * ra1;
-	ATA34_RadioAlt * ra2;
+	RadioAlt * ra1;
+	RadioAlt * ra2;
 
 	ADIRU * adiru1;
 	ADIRU * adiru2;

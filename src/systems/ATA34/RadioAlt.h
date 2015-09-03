@@ -1,12 +1,12 @@
 #pragma once
 
-#include "AirbusComponent.h"
+#include "systems/AirbusComponent.h"
 
-class ATA34_RadioAlt : public AirbusComponent
+class RadioAlt : public AirbusComponent
 {
 public:
-	ATA34_RadioAlt(int);
-	~ATA34_RadioAlt();
+	RadioAlt(int);
+	~RadioAlt();
 
 	void update();
 	int getAltitudeFt();

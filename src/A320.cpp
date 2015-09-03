@@ -16,8 +16,8 @@ A320::A320()
 	this->du5 = new ATA31_DU(5);
 	this->du6 = new ATA31_DU(6);
 
-	this->ra1 = new ATA34_RadioAlt(1);
-	this->ra2 = new ATA34_RadioAlt(2);
+	this->ra1 = new RadioAlt(1);
+	this->ra2 = new RadioAlt(2);
 
 	this->fwc1 = new ATA31_FWC(1);
 	this->fwc2 = new ATA31_FWC(2);

@@ -24,7 +24,7 @@ void ATA22_ELAC::connect(ATA32_LGCIU *lgciu)
 	this->LGCIU = lgciu;
 }
 
-void ATA22_ELAC::connect(ATA34_RadioAlt *ra)
+void ATA22_ELAC::connect(RadioAlt *ra)
 {
 	this->radioAlt = ra;
 }

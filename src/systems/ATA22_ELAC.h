@@ -3,7 +3,7 @@
 #include "AirbusComponent.h"
 #include "ADIRU.h"
 #include "ATA32_LGCIU.h"
-#include "ATA34_RadioAlt.h"
+#include "systems\ATA34\RadioAlt.h"
 
 class ATA22_ELAC : public AirbusComponent
 {
@@ -21,14 +21,14 @@ public:
 
 	void connect(ADIRU *);
 	void connect(ATA32_LGCIU *);
-	void connect(ATA34_RadioAlt *);
+	void connect(RadioAlt *);
 
 	void update();
 
 protected:
 
 	ADIRU * myADIRU;
-	ATA34_RadioAlt * radioAlt;
+	RadioAlt * radioAlt;
 	ATA32_LGCIU * LGCIU;
 
 
