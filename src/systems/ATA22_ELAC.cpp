@@ -1,9 +1,6 @@
 #include "ATA22_ELAC.h"
 #include "systems/ATA34/ADIRU.h"
 
-
-
-
 ATA22_ELAC::ATA22_ELAC(int number)
 {
 	this->number = number;
@@ -32,4 +29,22 @@ void ATA22_ELAC::connect(RadioAlt *ra)
 void ATA22_ELAC::update()
 {
 	this->currentRadioAltimeterHeightFt = this->radioAlt->getAltitudeFt();
+	this->processPitch();
+	this->processRoll();
+	this->processYaw();
+}
+
+void ATA22_ELAC::processPitch()
+{
+
+}
+
+void ATA22_ELAC::processRoll()
+{
+
+}
+
+void ATA22_ELAC::processYaw()
+{
+
 }

@@ -21,6 +21,8 @@ A320::A320()
 
 	this->fwc1 = new ATA31_FWC(1);
 	this->fwc2 = new ATA31_FWC(2);
+
+	//lots of things missing here
 }
 
 

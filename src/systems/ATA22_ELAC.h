@@ -25,6 +25,7 @@ public:
 
 	void update();
 
+
 protected:
 
 	ADIRU * myADIRU;
@@ -42,5 +43,10 @@ protected:
 	float getSideStickY();
 
 	float getPedalsPos();
+
+	void processPitch();
+	void processRoll();
+	void processYaw();
+
 };
 
