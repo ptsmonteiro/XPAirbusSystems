@@ -137,7 +137,7 @@ void A320::reconfigureSystems()
 	// DU
 }
 
-void A320::update()
+void A320::update(float deltaTimeSeconds)
 {
 	// Probes and Sensors
 	updateProbes();

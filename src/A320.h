@@ -25,7 +25,7 @@ public:
 	A320();
 	~A320();
 
-	void update();
+	void update(float);
 
 protected:
 
