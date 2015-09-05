@@ -18,12 +18,14 @@
 #include "systems\ATA34\TATProbe.h"
 #include "systems\ATA34\PitotProbe.h"
 #include "systems\ATA34\StaticProbe.h"
+#include "systems\Electric\ElectricNetwork.h"
 
 class A320
 {
 public:
 	A320();
 	~A320();
+	ElectricNetwork * electricNetwork;
 
 	void update(float);
 

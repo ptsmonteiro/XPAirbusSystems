@@ -2,13 +2,13 @@
 
 RadioAlt::RadioAlt(int number)
 {
-	this->currentHealth = Online;
+	this->currentHealth = Healthy;
 	this->number = number;
 }
  
 void RadioAlt::update()
 {
-	if (this->currentHealth != Online) {
+	if (this->currentHealth != Healthy) {
 		return;
 	}
 

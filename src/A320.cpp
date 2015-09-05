@@ -3,6 +3,8 @@
 
 A320::A320()
 {
+	this->electricNetwork = new ElectricNetwork;
+
 	// Probes and sensors
 	this->aoaProbeCapt = new AOAProbe;
 	this->aoaProbeFO = new AOAProbe;
@@ -62,7 +64,6 @@ void A320::updateSystemsHealth()
 	return;
 }
 
-
 void A320::updateProbes()
 {
 	this->aoaProbeCapt->update();
@@ -120,7 +121,7 @@ void A320::updateDisplays()
 */
 void A320::reconfigureSystems()
 {
-	// Electrics
+	electricNetwork->reconfigure();
 
 	// Hydraulics
 

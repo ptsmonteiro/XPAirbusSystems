@@ -1,4 +1,3 @@
-
 #pragma warning(disable:4477)
 #pragma warning(disable:4313)
 
@@ -39,7 +38,6 @@ A320 *aircraft;
 const float AirbusSystemsFlightLoopIntervalSeconds = 0.01;
 
 char VersionNumber[] = "v1.00";
-
 char Buffer[256];
 
 //---------------------------------------------------------------------------

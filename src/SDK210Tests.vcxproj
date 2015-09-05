@@ -277,6 +277,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="A320.cpp" />
+    <ClCompile Include="systems\Electric\ElectricGenerator.cpp" />
+    <ClCompile Include="systems\Electric\ElectricSink.cpp" />
+    <ClCompile Include="systems\Electric\ElectricBus.cpp" />
+    <ClCompile Include="systems\Electric\ElectricSource.cpp" />
+    <ClCompile Include="systems\Electric\ElectricNetwork.cpp" />
     <ClCompile Include="systems\ATA34\PitotProbe.cpp" />
     <ClCompile Include="systems\ATA34\StaticProbe.cpp" />
     <ClCompile Include="systems\ATA34\AOAProbe.cpp" />
@@ -301,6 +306,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="A320.h" />
+    <ClInclude Include="core\core.h" />
+    <ClInclude Include="systems\Electric\ElectricGenerator.h" />
+    <ClInclude Include="systems\Electric\ElectricSink.h" />
+    <ClInclude Include="systems\Electric\ElectricBus.h" />
+    <ClInclude Include="systems\Electric\ElectricSource.h" />
+    <ClInclude Include="systems\Electric\ElectricNetwork.h" />
     <ClInclude Include="systems\ATA34\PitotProbe.h" />
     <ClInclude Include="systems\ATA34\StaticProbe.h" />
     <ClInclude Include="systems\ATA34\AOAProbe.h" />

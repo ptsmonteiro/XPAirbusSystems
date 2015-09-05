@@ -23,7 +23,6 @@ protected:
 	StaticProbe * StaticSrc;
 
 public:
-	ADIRU();
 	ADIRU(int);
 	~ADIRU();
 

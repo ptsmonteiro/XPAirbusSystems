@@ -1,11 +1,6 @@
 #pragma once
 #include "sim_interface/SimulatorInterface.h"
-
-enum ComponentHealth : int {
-	Online,
-	Failed,
-	Offline
-};
+#include "core\core.h"
 
 class AirbusComponent
 {
@@ -21,9 +16,7 @@ public:
 protected:
 	int number;
 	
-
 	SimulatorInterface *simInterface;
 	void setSimInterface(SimulatorInterface *);
-
 };
 
