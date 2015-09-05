@@ -10,7 +10,6 @@ ElectricGenerator::ElectricGenerator(ElectricGeneratorType genType, ComponentHea
 	this->currentHealth = Healthy;
 }
 
-
 ElectricGenerator::~ElectricGenerator()
 {
 }

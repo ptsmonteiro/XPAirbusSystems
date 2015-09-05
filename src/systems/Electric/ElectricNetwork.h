@@ -10,11 +10,13 @@
 
 class ElectricNetwork
 {
-	ElectricNetworkMode								mode;
+	ElectricNetworkMode									mode;
 	std::map<ElectricGeneratorType, ElectricGenerator*> generatorData;
+	std::map<ElectricBusType, ElectricBus *>			busData;
 
 public:
-	void reconfigure();
+	void reconfigure(ElectricNetworkMode mode);
+	void resetNetwork();
 	void prepareNormalFlightConfig();
 	void prepareNormalGroundConfig();
 	ElectricNetwork();

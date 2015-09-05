@@ -6,12 +6,11 @@
 
 class ElectricBus : public ElectricSource, public ElectricSink
 {
-	ElectricBusType				busType;
-	ElectricSource				source;
+	ElectricBusType					busType;
 	std::vector<ElectricSink>		coupledSystems;
 
 public:
-	ElectricBus();
+	ElectricBus(ElectricBusType busType);
 	~ElectricBus();
 };
 

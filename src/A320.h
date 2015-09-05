@@ -27,10 +27,6 @@ public:
 	~A320();
 	ElectricNetwork * electricNetwork;
 
-	void update(float);
-
-protected:
-
 	// ATA 22 - Auto Flight
 	ATA22_ELAC * elac1;
 	ATA22_ELAC * elac2;
@@ -80,13 +76,19 @@ protected:
 	ADIRU * adiru2;
 	ADIRU * adiru3;
 
+	void update(float);
+
+protected:
+
+
 	void updateSystemsHealth();
 	void propagateSignals();
-
 	void updateSystems();
 	void reconfigureSystems();
 	void updateProbes();
 	void updateComputers();
 	void updateDisplays();
-
 };
+
+// Static reference
+static A320* Aircraft;

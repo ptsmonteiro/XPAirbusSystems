@@ -20,7 +20,7 @@ enum ElectricBusType {
 	HotBus1,
 	HotBus2,
 	DcBatBus,
-	DCBus1,
+	DcBus1,
 	DcBus2,
 	DcEssBus,
 	DcEssShed,
@@ -34,3 +34,4 @@ enum ElectricNetworkMode {
 	Normal_Flight,
 	Normal_Ground
 };
+

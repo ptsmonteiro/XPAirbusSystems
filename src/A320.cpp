@@ -1,9 +1,11 @@
 #include "A320.h"
+#include "core\core.h"
 #include <vector>
 
 A320::A320()
 {
 	this->electricNetwork = new ElectricNetwork;
+
 
 	// Probes and sensors
 	this->aoaProbeCapt = new AOAProbe;
@@ -121,7 +123,7 @@ void A320::updateDisplays()
 */
 void A320::reconfigureSystems()
 {
-	electricNetwork->reconfigure();
+	electricNetwork->reconfigure(Normal_Ground);
 
 	// Hydraulics
 
@@ -136,6 +138,8 @@ void A320::reconfigureSystems()
 	// DMC
 
 	// DU
+
+	Aircraft = this;
 }
 
 void A320::update(float deltaTimeSeconds)

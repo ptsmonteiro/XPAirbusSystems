@@ -2,8 +2,9 @@
 #include "ElectricBus.h"
 
 
-ElectricBus::ElectricBus()
+ElectricBus::ElectricBus(ElectricBusType busType)
 {
+	this->busType = busType;
 }
 
 ElectricBus::~ElectricBus()
