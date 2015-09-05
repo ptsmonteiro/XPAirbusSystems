@@ -31,6 +31,7 @@ enum ElectricBusType {
 };
 
 enum ElectricNetworkMode {
+	ColdAndDark,
 	Normal_Flight,
 	Normal_Ground
 };

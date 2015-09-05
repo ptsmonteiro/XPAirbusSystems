@@ -1,5 +1,5 @@
 #include "AOAProbe.h"
-
+#include "A320.h"
 
 
 AOAProbe::AOAProbe()
@@ -18,5 +18,5 @@ AOAProbe::~AOAProbe()
 
 void AOAProbe::update()
 {
-	this->AOADegrees = this->simInterface->getAOADegrees();
+	this->AOADegrees = SimInterface->getAOADegrees();
 }

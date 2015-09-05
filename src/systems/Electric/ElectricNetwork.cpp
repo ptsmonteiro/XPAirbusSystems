@@ -3,11 +3,6 @@
 
 ElectricNetwork::ElectricNetwork()
 {
-	mode = Normal_Flight;
-}
-
-ElectricNetwork::~ElectricNetwork()
-{
 	// Initialize generators.
 	generatorData[Bat1] = new ElectricGenerator(Bat1, Healthy);
 	generatorData[Bat2] = new ElectricGenerator(Bat2, Healthy);
@@ -38,12 +33,15 @@ void ElectricNetwork::reconfigure(ElectricNetworkMode mode)
 	this->mode = mode;
 
 	switch (this->mode) {
-	case Normal_Flight:
-		prepareNormalFlightConfig();
-		break;
-	case Normal_Ground:
-		prepareNormalGroundConfig();
-		break;
+		case Normal_Flight:
+			prepareNormalFlightConfig();
+			break;
+		case Normal_Ground:
+			prepareNormalGroundConfig();
+			break;
+		case ColdAndDark:
+			resetNetwork();
+			break;
 	}
 }
 
@@ -113,7 +111,13 @@ void ElectricNetwork::couple(ElectricSource* source, ElectricSink* sink)
 
 void ElectricNetwork::resetNetwork()
 {
-	//TODO: Clear all arrays
+	// Disconnect all equipment.
+	Aircraft->adiru1->disconnectElectrical();
+	Aircraft->adiru2->disconnectElectrical();
+	Aircraft->adiru3->disconnectElectrical();
+
+	// Uncouple all connections.
+
 }
 
 void ElectricNetwork::reconfigureEquipment()

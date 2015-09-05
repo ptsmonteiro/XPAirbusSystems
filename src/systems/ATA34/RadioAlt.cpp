@@ -1,3 +1,4 @@
+#include "A320.h"
 #include "systems\ATA34\RadioAlt.h"
 
 RadioAlt::RadioAlt(int number)
@@ -12,7 +13,7 @@ void RadioAlt::update()
 		return;
 	}
 
-	this->altitudeFt = this->simInterface->getRadioAltitudeFt();
+	this->altitudeFt = SimInterface->getRadioAltitudeFt();
 }
 
 int RadioAlt::getAltitudeFt()

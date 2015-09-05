@@ -1,6 +1,10 @@
 #pragma warning(disable:4477)
 #pragma warning(disable:4313)
 
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+
 #include "XPLM\XPLMPlugin.h"
 #include "XPLM\XPLMDisplay.h"
 #include "XPLM\XPLMProcessing.h"
@@ -11,10 +15,6 @@
 #include "Widgets\XPStandardWidgets.h"
 #include "XPLM\XPLMScenery.h"
 #include "XPLM\XPLMPlanes.h"
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
-
 #include "A320.h"
 
 #if IBM
@@ -31,13 +31,9 @@
 #endif
 #endif
 
-//---------------------------------------------------------------------------
-
-A320 *aircraft;
-
 const float AirbusSystemsFlightLoopIntervalSeconds = 0.01;
 
-char VersionNumber[] = "v1.00";
+const char VersionNumber[] = "v1.00";
 char Buffer[256];
 
 //---------------------------------------------------------------------------
@@ -48,34 +44,34 @@ float AirbusSystemsFlightLoopCB(float elapsedMe, float elapsedSim, int counter, 
 // Callback for Error Tests
 void	AirbusSystemsErrorCB(const char * msg)
 {
-	XPLMDebugString("================================================================\n");
 	XPLMDebugString("AirbusSystemsErrorCB - error CB called: ");
 	XPLMDebugString(msg);
 	XPLMDebugString("\n");
-	XPLMDebugString("----------------------------------------------------------------\n");
 }
 
 
 // Prototype for Draw Object tests
 int	AirbusSystemsDrawCB(
-                                   XPLMDrawingPhase     inPhase,    
-                                   int                  inIsBefore,    
-                                   void *               inRefcon);
+	XPLMDrawingPhase     inPhase,
+	int                  inIsBefore,
+	void *               inRefcon);
 
 
 //---------------------------------------------------------------------------
 
 PLUGIN_API int XPluginStart(
-						char *		outName,
-						char *		outSig,
-						char *		outDesc)
+	char *		outName,
+	char *		outSig,
+	char *		outDesc)
 {
 	strcpy(outName, "AirbusSystems");
 	strcpy(outSig, "matiasmonteiro.projects.AirbusSystems");
 	strcpy(outDesc, "Airbus Systems Plugin");
 
 	// Allocate aircraft
-	aircraft = new A320();
+	Aircraft = new A320();
+
+	Aircraft->init();
 
 	// Register the callback for errors
 	XPLMSetErrorCallback(AirbusSystemsErrorCB);
@@ -84,7 +80,7 @@ PLUGIN_API int XPluginStart(
 	XPLMRegisterFlightLoopCallback(AirbusSystemsFlightLoopCB, AirbusSystemsFlightLoopIntervalSeconds, NULL);
 
 	// This used for the Draw Objects tests
-	XPLMRegisterDrawCallback( AirbusSystemsDrawCB, xplm_Phase_Objects, 0, 0 );
+	XPLMRegisterDrawCallback(AirbusSystemsDrawCB, xplm_Phase_Objects, 0, 0);
 
 	return 1;
 }
@@ -92,9 +88,9 @@ PLUGIN_API int XPluginStart(
 PLUGIN_API void	XPluginStop(void)
 {
 	// Clean up
-	delete aircraft;
+	delete Aircraft;
 
-    XPLMUnregisterDrawCallback(AirbusSystemsDrawCB, xplm_Phase_Objects, 0, 0);
+	XPLMUnregisterDrawCallback(AirbusSystemsDrawCB, xplm_Phase_Objects, 0, 0);
 	XPLMUnregisterFlightLoopCallback(AirbusSystemsFlightLoopCB, NULL);
 }
 
@@ -109,22 +105,21 @@ PLUGIN_API void XPluginDisable(void)
 
 PLUGIN_API void XPluginReceiveMessage(XPLMPluginID inFrom, int inMsg, void * inParam)
 {
-	XPLMDebugString("================================================================\n");
 	sprintf(Buffer, "AirbusSystems: XPluginReceiveMessage - Type %d.\n", inMsg);
 	XPLMDebugString(Buffer);
-	XPLMDebugString("----------------------------------------------------------------\n");
 }
 
 // Used to test the creation and destruction of a Flightloop Callback from within a Flightloop Callback.
 float AirbusSystemsFlightLoopCB(float elapsedMe, float elapsedSim, int counter, void * refcon)
 {
-	aircraft->update(elapsedMe);
+	
+	Aircraft->update(elapsedMe);
 	return AirbusSystemsFlightLoopIntervalSeconds;
 }
 
-int	AirbusSystemsDrawCB(XPLMDrawingPhase     inPhase,    
-                        int                  inIsBefore,    
-                        void *               inRefcon)
+int	AirbusSystemsDrawCB(XPLMDrawingPhase     inPhase,
+	int                  inIsBefore,
+	void *               inRefcon)
 {
 	return 1;
 }

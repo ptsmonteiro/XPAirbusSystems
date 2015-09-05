@@ -8,12 +8,7 @@ class AirbusComponent
 {
 protected:
 	int number;
-
-	SimulatorInterface *simInterface;
-
-	void setSimInterface(SimulatorInterface *);
 	
-
 public:
 	AirbusComponent();
 	AirbusComponent(int);
@@ -24,6 +19,7 @@ public:
 
 	virtual void update();
 	virtual void connect(ElectricSource* source);
+	virtual void disconnectElectrical();
 
 };
 

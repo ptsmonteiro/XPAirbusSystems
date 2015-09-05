@@ -77,10 +77,10 @@ public:
 	ADIRU * adiru3;
 
 	void update(float);
+	void init();
 
 protected:
-
-
+	void resetColdAndDark();
 	void updateSystemsHealth();
 	void propagateSignals();
 	void updateSystems();
@@ -90,5 +90,7 @@ protected:
 	void updateDisplays();
 };
 
-// Static reference
-static A320* Aircraft;
+// Global variables
+
+extern A320* Aircraft;
+extern SimulatorInterface* SimInterface;

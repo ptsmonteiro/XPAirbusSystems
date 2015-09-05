@@ -1,9 +1,18 @@
-#include "A320.h"
-#include "core\core.h"
 #include <vector>
+#include "core\core.h"
+#include "A320.h"
+#include "sim_interface\XPlaneInterface.h"
+
+/* Globals */
+A320* Aircraft;
+SimulatorInterface* SimInterface;
+
 
 A320::A320()
 {
+	Aircraft = this;
+	SimInterface = new XPlaneInterface();
+
 	this->electricNetwork = new ElectricNetwork;
 
 
@@ -59,10 +68,14 @@ A320::~A320()
 {
 }
 
+void A320::init()
+{
+	resetColdAndDark();
+
+}
+
 void A320::updateSystemsHealth()
 {
-
-	// Update an array/table/vector os systems health.
 	return;
 }
 
@@ -100,8 +113,8 @@ void A320::updateComputers()
 	this->adiru2->update();
 	this->adiru3->update();
 
-	this->elac1->update();
-	this->elac2->update();
+//	this->elac1->update();
+//	this->elac2->update();
 
 }
 
@@ -138,8 +151,6 @@ void A320::reconfigureSystems()
 	// DMC
 
 	// DU
-
-	Aircraft = this;
 }
 
 void A320::update(float deltaTimeSeconds)
@@ -157,4 +168,9 @@ void A320::update(float deltaTimeSeconds)
 	reconfigureSystems();
 
 	updateSystemsHealth();
+}
+
+void A320::resetColdAndDark()
+{
+	electricNetwork->reconfigure(Normal_Ground);
 }
