@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ElectricBus" Collapsed="true">
+    <Position X="3.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAABAAAAAAAAAAAAAAQAAAAAgAAAAAAAgAA=</HashCode>
+      <FileName>systems\Electric\ElectricBus.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ElectricGenerator" Collapsed="true">
+    <Position X="6.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAIAAAAAAAAAAAZAAAAAAgAgAAAAAAAA=</HashCode>
+      <FileName>systems\Electric\ElectricGenerator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ElectricNetwork" Collapsed="true">
+    <Position X="7.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAACAQgAAAAAAAIAAEABAAAAAQAAAhAA=</HashCode>
+      <FileName>systems\Electric\ElectricNetwork.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ElectricSink" Collapsed="true">
+    <Position X="1.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>systems\Electric\ElectricSink.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ElectricSource" Collapsed="true">
+    <Position X="5.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAEAAAAIAAAAAAAAAAAAQAACAAgEgAAAAAAAA=</HashCode>
+      <FileName>systems\Electric\ElectricSource.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

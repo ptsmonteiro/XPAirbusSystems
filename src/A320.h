@@ -18,7 +18,7 @@
 #include "systems\ATA34\TATProbe.h"
 #include "systems\ATA34\PitotProbe.h"
 #include "systems\ATA34\StaticProbe.h"
-#include "systems\Electric\ElectricNetwork.h"
+#include "systems\Electric\Electric.h"
 
 class A320
 {

@@ -307,11 +307,7 @@
   <ItemGroup>
     <ClInclude Include="A320.h" />
     <ClInclude Include="core\core.h" />
-    <ClInclude Include="systems\Electric\ElectricGenerator.h" />
-    <ClInclude Include="systems\Electric\ElectricSink.h" />
-    <ClInclude Include="systems\Electric\ElectricBus.h" />
-    <ClInclude Include="systems\Electric\ElectricSource.h" />
-    <ClInclude Include="systems\Electric\ElectricNetwork.h" />
+    <ClInclude Include="systems\Electric\Electric.h" />
     <ClInclude Include="systems\ATA34\PitotProbe.h" />
     <ClInclude Include="systems\ATA34\StaticProbe.h" />
     <ClInclude Include="systems\ATA34\AOAProbe.h" />
@@ -335,6 +331,9 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="todo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

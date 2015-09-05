@@ -1,8 +1,4 @@
-#include "core\core.h"
-#include "ElectricGenerator.h"
-#include "ElectricSource.h"
-#include "systems\AirbusComponent.h"
-
+#include "electric.h"
 
 ElectricGenerator::ElectricGenerator(ElectricGeneratorType genType, ComponentHealth currentHealth) : AirbusComponent()
 {
@@ -12,4 +8,9 @@ ElectricGenerator::ElectricGenerator(ElectricGeneratorType genType, ComponentHea
 
 ElectricGenerator::~ElectricGenerator()
 {
+}
+
+bool ElectricGenerator::isAvailable()
+{
+	return online && currentHealth == Healthy;
 }

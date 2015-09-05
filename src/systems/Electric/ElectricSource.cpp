@@ -1,5 +1,4 @@
-#include "systems\AirbusComponent.h"
-#include "ElectricSource.h"
+#include "electric.h"
 
 ElectricSource::ElectricSource()
 {
@@ -13,3 +12,4 @@ float ElectricSource::getSourceLoad()
 {
 	return 0.0f;
 }
+

@@ -22,3 +22,8 @@ void AirbusComponent::update()
 void AirbusComponent::setSimInterface(SimulatorInterface *)
 {
 }
+
+void AirbusComponent::connect(ElectricSource* source)
+{
+	this->currentElectricSource = source;
+}

@@ -1,6 +1,4 @@
-#include "systems\AirbusComponent.h"
-#include "ElectricBus.h"
-
+#include "electric.h"
 
 ElectricBus::ElectricBus(ElectricBusType busType)
 {
@@ -10,3 +8,16 @@ ElectricBus::ElectricBus(ElectricBusType busType)
 ElectricBus::~ElectricBus()
 {
 }
+
+bool ElectricBus::isAvailable()
+{
+	ElectricSource *upstream = this->getUpstreamSource();
+
+	if (upstream == nullptr) {
+		return false;
+	}
+	else {
+		return upstream->isAvailable();
+	}
+}
+

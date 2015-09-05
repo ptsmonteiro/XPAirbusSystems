@@ -1,22 +1,29 @@
 #pragma once
+#include "core/core.h"
 #include "sim_interface/SimulatorInterface.h"
-#include "core\core.h"
+
+class ElectricSource;
 
 class AirbusComponent
 {
+protected:
+	int number;
+
+	SimulatorInterface *simInterface;
+
+	void setSimInterface(SimulatorInterface *);
+	
 
 public:
 	AirbusComponent();
 	AirbusComponent(int);
 	~AirbusComponent();
 
+	ElectricSource* currentElectricSource;
 	ComponentHealth currentHealth;
-	virtual void update();
 
-protected:
-	int number;
-	
-	SimulatorInterface *simInterface;
-	void setSimInterface(SimulatorInterface *);
+	virtual void update();
+	virtual void connect(ElectricSource* source);
+
 };
 

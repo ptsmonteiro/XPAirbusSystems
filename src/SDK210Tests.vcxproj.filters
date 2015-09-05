@@ -51,14 +51,13 @@
     <ClInclude Include="systems\ATA34\TATProbe.h" />
     <ClInclude Include="systems\ATA34\RadioAlt.h" />
     <ClInclude Include="systems\ATA34\ADIRU.h" />
-    <ClInclude Include="systems\Electric\ElectricNetwork.h" />
     <ClInclude Include="core\core.h" />
-    <ClInclude Include="systems\Electric\ElectricGenerator.h" />
-    <ClInclude Include="systems\Electric\ElectricBus.h" />
-    <ClInclude Include="systems\Electric\ElectricSink.h" />
-    <ClInclude Include="systems\Electric\ElectricSource.h" />
+    <ClInclude Include="systems\Electric\Electric.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="todo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

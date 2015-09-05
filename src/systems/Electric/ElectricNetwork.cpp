@@ -1,7 +1,5 @@
-#include "ElectricNetwork.h"
-#include "ElectricBus.h"
+#include "electric.h"
 #include "A320.h"
-#include "core\core.h"
 
 ElectricNetwork::ElectricNetwork()
 {
@@ -40,12 +38,12 @@ void ElectricNetwork::reconfigure(ElectricNetworkMode mode)
 	this->mode = mode;
 
 	switch (this->mode) {
-		case Normal_Flight:
-			prepareNormalFlightConfig();
-			break;
-		case Normal_Ground:
-			prepareNormalGroundConfig();
-			break;
+	case Normal_Flight:
+		prepareNormalFlightConfig();
+		break;
+	case Normal_Ground:
+		prepareNormalGroundConfig();
+		break;
 	}
 }
 
@@ -59,34 +57,38 @@ void ElectricNetwork::prepareNormalFlightConfig()
 
 	// P/B now deprecated.
 	// TODO: Auto-switching of AC ESS BUS on AC1 bus fault.
-	bool ac_ess_feed_pb_pushed = true;	
+	bool ac_ess_feed_pb_pushed = true;
 
 	// GEN 1.
 	if (generatorData[Gen1]->currentHealth == Healthy && gen1LineCont)
 	{
-		generatorData[Gen1]->coupledBuses.push_back(busData[AcBus1]);
-		busData[AcBus1]->coupledSystems.push_back(busData[DcBus1]);
+		couple(generatorData[Gen1], busData[AcBus1]);
+		couple(busData[AcBus1], busData[DcBus1]);
 
 		if (!ac_ess_feed_pb_pushed) {
-			busData[AcBus1]->coupledSystems.push_back(busData[AcEssBus]);
+			couple(busData[AcBus1], busData[AcEssBus]);
 		}
 	}
 
 	// GEN 2.
 	if (generatorData[Gen2]->currentHealth == Healthy && gen2LineCont)
 	{
-		generatorData[Gen2]->coupledBuses.push_back(busData[AcBus2]);
-		busData[AcBus2]->coupledSystems.push_back(busData[DcBus2]);
 
-		if (ac_ess_feed_pb_pushed) {
-			busData[AcBus2]->coupledSystems.push_back(busData[AcEssBus]);
+		couple(generatorData[Gen2], busData[AcBus2]);
+		couple(busData[AcBus2], busData[DcBus2]);
+
+		if (!ac_ess_feed_pb_pushed) {
+			couple(busData[AcBus2], busData[AcEssBus]);
 		}
 	}
 
 	// AC ESS SHED.
-	busData[AcEssBus]->coupledSystems.push_back(busData[AcEssShed]);
+	couple(busData[AcEssBus], busData[AcEssShed]);
 
 	//TODO: DC Buses.
+
+
+	reconfigureEquipment();
 }
 
 void ElectricNetwork::prepareNormalGroundConfig()
@@ -98,12 +100,51 @@ void ElectricNetwork::prepareNormalGroundConfig()
 	ElectricGenerator * rootGen = generatorData[ExtPwr];
 
 	if (ext_pwr_cont && bus_tie_cont) {
-		rootGen->coupledBuses.push_back(busData[AcBus1]);
-		rootGen->coupledBuses.push_back(busData[AcBus2]); 
+		couple(rootGen, busData[AcBus1]);
+		couple(rootGen, busData[AcBus2]);
 	}
+}
+
+void ElectricNetwork::couple(ElectricSource* source, ElectricSink* sink)
+{
+	source->coupledSinks.push_back(sink);
+	sink->setUpstreamSource(source);
 }
 
 void ElectricNetwork::resetNetwork()
 {
 	//TODO: Clear all arrays
+}
+
+void ElectricNetwork::reconfigureEquipment()
+{
+	// ATA34::Adiru1
+	if (busData[AcEssBus]->isAvailable()) {
+		Aircraft->adiru1->connect(busData[AcEssBus]);
+	}
+	else {
+		Aircraft->adiru1->connect(busData[HotBus2]);
+	}
+
+	// ATA34::Adiru2
+	if (busData[AcBus2]->isAvailable()) {
+		Aircraft->adiru1->connect(busData[AcBus2]);
+	}
+	else {
+		// This is time limited: 1.34.97-1
+		Aircraft->adiru1->connect(busData[HotBus2]);
+	}
+
+	// ATA34::Adiru3
+	if (busData[AcBus1]->isAvailable()) {
+		Aircraft->adiru1->connect(busData[AcBus1]);
+	}
+	else {
+		// This has multiple exceptions and pre-conditions 1.34.97-1
+		// Rules: 
+		// backup suply when: ATT HDG = CAPT 3 
+		// backup suply for 5m when: ATT HDG = NORM || ATT HDG = FO3
+
+		Aircraft->adiru1->connect(busData[HotBus1]);
+	}
 }
