@@ -51,21 +51,42 @@ void ElectricNetwork::reconfigure(ElectricNetworkMode mode)
 
 void ElectricNetwork::prepareNormalFlightConfig()
 {
-	// Read from user interface
+	//TODO: Read from user interface
+	//TODO : Check IDG DISCONNECT P/B.
+
 	bool gen1LineCont = true;
 	bool gen2LineCont = true;
+
+	// P/B now deprecated.
+	// TODO: Auto-switching of AC ESS BUS on AC1 bus fault.
+	bool ac_ess_feed_pb_pushed = true;	
 
 	// GEN 1.
 	if (generatorData[Gen1]->currentHealth == Healthy && gen1LineCont)
 	{
 		generatorData[Gen1]->coupledBuses.push_back(busData[AcBus1]);
+		busData[AcBus1]->coupledSystems.push_back(busData[DcBus1]);
+
+		if (!ac_ess_feed_pb_pushed) {
+			busData[AcBus1]->coupledSystems.push_back(busData[AcEssBus]);
+		}
 	}
 
 	// GEN 2.
 	if (generatorData[Gen2]->currentHealth == Healthy && gen2LineCont)
 	{
 		generatorData[Gen2]->coupledBuses.push_back(busData[AcBus2]);
+		busData[AcBus2]->coupledSystems.push_back(busData[DcBus2]);
+
+		if (ac_ess_feed_pb_pushed) {
+			busData[AcBus2]->coupledSystems.push_back(busData[AcEssBus]);
+		}
 	}
+
+	// AC ESS SHED.
+	busData[AcEssBus]->coupledSystems.push_back(busData[AcEssShed]);
+
+	//TODO: DC Buses.
 }
 
 void ElectricNetwork::prepareNormalGroundConfig()

@@ -13,7 +13,7 @@ class ElectricGenerator : public ElectricSource, public AirbusComponent
 public:
 	ElectricGeneratorType		genType;
 	bool						online;
-	std::vector<ElectricBus *>	coupledBuses;
+	std::vector<ElectricSink *>	coupledBuses;
 
 	ElectricGenerator(ElectricGeneratorType genType, ComponentHealth currentHealth);
 	~ElectricGenerator();

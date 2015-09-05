@@ -58,4 +58,7 @@
     <ClInclude Include="systems\Electric\ElectricSink.h" />
     <ClInclude Include="systems\Electric\ElectricSource.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="todo.txt" />
+  </ItemGroup>
 </Project>
