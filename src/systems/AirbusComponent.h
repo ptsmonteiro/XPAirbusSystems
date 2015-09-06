@@ -20,6 +20,5 @@ public:
 	virtual void update();
 	virtual void connect(ElectricSource* source);
 	virtual void disconnectElectrical();
-
 };
 

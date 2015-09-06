@@ -274,6 +274,9 @@
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);;..\usr\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>Opengl32.lib;odbc32.lib;odbccp32.lib;XPLM_64.lib;XPWidgets_64.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /Y "$(TargetDir)*.*" "D:\Program Files (x86)\DEV XPlane 10\Resources\plugins\XPA320\"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="A320.cpp" />
@@ -331,9 +334,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="todo.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

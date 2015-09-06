@@ -116,7 +116,21 @@ void ElectricNetwork::resetNetwork()
 	Aircraft->adiru2->disconnectElectrical();
 	Aircraft->adiru3->disconnectElectrical();
 
-	// Uncouple all connections.
+	// Disconnect all buses
+	typedef std::map<ElectricBusType, ElectricBus *>::iterator it_type;
+
+	for (it_type iterator = busData.begin(); iterator != busData.end(); iterator++) {
+		iterator->second->setUpstreamSource(nullptr);
+		iterator->second->coupledSinks.clear();
+	}
+
+	// Disconnect all generator
+	
+	typedef std::map<ElectricGeneratorType, ElectricGenerator*>::iterator gen_it_type;
+
+	for (gen_it_type iterator = generatorData.begin(); iterator != generatorData.end(); iterator++) {
+		iterator->second->coupledSinks.clear();
+	}
 
 }
 
