@@ -28,6 +28,7 @@
     <ClCompile Include="systems\Electric\ElectricBus.cpp" />
     <ClCompile Include="systems\Electric\ElectricSink.cpp" />
     <ClCompile Include="systems\Electric\ElectricSource.cpp" />
+    <ClCompile Include="core\MessageLogger.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="A320.h" />

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "XPLM\XPLMUtilities.h"
+
 enum ComponentHealth : int {
 	Healthy,
 	Failed,
@@ -36,3 +38,10 @@ enum ElectricNetworkMode {
 	Normal_Ground
 };
 
+class MessageLogger
+{
+public:
+	MessageLogger();
+	~MessageLogger();
+	void LogMessage(char* msg);
+};

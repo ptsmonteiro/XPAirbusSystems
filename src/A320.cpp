@@ -6,15 +6,15 @@
 /* Globals */
 A320* Aircraft;
 SimulatorInterface* SimInterface;
-
+MessageLogger* Logger;
 
 A320::A320()
 {
 	Aircraft = this;
 	SimInterface = new XPlaneInterface();
+	Logger = new MessageLogger();
 
 	this->electricNetwork = new ElectricNetwork;
-
 
 	// Probes and sensors
 	this->aoaProbeCapt = new AOAProbe;
@@ -63,7 +63,6 @@ A320::A320()
 	//lots of things missing here
 }
 
-
 A320::~A320()
 {
 }
@@ -71,7 +70,6 @@ A320::~A320()
 void A320::init()
 {
 	resetColdAndDark();
-
 }
 
 void A320::updateSystemsHealth()

@@ -4,7 +4,6 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-
 #include "XPLM\XPLMPlugin.h"
 #include "XPLM\XPLMDisplay.h"
 #include "XPLM\XPLMProcessing.h"
@@ -19,7 +18,6 @@
 
 #if IBM
 #include <windows.h>
-#include <stdio.h>
 #endif
 #if LIN
 #include <GL/gl.h>
@@ -31,22 +29,17 @@
 #endif
 #endif
 
-const float AirbusSystemsFlightLoopIntervalSeconds = 0.01;
-
+const float AirbusSystemsFlightLoopIntervalSeconds = 0.1;
 const char VersionNumber[] = "v1.00";
 char Buffer[256];
+static XPLMWindowID	gWindow = NULL;
+extern float AirbusSystemsFlightLoopCB(float elapsedMe, float elapsedSim, int counter, void * refcon);
 
-//---------------------------------------------------------------------------
-
-// Displays data in widget
-float AirbusSystemsFlightLoopCB(float elapsedMe, float elapsedSim, int counter, void * refcon);;
 
 // Callback for Error Tests
 void	AirbusSystemsErrorCB(const char * msg)
 {
-	XPLMDebugString("AirbusSystemsErrorCB - error CB called: ");
-	XPLMDebugString(msg);
-	XPLMDebugString("\n");
+	Logger->LogMessage((char*) msg);
 }
 
 
@@ -64,13 +57,20 @@ PLUGIN_API int XPluginStart(
 	char *		outSig,
 	char *		outDesc)
 {
-	strcpy(outName, "AirbusSystems");
+	strcpy(outName, "XPAS-A320");
 	strcpy(outSig, "matiasmonteiro.projects.AirbusSystems");
-	strcpy(outDesc, "Airbus Systems Plugin");
+	strcpy(outDesc, "Airbus Systems Plugin - A320");
+
+	gWindow = XPLMCreateWindow(
+		50, 600, 300, 200,			/* Area of the window. */
+		1,							/* Start visible. */
+		MyDrawWindowCallback,		/* Callbacks */
+		MyHandleKeyCallback,
+		NULL,
+		NULL);
 
 	// Allocate aircraft
 	Aircraft = new A320();
-
 	Aircraft->init();
 
 	// Register the callback for errors
@@ -109,17 +109,14 @@ PLUGIN_API void XPluginReceiveMessage(XPLMPluginID inFrom, int inMsg, void * inP
 	XPLMDebugString(Buffer);
 }
 
-// Used to test the creation and destruction of a Flightloop Callback from within a Flightloop Callback.
 float AirbusSystemsFlightLoopCB(float elapsedMe, float elapsedSim, int counter, void * refcon)
 {
-	
 	Aircraft->update(elapsedMe);
+
 	return AirbusSystemsFlightLoopIntervalSeconds;
 }
 
-int	AirbusSystemsDrawCB(XPLMDrawingPhase     inPhase,
-	int                  inIsBefore,
-	void *               inRefcon)
+int	AirbusSystemsDrawCB(XPLMDrawingPhase inPhase, int inIsBefore, void * inRefcon)
 {
 	return 1;
 }
