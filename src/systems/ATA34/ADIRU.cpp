@@ -7,20 +7,8 @@ ADIRU::ADIRU(int number)
 }
 
 void ADIRU::update()
-{	
-	if (this->currentHealth != Healthy) {
-		return;
-	}
-	
-	if (this->currentElectricSource == nullptr) {
-		this->currentHealth = Failed;
-		return;
-	}
-	
-	if (this->currentElectricSource->isAvailable()) {
-		this->currentHealth = Failed;
-		return;
-	}
+{
+	updateHealth();
 
 
 

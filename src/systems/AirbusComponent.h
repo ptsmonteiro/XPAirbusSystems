@@ -8,7 +8,9 @@ class AirbusComponent
 {
 protected:
 	int number;
-	
+
+	void updateHealth();
+
 public:
 	AirbusComponent();
 	AirbusComponent(int);
@@ -18,7 +20,7 @@ public:
 	ComponentHealth currentHealth;
 
 	virtual void update();
-	virtual void connect(ElectricSource* source);
+	virtual void connectElectrical(ElectricSource* source);
 	virtual void disconnectElectrical();
 };
 

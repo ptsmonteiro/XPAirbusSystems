@@ -1,4 +1,5 @@
 #include "core\core.h"
+#include "systems\electric\electric.h"
 #include "AirbusComponent.h"
 
 
@@ -21,7 +22,7 @@ void AirbusComponent::update()
 {
 }
 
-void AirbusComponent::connect(ElectricSource* source)
+void AirbusComponent::connectElectrical(ElectricSource* source)
 {
 	this->currentElectricSource = source;
 }
@@ -29,4 +30,22 @@ void AirbusComponent::connect(ElectricSource* source)
 void AirbusComponent::disconnectElectrical()
 {
 	this->currentElectricSource = nullptr;
+}
+
+void AirbusComponent::updateHealth()
+{
+	if (this->currentHealth != Healthy) {
+		return;
+	}
+
+	if (this->currentElectricSource == nullptr) {
+		this->currentHealth = Failed;
+		return;
+	}
+
+	if (this->currentElectricSource->isAvailable()) {
+		this->currentHealth = Failed;
+		return;
+	}
+
 }

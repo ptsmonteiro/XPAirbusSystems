@@ -35,7 +35,8 @@ enum ElectricBusType {
 enum ElectricNetworkMode {
 	ColdAndDark,
 	Normal_Flight,
-	Normal_Ground
+	Normal_Ground,
+	Emerg_Elec
 };
 
 class MessageLogger

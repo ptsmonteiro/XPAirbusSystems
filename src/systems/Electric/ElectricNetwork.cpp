@@ -138,24 +138,24 @@ void ElectricNetwork::reconfigureEquipment()
 {
 	// ATA34::Adiru1
 	if (busData[AcEssBus]->isAvailable()) {
-		Aircraft->adiru1->connect(busData[AcEssBus]);
+		Aircraft->adiru1->connectElectrical(busData[AcEssBus]);
 	}
 	else {
-		Aircraft->adiru1->connect(busData[HotBus2]);
+		Aircraft->adiru1->connectElectrical(busData[HotBus2]);
 	}
 
 	// ATA34::Adiru2
 	if (busData[AcBus2]->isAvailable()) {
-		Aircraft->adiru1->connect(busData[AcBus2]);
+		Aircraft->adiru1->connectElectrical(busData[AcBus2]);
 	}
 	else {
 		// This is time limited: 1.34.97-1
-		Aircraft->adiru1->connect(busData[HotBus2]);
+		Aircraft->adiru1->connectElectrical(busData[HotBus2]);
 	}
 
 	// ATA34::Adiru3
 	if (busData[AcBus1]->isAvailable()) {
-		Aircraft->adiru1->connect(busData[AcBus1]);
+		Aircraft->adiru1->connectElectrical(busData[AcBus1]);
 	}
 	else {
 		// This has multiple exceptions and pre-conditions 1.34.97-1
@@ -163,6 +163,22 @@ void ElectricNetwork::reconfigureEquipment()
 		// backup suply when: ATT HDG = CAPT 3 
 		// backup suply for 5m when: ATT HDG = NORM || ATT HDG = FO3
 
-		Aircraft->adiru1->connect(busData[HotBus1]);
+		Aircraft->adiru1->connectElectrical(busData[HotBus1]);
 	}
+
+	// ELAC1
+	if (busData[DcEssBus]->isAvailable()) {
+		Aircraft->elac1->connectElectrical(busData[DcEssBus]);
+	}
+	else {
+		Aircraft->elac1->connectElectrical(busData[HotBus1]);
+	}
+
+	// ELAC2
+	if (busData[DcEssBus]->isAvailable()) {
+		Aircraft->elac2->connectElectrical(busData[DcBus2]);
+	}
+	else {
+		Aircraft->elac2->connectElectrical(busData[HotBus2]);
+	}	
 }
