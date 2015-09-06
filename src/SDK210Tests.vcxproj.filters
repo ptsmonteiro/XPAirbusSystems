@@ -29,6 +29,7 @@
     <ClCompile Include="systems\Electric\ElectricSink.cpp" />
     <ClCompile Include="systems\Electric\ElectricSource.cpp" />
     <ClCompile Include="core\MessageLogger.cpp" />
+    <ClCompile Include="AdiruData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="A320.h" />
@@ -54,6 +55,7 @@
     <ClInclude Include="systems\ATA34\ADIRU.h" />
     <ClInclude Include="core\core.h" />
     <ClInclude Include="systems\Electric\Electric.h" />
+    <ClInclude Include="AdiruData.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="todo.txt" />

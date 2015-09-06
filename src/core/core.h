@@ -39,6 +39,23 @@ enum ElectricNetworkMode {
 	Emerg_Elec
 };
 
+typedef struct _stCoordinates {
+	float latitude;
+	float longitude;
+} Coordinates;
+
+typedef struct _stAccel {
+	float x;
+	float y;
+	float z;
+} AccelerometerData;
+
+typedef struct _stGyroData {
+	float yaw;
+	float roll;
+	float pitch;
+} GyroData;
+
 class MessageLogger
 {
 public:
