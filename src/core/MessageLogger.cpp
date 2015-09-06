@@ -8,7 +8,7 @@ MessageLogger::~MessageLogger()
 {
 }
 
-void MessageLogger::LogMessage(char* msg)
+void MessageLogger::LogMessage(const char* msg)
 {
 	XPLMDebugString(msg);
 }

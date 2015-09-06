@@ -43,5 +43,5 @@ class MessageLogger
 public:
 	MessageLogger();
 	~MessageLogger();
-	void LogMessage(char* msg);
+	void LogMessage(const char* msg);
 };

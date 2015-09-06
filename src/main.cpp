@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include "XPLM\XPLMPlugin.h"
 #include "XPLM\XPLMDisplay.h"
+#include "XPLM\XPLMGraphics.h"
 #include "XPLM\XPLMProcessing.h"
 #include "XPLM\XPLMDataAccess.h"
 #include "XPLM\XPLMMenus.h"
@@ -32,7 +33,7 @@
 const float AirbusSystemsFlightLoopIntervalSeconds = 0.1;
 const char VersionNumber[] = "v1.00";
 char Buffer[256];
-static XPLMWindowID	gWindow = NULL;
+
 extern float AirbusSystemsFlightLoopCB(float elapsedMe, float elapsedSim, int counter, void * refcon);
 
 
@@ -61,13 +62,7 @@ PLUGIN_API int XPluginStart(
 	strcpy(outSig, "matiasmonteiro.projects.AirbusSystems");
 	strcpy(outDesc, "Airbus Systems Plugin - A320");
 
-	gWindow = XPLMCreateWindow(
-		50, 600, 300, 200,			/* Area of the window. */
-		1,							/* Start visible. */
-		MyDrawWindowCallback,		/* Callbacks */
-		MyHandleKeyCallback,
-		NULL,
-		NULL);
+	
 
 	// Allocate aircraft
 	Aircraft = new A320();
