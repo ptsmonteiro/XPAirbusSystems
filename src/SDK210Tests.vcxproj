@@ -275,7 +275,7 @@
       <AdditionalDependencies>Opengl32.lib;odbc32.lib;odbccp32.lib;XPLM_64.lib;XPWidgets_64.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y "$(TargetDir)*.*" "D:\Program Files (x86)\DEV XPlane 10\Resources\plugins\XPA320\"</Command>
+      <Command>$(ProjectDir)\..\post_build_event.bat $(TargetPath)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
