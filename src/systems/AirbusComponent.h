@@ -1,6 +1,6 @@
 #pragma once
 #include "core/core.h"
-#include "sim_interface/SimulatorInterface.h"
+#include "sim_interface/XPlaneInterface.h"
 
 class ElectricSource;
 
@@ -8,6 +8,7 @@ class AirbusComponent
 {
 protected:
 	int number;
+	SimulatorInterface* simulator;
 
 	void updateHealth();
 

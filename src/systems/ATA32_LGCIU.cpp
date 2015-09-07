@@ -16,3 +16,9 @@ void ATA32_LGCIU::update()
 {
 
 }
+
+bool ATA32_LGCIU::isGearCompressed()
+{
+	// TODO
+	return false;
+}

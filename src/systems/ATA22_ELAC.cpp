@@ -36,16 +36,58 @@ void ATA22_ELAC::update()
 
 void ATA22_ELAC::updatePitchControlMode()
 {
-	if (this->pitchControlMode == GROUND) {
-//		if (this->getPitchAttitude() > MIN_PITCH_ATT_DEG_GROUND_TO_FLIGHT_MODE) {
-//			this->pitchControlModeGroundToFlightStartTime = 
-//			this->pitchControlMode = GROUND_TO_FLIGHT;
-		//}
+	if (pitchControlMode == GROUND) {
+		if (myADIRU->getPitchAttitudeDegrees() > MIN_PITCH_ATT_DEG_GROUND_TO_FLIGHT_MODE) {
+			pitchControlModeTransitionStartTime = simulator->getElapsedTimeDecimalSeconds();
+			pitchControlMode = GROUND_TO_FLIGHT;
+		}
+	}
+	else if (pitchControlMode == GROUND_TO_FLIGHT && 
+		(simulator->getElapsedTimeDecimalSeconds() - pitchControlModeTransitionStartTime) 
+			>= TRANSITION_TIME_SEC_PITCH_GROUND_TO_FLIGHT_MODE) 
+	{
+		pitchControlMode = FLIGHT;
+	}
+	else if (pitchControlMode == FLIGHT && radioAlt->getAltitudeFt() <= MAX_RAD_ALT_FT_TO_FLARE_MODE)
+	{
+		pitchControlModeTransitionStartTime = simulator->getElapsedTimeDecimalSeconds();
+		pitchControlMode = FLIGHT_TO_FLARE;
+	}
+	else if (pitchControlMode == FLIGHT_TO_FLARE &&
+			simulator->getElapsedTimeDecimalSeconds() - pitchControlModeTransitionStartTime >= TRANSITION_TIME_SEC_PITCH_FLIGHT_TO_FLARE_MODE) {
+		pitchControlMode = FLARE;
+	}
+	else if (pitchControlMode == FLARE &&
+			LGCIU->isGearCompressed() &&
+			myADIRU->getPitchAttitudeDegrees() < MAX_PITCH_ATT_DEG_FLARE_TO_GROUND_MODE) {
+		pitchControlModeTransitionStartTime = simulator->getElapsedTimeDecimalSeconds();
+		pitchControlMode = FLARE_TO_GROUND;
+	}
+	else if (pitchControlMode == FLARE_TO_GROUND &&
+			simulator->getElapsedTimeDecimalSeconds() - pitchControlModeTransitionStartTime >= TRANSITION_TIME_SEC_PITCH_FLARE_TO_GROUND_MODE) {
+		pitchControlMode = GROUND;
 	}
 }
 
 void ATA22_ELAC::updateLateralControlMode()
 {
+	if (lateralControlMode == GROUND && myADIRU->getPitchAttitudeDegrees() > MIN_PITCH_ATT_DEG_GROUND_TO_FLIGHT_MODE) {
+		lateralControlModeTransitionStartTime = simulator->getElapsedTimeDecimalSeconds();
+		lateralControlMode = GROUND_TO_FLIGHT;		
+	}
+	else if (lateralControlMode == GROUND_TO_FLIGHT &&
+		simulator->getElapsedTimeDecimalSeconds() - lateralControlModeTransitionStartTime >= TRANSITION_TIME_SEC_LATERAL_GROUND_TO_FLIGHT_MODE)
+	{
+		lateralControlMode = FLIGHT;
+	}
+	else if (lateralControlMode == FLIGHT && LGCIU->isGearCompressed()) {
+		lateralControlModeTransitionStartTime = simulator->getElapsedTimeDecimalSeconds();
+		lateralControlMode = FLIGHT_TO_GROUND;
+	}
+	else if (lateralControlMode == FLIGHT_TO_GROUND &&
+			simulator->getElapsedTimeDecimalSeconds() - lateralControlModeTransitionStartTime >= TRANSITION_TIME_SEC_LATERAL_FLIGHT_TO_GROUND_MODE) {
+		lateralControlMode = GROUND;
+	}
 }
 
 void ATA22_ELAC::processPitch()

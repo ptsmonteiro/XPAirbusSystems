@@ -7,11 +7,13 @@ AirbusComponent::AirbusComponent()
 {
 	this->currentElectricSource = nullptr;
 	this->currentHealth = Healthy;
+	this->simulator = new XPlaneInterface();
 }
 
 AirbusComponent::AirbusComponent(int number) : AirbusComponent()
 {
 	this->number = number;
+	AirbusComponent::AirbusComponent();
 }
 
 AirbusComponent::~AirbusComponent()

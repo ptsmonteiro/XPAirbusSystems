@@ -36,3 +36,9 @@ void ADIRU::setStaticSource(StaticProbe *src)
 {
 	this->StaticSrc = src;
 }
+
+float ADIRU::getPitchAttitudeDegrees()
+{
+	// TODO
+	return 0;
+}

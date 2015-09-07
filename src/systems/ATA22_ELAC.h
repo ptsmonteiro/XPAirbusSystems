@@ -41,8 +41,8 @@ protected:
 	const float MAX_PITCH_ATT_DEG_FLARE_TO_GROUND_MODE = 2.5;
 	const float TRANSITION_TIME_SEC_LATERAL_FLIGHT_TO_GROUND_MODE = 0.5;
 
-	unsigned long pitchControlModeGroundToFlightStartTime = 0;
-	unsigned long lateralControlModeGroundToFlightStartTime = 0;
+	float pitchControlModeTransitionStartTime = 0;
+	float lateralControlModeTransitionStartTime = 0;
 
 	enum MODE {
 		GROUND,
@@ -99,7 +99,7 @@ protected:
 	void protectionHighAOA();
 	void protectionHighSpeed();
 	void protectionLoadFactor();
-	void protectionPitchAttituce();
+	void protectionPitchAttitude();
 	void protectionBankAngle();
 
 };
