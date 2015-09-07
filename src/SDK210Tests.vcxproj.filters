@@ -29,7 +29,6 @@
     <ClCompile Include="systems\Electric\ElectricSink.cpp" />
     <ClCompile Include="systems\Electric\ElectricSource.cpp" />
     <ClCompile Include="core\MessageLogger.cpp" />
-    <ClCompile Include="AdiruData.cpp" />
     <ClCompile Include="core\PID_v1.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -56,7 +55,6 @@
     <ClInclude Include="systems\ATA34\ADIRU.h" />
     <ClInclude Include="core\core.h" />
     <ClInclude Include="systems\Electric\Electric.h" />
-    <ClInclude Include="AdiruData.h" />
     <ClInclude Include="core\PID_v1.h" />
   </ItemGroup>
   <ItemGroup>
