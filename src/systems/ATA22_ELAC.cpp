@@ -34,6 +34,15 @@ void ATA22_ELAC::update()
 	this->processYaw();
 }
 
+void ATA22_ELAC::updatePitchControlMode()
+{
+
+}
+
+void ATA22_ELAC::updateLateralControlMode()
+{
+}
+
 void ATA22_ELAC::processPitch()
 {
 	switch (this->pitchControlMode)

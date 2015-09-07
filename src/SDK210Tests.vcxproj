@@ -282,6 +282,7 @@
     <ClCompile Include="A320.cpp" />
     <ClCompile Include="AdiruData.cpp" />
     <ClCompile Include="core\MessageLogger.cpp" />
+    <ClCompile Include="core\PID_v1.cpp" />
     <ClCompile Include="systems\Electric\ElectricGenerator.cpp" />
     <ClCompile Include="systems\Electric\ElectricSink.cpp" />
     <ClCompile Include="systems\Electric\ElectricBus.cpp" />
@@ -313,6 +314,7 @@
     <ClInclude Include="A320.h" />
     <ClInclude Include="AdiruData.h" />
     <ClInclude Include="core\core.h" />
+    <ClInclude Include="core\PID_v1.h" />
     <ClInclude Include="systems\Electric\Electric.h" />
     <ClInclude Include="systems\ATA34\PitotProbe.h" />
     <ClInclude Include="systems\ATA34\StaticProbe.h" />

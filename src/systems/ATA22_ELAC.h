@@ -83,6 +83,11 @@ protected:
 
 	float pedalsPosition;
 
+	// Modes
+	void updatePitchControlMode();
+	void updateLateralControlMode();
+
+	// Flight controls calculations
 	void processPitch();
 	void processRoll();
 	void processYaw();
