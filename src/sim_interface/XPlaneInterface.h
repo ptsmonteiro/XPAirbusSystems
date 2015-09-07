@@ -2,6 +2,8 @@
 #include <iostream>
 #include <map>
 #include "SimulatorInterface.h"
+#include "XPLM/XPLMDataAccess.h"
+#include "XPLM/XPLMProcessing.h"
 
 enum DATAREF_LIST {
 	AOA_ANGLE,
@@ -25,6 +27,7 @@ public:
 	float getStaticAirTemperatureKelvin();
 	float getTotalAirTemperatureKelvin();
 	int getRadioAltitudeFt();
+	float getElapsedTimeDecimalSeconds();
 	
 
 protected:

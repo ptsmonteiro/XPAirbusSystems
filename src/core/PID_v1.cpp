@@ -11,10 +11,10 @@
 *    The parameters specified here are those for for which we can't set up
 *    reliable defaults, so we need to have the user set them.
 ***************************************************************************/
-PID::PID(double* Input, double* Output, double* Setpoint,
+PID::PID(SimulatorInterface* simulator, double* Input, double* Output, double* Setpoint,
 	double Kp, double Ki, double Kd, int ControllerDirection)
 {
-
+	mySimulator = simulator;
 	myOutput = Output;
 	myInput = Input;
 	mySetpoint = Setpoint;
@@ -160,11 +160,7 @@ void PID::Initialize()
 
 unsigned long PID::getNowMilliSeconds()
 {
-	using namespace std::chrono;
-
-	milliseconds ms = duration_cast <milliseconds> (system_clock::now().time_since_epoch());
-
-	return ms.count();
+	return mySimulator->getElapsedTimeDecimalSeconds() * 100;
 }
 
 /* SetControllerDirection(...)*************************************************

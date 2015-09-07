@@ -52,6 +52,11 @@ int XPlaneInterface::getRadioAltitudeFt()
 	return (int) value;
 }
 
+float XPlaneInterface::getElapsedTimeDecimalSeconds()
+{
+	return XPLMGetElapsedTime();
+}
+
 XPLMDataRef XPlaneInterface::findDataRefByCode(DATAREF_LIST value) {
 	return DataRefMap[value];
 }

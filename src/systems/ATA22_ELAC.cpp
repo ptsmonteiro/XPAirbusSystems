@@ -36,7 +36,12 @@ void ATA22_ELAC::update()
 
 void ATA22_ELAC::updatePitchControlMode()
 {
-
+	if (this->pitchControlMode == GROUND) {
+//		if (this->getPitchAttitude() > MIN_PITCH_ATT_DEG_GROUND_TO_FLIGHT_MODE) {
+//			this->pitchControlModeGroundToFlightStartTime = 
+//			this->pitchControlMode = GROUND_TO_FLIGHT;
+		//}
+	}
 }
 
 void ATA22_ELAC::updateLateralControlMode()

@@ -1,5 +1,4 @@
 #pragma once
-#include "XPLM/XPLMDataAccess.h"
 
 class SimulatorInterface
 {
@@ -13,5 +12,6 @@ public:
 	virtual float getStaticAirTemperatureKelvin() = 0;
 	virtual float getAOADegrees() = 0;
 	virtual int getRadioAltitudeFt() = 0;
+	virtual float getElapsedTimeDecimalSeconds() = 0;
 };
 

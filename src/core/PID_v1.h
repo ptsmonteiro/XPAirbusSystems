@@ -1,6 +1,6 @@
 #pragma once
 
-#include <chrono>
+#include "sim_interface/SimulatorInterface.h"
 
 #ifndef PID_v1_h
 #define PID_v1_h
@@ -18,7 +18,7 @@ public:
 #define REVERSE  1
 
 	//commonly used functions **************************************************************************
-	PID(double*, double*, double*,        // * constructor.  links the PID to the Input, Output, and 
+	PID(SimulatorInterface*, double*, double*, double*,        // * constructor.  links the PID to the Input, Output, and 
 		double, double, double, int);     //   Setpoint.  Initial tuning parameters are also set here
 
 	void SetMode(int Mode);               // * sets PID to either Manual (0) or Auto (non-0)
@@ -54,9 +54,10 @@ public:
 	int GetMode();						  //  inside the PID.
 	int GetDirection();					  //
 
+	unsigned long getNowMilliSeconds();
+
 private:
 	void Initialize();
-	unsigned long getNowMilliSeconds();
 
 	double dispKp;				// * we'll hold on to the tuning parameters in user-entered 
 	double dispKi;				//   format for display purposes
@@ -79,5 +80,7 @@ private:
 	unsigned long SampleTime;
 	double outMin, outMax;
 	bool inAuto;
+
+	SimulatorInterface * mySimulator;
 };
 #endif
