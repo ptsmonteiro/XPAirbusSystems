@@ -28,7 +28,7 @@ PID::PID(SimulatorInterface* simulator, double* Input, double* Output, double* S
 	PID::SetControllerDirection(ControllerDirection);
 	PID::SetTunings(Kp, Ki, Kd);
 
-	lastTime = this->getNowMilliSeconds() - SampleTime;
+	lastTime = getNowMilliSeconds() - SampleTime;
 }
 
 /* Compute() **********************************************************************
@@ -40,7 +40,7 @@ PID::PID(SimulatorInterface* simulator, double* Input, double* Output, double* S
 bool PID::Compute()
 {
 	if (!inAuto) return false;
-	unsigned long now = this->getNowMilliSeconds();
+	unsigned long now = getNowMilliSeconds();
 	unsigned long timeChange = (now - lastTime);
 	if (timeChange >= SampleTime)
 	{

@@ -29,6 +29,7 @@ void ATA22_ELAC::connect(RadioAlt *ra)
 void ATA22_ELAC::update()
 {
 	this->currentRadioAltimeterHeightFt = this->radioAlt->getAltitudeFt();
+
 	this->processPitch();
 	this->processRoll();
 	this->processYaw();
@@ -105,6 +106,11 @@ void ATA22_ELAC::processPitch()
 		case FLARE_TO_GROUND:
 			break;
 	};
+}
+
+void ATA22_ELAC::processPitchDirect()
+{
+	
 }
 
 void ATA22_ELAC::processRoll()
