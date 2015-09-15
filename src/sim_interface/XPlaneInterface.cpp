@@ -6,13 +6,14 @@ XPlaneInterface::XPlaneInterface()
 	DataRefMap[TEMPERATURE_LE] = findDataRefByName("sim/weather/temperature_le_c");
 	DataRefMap[TEMPERATURE_AMBIENT] = findDataRefByName("sim/weather/temperature_le_c");
 	DataRefMap[RADIO_ALTITUDE_CAPT] = findDataRefByName("sim/cockpit2/gauges/indicators/radio_altimeter_height_ft_pilot");
-
-
+	
 	// OH Panel
 	DataRefMap[PB_BAT_1] = findDataRefByName("sim/custom/xap/elec/bat1_o");
 	DataRefMap[PB_BAT_2] = findDataRefByName("sim/custom/xap/elec/bat1_o");
-}
 
+	// Sensores
+	DataRefMap[BAROMETER_CURRENT_PRESSURE] = findDataRefByName("sim/weather/barometer_current_inhg");
+}
 
 XPlaneInterface::~XPlaneInterface()
 {
@@ -55,6 +56,11 @@ int XPlaneInterface::getRadioAltitudeFt()
 float XPlaneInterface::getElapsedTimeDecimalSeconds()
 {
 	return XPLMGetElapsedTime();
+}
+
+float XPlaneInterface::getCurrentPressureInHg()
+{
+	return XPLMGetDataf(findDataRefByCode(BAROMETER_CURRENT_PRESSURE));
 }
 
 XPLMDataRef XPlaneInterface::findDataRefByCode(DATAREF_LIST value) {

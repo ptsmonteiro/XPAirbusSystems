@@ -13,5 +13,6 @@ public:
 	virtual float getAOADegrees() = 0;
 	virtual int getRadioAltitudeFt() = 0;
 	virtual float getElapsedTimeDecimalSeconds() = 0;
+	virtual float getCurrentPressureInHg() = 0;
 };
 

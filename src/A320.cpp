@@ -28,24 +28,23 @@ A320::A320()
 	this->pitotProbeFO = new PitotProbe;
 	this->pitotProbeStandby = new PitotProbe;
 
-	this->staticProbeCapt1 = new StaticProbe;
-	this->staticProbeCapt2 = new StaticProbe;
-	this->staticProbeFO1 = new StaticProbe;
-	this->staticProbeFO2 = new StaticProbe;
-	this->staticProbeStandby1 = new StaticProbe;
-	this->staticProbeStandby2 = new StaticProbe;
+	this->staticProbeCapt1 = new StaticProbe(Captain1);
+	this->staticProbeCapt2 = new StaticProbe(Captain2);
+	this->staticProbeFO1 = new StaticProbe(FO1);
+	this->staticProbeFO2 = new StaticProbe(FO2);
+	this->staticProbeStandby1 = new StaticProbe(StandBy1);
+	this->staticProbeStandby2 = new StaticProbe(StandBy2);
 
 	this->ra1 = new RadioAlt(1);
 	this->ra2 = new RadioAlt(2);
 
 	// Computers
-
 	this->lgciu1 = new ATA32_LGCIU(1);
 	this->lgciu2 = new ATA32_LGCIU(2);
 
-	this->adiru1 = new ADIRU(1);
-	this->adiru2 = new ADIRU(2);
-	this->adiru3 = new ADIRU(3);
+	this->adiru1 = new ADIRU(1, this->staticProbeCapt1, this->staticProbeCapt2);
+	this->adiru2 = new ADIRU(2, this->staticProbeFO1, this->staticProbeFO2);
+	this->adiru3 = new ADIRU(3, this->staticProbeStandby1, this->staticProbeStandby2);
 
 	this->elac1 = new ATA22_ELAC(1);
 	this->elac2 = new ATA22_ELAC(2);
@@ -126,14 +125,15 @@ void A320::updateDisplays()
 	this->du6->update();
 }
 
-/*
+void A320::reconfigureSystems()
+{
+	/*
 	Reconfigures system connections:
 		1. Failover connections
 		2. Control Law changes
 		3. Elec emergency configuration
-*/
-void A320::reconfigureSystems()
-{
+	*/
+
 	electricNetwork->reconfigure(Normal_Ground);
 
 	// Hydraulics
@@ -153,6 +153,8 @@ void A320::reconfigureSystems()
 
 void A320::update(float deltaTimeSeconds)
 {
+	updateSystemsHealth();
+
 	// Probes and Sensors
 	updateProbes();
 
@@ -164,8 +166,6 @@ void A320::update(float deltaTimeSeconds)
 
 	// Check operation and reconfigure if required
 	reconfigureSystems();
-
-	updateSystemsHealth();
 }
 
 void A320::resetColdAndDark()

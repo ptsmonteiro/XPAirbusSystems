@@ -2,7 +2,7 @@
 
 #include "XPLM\XPLMUtilities.h"
 
-enum ComponentHealth : int {
+enum ComponentHealth {
 	Healthy,
 	Failed,
 	Inop
@@ -62,4 +62,10 @@ public:
 	MessageLogger();
 	~MessageLogger();
 	void LogMessage(const char* msg);
+};
+
+class Calculator
+{
+public:
+	static float pressureAltitudeFt(float pressureInHg, float qnhInHg);
 };

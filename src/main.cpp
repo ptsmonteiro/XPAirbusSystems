@@ -36,9 +36,8 @@ char Buffer[256];
 
 extern float AirbusSystemsFlightLoopCB(float elapsedMe, float elapsedSim, int counter, void * refcon);
 
-
 // Callback for Error Tests
-void	AirbusSystemsErrorCB(const char * msg)
+void AirbusSystemsErrorCB(const char * msg)
 {
 	Logger->LogMessage((char*) msg);
 }
@@ -61,8 +60,6 @@ PLUGIN_API int XPluginStart(
 	strcpy(outName, "XPAS-A320");
 	strcpy(outSig, "matiasmonteiro.projects.AirbusSystems");
 	strcpy(outDesc, "Airbus Systems Plugin - A320");
-
-	
 
 	// Allocate aircraft
 	Aircraft = new A320();
