@@ -69,3 +69,4 @@ class Calculator
 public:
 	static float pressureAltitudeFt(float pressureInHg, float qnhInHg);
 };
+

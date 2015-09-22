@@ -31,6 +31,7 @@
     <ClCompile Include="core\MessageLogger.cpp" />
     <ClCompile Include="core\PID_v1.cpp" />
     <ClCompile Include="core\Calculator.cpp" />
+    <ClCompile Include="core\AircraftState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="A320.h" />
@@ -58,6 +59,7 @@
     <ClInclude Include="systems\Electric\Electric.h" />
     <ClInclude Include="core\PID_v1.h" />
     <ClInclude Include="core\AdiruData.h" />
+    <ClInclude Include="core\AircraftState.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="todo.txt" />

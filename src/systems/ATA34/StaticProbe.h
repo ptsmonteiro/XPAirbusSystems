@@ -21,7 +21,6 @@ public:
 	float getCurrentStaticPressureInHg();
 
 	StaticProbe(StaticProbeLocation probeLocation);
-	~StaticProbe();
 
 	void update();
 };

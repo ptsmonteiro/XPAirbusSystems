@@ -19,12 +19,15 @@
 #include "systems\ATA34\PitotProbe.h"
 #include "systems\ATA34\StaticProbe.h"
 #include "systems\Electric\Electric.h"
+#include "core\AircraftState.h"
 
 class A320
 {
 public:
 	A320();
 	~A320();
+
+	AircraftState * GlobalState;
 	ElectricNetwork * electricNetwork;
 
 	// ATA 22 - Auto Flight

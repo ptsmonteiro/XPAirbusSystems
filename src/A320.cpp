@@ -13,13 +13,14 @@ A320::A320()
 	Aircraft = this;
 	SimInterface = new XPlaneInterface();
 	Logger = new MessageLogger();
+	GlobalState = new AircraftState();
 
 	this->electricNetwork = new ElectricNetwork;
 
 	// Probes and sensors
-	this->aoaProbeCapt = new AOAProbe;
-	this->aoaProbeFO = new AOAProbe;
-	this->aoaProbeStandby = new AOAProbe;
+	this->aoaProbeCapt = new AOAProbe(Captain);
+	this->aoaProbeFO = new AOAProbe(FO);
+	this->aoaProbeStandby = new AOAProbe(Standby);
 
 	this->tatProbeCapt = new TATProbe;
 	this->tatProbeFO = new TATProbe;
@@ -42,9 +43,9 @@ A320::A320()
 	this->lgciu1 = new ATA32_LGCIU(1);
 	this->lgciu2 = new ATA32_LGCIU(2);
 
-	this->adiru1 = new ADIRU(1, this->staticProbeCapt1, this->staticProbeCapt2);
-	this->adiru2 = new ADIRU(2, this->staticProbeFO1, this->staticProbeFO2);
-	this->adiru3 = new ADIRU(3, this->staticProbeStandby1, this->staticProbeStandby2);
+	this->adiru1 = new ADIRU(1, this->staticProbeCapt1, this->staticProbeCapt2, this->aoaProbeCapt);
+	this->adiru2 = new ADIRU(2, this->staticProbeFO1, this->staticProbeFO2, this->aoaProbeFO);
+	this->adiru3 = new ADIRU(3, this->staticProbeStandby1, this->staticProbeStandby2, this->aoaProbeStandby);
 
 	this->elac1 = new ATA22_ELAC(1);
 	this->elac2 = new ATA22_ELAC(2);
@@ -68,6 +69,7 @@ A320::~A320()
 
 void A320::init()
 {
+	GlobalState->InitializeColdAndDark();
 	resetColdAndDark();
 }
 

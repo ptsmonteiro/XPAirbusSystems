@@ -21,7 +21,3 @@ void StaticProbe::update()
 		currentPressureInHg = SimInterface->getCurrentPressureInHg();
 	}
 }
-
-StaticProbe::~StaticProbe()
-{
-}

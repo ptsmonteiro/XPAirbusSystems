@@ -1,15 +1,22 @@
 #pragma once
 #include "systems\AirbusComponent.h"
-class AOAProbe : AirbusComponent
+
+enum AoaProbeLocation {
+	Captain,
+	FO,
+	Standby
+};
+
+class AOAProbe : public AirbusComponent
 {
+private:
+	AoaProbeLocation probeLocation;
+	float AOADegrees;
+
 public:
-	AOAProbe();
-	~AOAProbe();
+	AOAProbe(AoaProbeLocation probeLocation);
 
 	void update();
 	float getAOADegrees();
-
-protected:
-	float AOADegrees;
 };
 
