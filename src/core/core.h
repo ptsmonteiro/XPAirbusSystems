@@ -37,7 +37,8 @@ enum ElectricNetworkMode {
 	ColdAndDark,
 	Normal_Flight,
 	Normal_Ground,
-	Emerg_Elec
+	Emerg_Elec,
+	DEBUG_CONFIG_1			/* Batteries only. */
 };
 
 typedef struct _stCoordinates {

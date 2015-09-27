@@ -128,14 +128,7 @@ void A320::updateDisplays()
 
 void A320::reconfigureSystems()
 {
-	/*
-	Reconfigures system connections:
-		1. Failover connections
-		2. Control Law changes
-		3. Elec emergency configuration
-	*/
-
-	electricNetwork->reconfigure(Normal_Ground);
+	// Electric
 
 	// Hydraulics
 
@@ -154,6 +147,9 @@ void A320::reconfigureSystems()
 
 void A320::update(float elapsedMe, float elapsedSim, int counter)
 {
+	// Check operation and reconfigure if required
+	reconfigureSystems();
+
 	// Probes and Sensors
 	updateProbes();
 
@@ -163,9 +159,6 @@ void A320::update(float elapsedMe, float elapsedSim, int counter)
 	// Displays and Indicators
 	updateDisplays();
 
-	// Check operation and reconfigure if required
-	reconfigureSystems();
-
 	this->lastUpdateElapsedMe = elapsedMe;
 	this->lastUpdateElapsedSimulator = elapsedSim;
 	this->updateCounter = counter;
@@ -174,5 +167,6 @@ void A320::update(float elapsedMe, float elapsedSim, int counter)
 
 void A320::resetColdAndDark()
 {
-	electricNetwork->reconfigure(Normal_Ground);
+	//TODO: Until we have some buttons to turn the batteries on....
+	electricNetwork->reconfigure(DEBUG_CONFIG_1);
 }

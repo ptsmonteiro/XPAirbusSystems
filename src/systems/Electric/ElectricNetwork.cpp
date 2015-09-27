@@ -42,6 +42,9 @@ void ElectricNetwork::reconfigure(ElectricNetworkMode mode)
 		case ColdAndDark:
 			resetNetwork();
 			break;
+		case DEBUG_CONFIG_1:
+			prepareDebugConfigOne();
+			break;
 	}
 
 	reconfigureEquipment();
@@ -86,9 +89,15 @@ void ElectricNetwork::prepareNormalFlightConfig()
 	couple(busData[AcEssBus], busData[AcEssShed]);
 
 	//TODO: DC Buses.
+}
 
+void ElectricNetwork::prepareDebugConfigOne()
+{
+	couple(generatorData[Bat1], busData[HotBus1]);
+	couple(generatorData[Bat2], busData[HotBus2]);
 
-
+	generatorData[Bat1]->online = true;
+	generatorData[Bat2]->online = true;
 }
 
 void ElectricNetwork::prepareNormalGroundConfig()

@@ -78,6 +78,7 @@ public:
 	void resetNetwork();
 	void prepareNormalFlightConfig();
 	void prepareNormalGroundConfig();
+	void prepareDebugConfigOne();
 	void couple(ElectricSource* source, ElectricSink* sink);
 
 	ElectricNetwork();
