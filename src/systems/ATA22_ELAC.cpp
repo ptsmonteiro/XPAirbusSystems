@@ -37,8 +37,10 @@ void ATA22_ELAC::update()
 
 void ATA22_ELAC::updatePitchControlMode()
 {
+	AdiruData adiruData = myADIRU->getCurrentAdiruData();
+
 	if (pitchControlMode == GROUND) {
-		if (myADIRU->getPitchAttitudeDegrees() > MIN_PITCH_ATT_DEG_GROUND_TO_FLIGHT_MODE) {
+		if (adiruData.inertialData.attitudeDegrees  > MIN_PITCH_ATT_DEG_GROUND_TO_FLIGHT_MODE) {
 			pitchControlModeTransitionStartTime = simulator->getElapsedTimeDecimalSeconds();
 			pitchControlMode = GROUND_TO_FLIGHT;
 		}
@@ -60,7 +62,7 @@ void ATA22_ELAC::updatePitchControlMode()
 	}
 	else if (pitchControlMode == FLARE &&
 			LGCIU->isGearCompressed() &&
-			myADIRU->getPitchAttitudeDegrees() < MAX_PITCH_ATT_DEG_FLARE_TO_GROUND_MODE) {
+		adiruData.inertialData.attitudeDegrees < MAX_PITCH_ATT_DEG_FLARE_TO_GROUND_MODE) {
 		pitchControlModeTransitionStartTime = simulator->getElapsedTimeDecimalSeconds();
 		pitchControlMode = FLARE_TO_GROUND;
 	}
@@ -72,7 +74,9 @@ void ATA22_ELAC::updatePitchControlMode()
 
 void ATA22_ELAC::updateLateralControlMode()
 {
-	if (lateralControlMode == GROUND && myADIRU->getPitchAttitudeDegrees() > MIN_PITCH_ATT_DEG_GROUND_TO_FLIGHT_MODE) {
+	AdiruData adiruData = myADIRU->getCurrentAdiruData();
+
+	if (lateralControlMode == GROUND && adiruData.inertialData.attitudeDegrees > MIN_PITCH_ATT_DEG_GROUND_TO_FLIGHT_MODE) {
 		lateralControlModeTransitionStartTime = simulator->getElapsedTimeDecimalSeconds();
 		lateralControlMode = GROUND_TO_FLIGHT;		
 	}

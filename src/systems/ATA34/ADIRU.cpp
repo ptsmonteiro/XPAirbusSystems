@@ -1,44 +1,66 @@
 #include "ADIRU.h"
+#include "A320.h"
+#include "core\core.h"
 #include "systems\electric\electric.h"
 
-ADIRU::ADIRU(int number)
+ADIRU::ADIRU(int, StaticProbe* staticProbe1, StaticProbe* staticProbe2, AOAProbe* aoaProbe)
 {
 	this->number = number;
+	this->StaticSrc1 = staticProbe1;
+	this->StaticSrc2 = staticProbe2;
+	this->AOASrc = aoaProbe;
 }
 
 void ADIRU::update()
 {
 	updateHealth();
 
-	// 
+	if (this->currentHealth == Failed){
+		return;
+	}
+
+	updateAirData();
 }
+
+void ADIRU::updateAirData()
+{
+	// Baro height:
+	if (this->StaticSrc1->currentHealth == Healthy)
+	{
+		this->currentAdiruData.airData.staticPressureHg = this->StaticSrc1->getCurrentStaticPressureInHg();
+
+		this->currentAdiruData.airData.baroHeightFeet =
+			Calculator::pressureAltitudeFt(this->currentAdiruData.airData.staticPressureHg, Aircraft->GlobalState->CaptQNHInHg);
+	}
+	else if (this->StaticSrc2->currentHealth == Healthy)
+	{
+		this->currentAdiruData.airData.staticPressureHg = this->StaticSrc2->getCurrentStaticPressureInHg();
+
+		this->currentAdiruData.airData.baroHeightFeet =
+			Calculator::pressureAltitudeFt(this->currentAdiruData.airData.staticPressureHg, Aircraft->GlobalState->FOQNHInHg);
+	}
+
+	// Speed
+
+
+	// Speed Mach
+
+	// Angle of Attack
+	if (this->AOASrc->currentHealth == Healthy) {
+		this->currentAdiruData.airData.angleOfAttack =
+			SimInterface->getAOADegrees();
+	}
+
+	// Temperature (TAT, SAT?)
+
+}
+
+AdiruData ADIRU::getCurrentAdiruData()
+{
+	return this->currentAdiruData;
+}
+
 
 ADIRU::~ADIRU()
 {
-}
-
-void ADIRU::setAOAsource(AOAProbe *src)
-{
-	this->AOASrc = src;
-}
-
-void ADIRU::setTATsource(TATProbe *src)
-{
-	this->TATSrc = src;
-}
-
-void ADIRU::setPitotSource(PitotProbe *src)
-{
-	this->PitotSrc = src;
-}
-
-void ADIRU::setStaticSource(StaticProbe *src)
-{
-	this->StaticSrc = src;
-}
-
-float ADIRU::getPitchAttitudeDegrees()
-{
-	// TODO
-	return 0;
 }

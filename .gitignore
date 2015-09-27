@@ -13,3 +13,4 @@
 /src/.vs/XPAirbusSystems/v14
 /src/SDK210Tests.vcxproj.user
 post_build_event.bat
+/doc

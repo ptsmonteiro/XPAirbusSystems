@@ -11,7 +11,9 @@ enum DATAREF_LIST {
 	TEMPERATURE_AMBIENT,
 	RADIO_ALTITUDE_CAPT,
 	PB_BAT_1,
-	PB_BAT_2
+	PB_BAT_2,
+
+	BAROMETER_CURRENT_PRESSURE
 };
 
 class XPlaneInterface :
@@ -28,6 +30,7 @@ public:
 	float getTotalAirTemperatureKelvin();
 	int getRadioAltitudeFt();
 	float getElapsedTimeDecimalSeconds();
+	float getCurrentPressureInHg();
 	
 
 protected:

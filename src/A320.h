@@ -19,12 +19,20 @@
 #include "systems\ATA34\PitotProbe.h"
 #include "systems\ATA34\StaticProbe.h"
 #include "systems\Electric\Electric.h"
+#include "core\AircraftState.h"
 
 class A320
 {
+
 public:
 	A320();
 	~A320();
+
+	float lastUpdateElapsedMe;
+	float lastUpdateElapsedSimulator;
+	float updateCounter;
+
+	AircraftState * GlobalState;
 	ElectricNetwork * electricNetwork;
 
 	// ATA 22 - Auto Flight
@@ -76,12 +84,11 @@ public:
 	ADIRU * adiru2;
 	ADIRU * adiru3;
 
-	void update(float);
+	void update(float elapsedMe, float elapsedSim, int counter);
 	void init();
 
 protected:
 	void resetColdAndDark();
-	void updateSystemsHealth();
 	void propagateSignals();
 	void updateSystems();
 	void reconfigureSystems();

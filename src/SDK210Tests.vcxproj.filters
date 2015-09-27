@@ -30,6 +30,9 @@
     <ClCompile Include="systems\Electric\ElectricSource.cpp" />
     <ClCompile Include="core\MessageLogger.cpp" />
     <ClCompile Include="core\PID_v1.cpp" />
+    <ClCompile Include="core\Calculator.cpp" />
+    <ClCompile Include="core\AircraftState.cpp" />
+    <ClCompile Include="DebugWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="A320.h" />
@@ -56,6 +59,10 @@
     <ClInclude Include="core\core.h" />
     <ClInclude Include="systems\Electric\Electric.h" />
     <ClInclude Include="core\PID_v1.h" />
+    <ClInclude Include="core\AdiruData.h" />
+    <ClInclude Include="core\AircraftState.h" />
+    <ClInclude Include="DebugWindow.h" />
+    <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="todo.txt" />

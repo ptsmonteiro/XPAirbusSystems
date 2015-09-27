@@ -1,12 +1,26 @@
 #pragma once
 #include "systems\AirbusComponent.h"
-class StaticProbe :
-	public AirbusComponent
+
+enum StaticProbeLocation {
+	Captain1,
+	Captain2,
+	FO1,
+	FO2,
+	StandBy1,
+	StandBy2
+};
+
+class StaticProbe :	public AirbusComponent
 {
+private:
+	StaticProbeLocation probeLocation;
+	float currentPressureInHg;
+
+	
 public:
-	StaticProbe();
-	~StaticProbe();
+	float getCurrentStaticPressureInHg();
+
+	StaticProbe(StaticProbeLocation probeLocation);
 
 	void update();
 };
-

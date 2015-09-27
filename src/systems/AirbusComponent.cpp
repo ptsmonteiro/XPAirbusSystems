@@ -36,18 +36,12 @@ void AirbusComponent::disconnectElectrical()
 
 void AirbusComponent::updateHealth()
 {
-	if (this->currentHealth != Healthy) {
-		return;
-	}
+	// TODO: Check a global equipment failure list.
 
-	if (this->currentElectricSource == nullptr) {
+	if (this->currentElectricSource == nullptr || !this->currentElectricSource->isAvailable()) {
 		this->currentHealth = Failed;
-		return;
 	}
-
-	if (this->currentElectricSource->isAvailable()) {
-		this->currentHealth = Failed;
-		return;
+	else {
+		this->currentHealth = Healthy;
 	}
-
 }

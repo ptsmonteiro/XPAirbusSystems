@@ -2,10 +2,11 @@
 
 #include "XPLM\XPLMUtilities.h"
 
-enum ComponentHealth : int {
-	Healthy,
-	Failed,
-	Inop
+//TODO: INOP status might be redundant.
+enum ComponentHealth {
+	Healthy,		// System is healthy
+	Failed,			// System has failled but is recoverable (ie: Power loss)
+	Inop			// System is inoperable and not recoverable.
 };
 
 enum ElectricGeneratorType {
@@ -36,7 +37,8 @@ enum ElectricNetworkMode {
 	ColdAndDark,
 	Normal_Flight,
 	Normal_Ground,
-	Emerg_Elec
+	Emerg_Elec,
+	DEBUG_CONFIG_1			/* Batteries only. */
 };
 
 typedef struct _stCoordinates {
@@ -63,3 +65,10 @@ public:
 	~MessageLogger();
 	void LogMessage(const char* msg);
 };
+
+class Calculator
+{
+public:
+	static float pressureAltitudeFt(float pressureInHg, float qnhInHg);
+};
+
