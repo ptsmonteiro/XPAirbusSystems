@@ -23,9 +23,14 @@
 
 class A320
 {
+
 public:
 	A320();
 	~A320();
+
+	float lastUpdateElapsedMe;
+	float lastUpdateElapsedSimulator;
+	float updateCounter;
 
 	AircraftState * GlobalState;
 	ElectricNetwork * electricNetwork;
@@ -79,12 +84,11 @@ public:
 	ADIRU * adiru2;
 	ADIRU * adiru3;
 
-	void update(float);
+	void update(float elapsedMe, float elapsedSim, int counter);
 	void init();
 
 protected:
 	void resetColdAndDark();
-	void updateSystemsHealth();
 	void propagateSignals();
 	void updateSystems();
 	void reconfigureSystems();

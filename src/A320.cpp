@@ -15,6 +15,10 @@ A320::A320()
 	Logger = new MessageLogger();
 	GlobalState = new AircraftState();
 
+	lastUpdateElapsedMe = -1;
+	lastUpdateElapsedSimulator = -1;
+	updateCounter = -1;
+
 	this->electricNetwork = new ElectricNetwork;
 
 	// Probes and sensors
@@ -73,10 +77,6 @@ void A320::init()
 	resetColdAndDark();
 }
 
-void A320::updateSystemsHealth()
-{
-	return;
-}
 
 void A320::updateProbes()
 {
@@ -100,7 +100,6 @@ void A320::updateProbes()
 
 	this->ra1->update();
 	this->ra2->update();
-
 }
 
 void A320::updateComputers()
@@ -153,10 +152,8 @@ void A320::reconfigureSystems()
 	// DU
 }
 
-void A320::update(float deltaTimeSeconds)
+void A320::update(float elapsedMe, float elapsedSim, int counter)
 {
-	updateSystemsHealth();
-
 	// Probes and Sensors
 	updateProbes();
 
@@ -168,6 +165,11 @@ void A320::update(float deltaTimeSeconds)
 
 	// Check operation and reconfigure if required
 	reconfigureSystems();
+
+	this->lastUpdateElapsedMe = elapsedMe;
+	this->lastUpdateElapsedSimulator = elapsedSim;
+	this->updateCounter = counter;
+
 }
 
 void A320::resetColdAndDark()

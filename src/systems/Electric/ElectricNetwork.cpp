@@ -43,6 +43,8 @@ void ElectricNetwork::reconfigure(ElectricNetworkMode mode)
 			resetNetwork();
 			break;
 	}
+
+	reconfigureEquipment();
 }
 
 void ElectricNetwork::prepareNormalFlightConfig()
@@ -86,7 +88,7 @@ void ElectricNetwork::prepareNormalFlightConfig()
 	//TODO: DC Buses.
 
 
-	reconfigureEquipment();
+
 }
 
 void ElectricNetwork::prepareNormalGroundConfig()
@@ -146,16 +148,16 @@ void ElectricNetwork::reconfigureEquipment()
 
 	// ATA34::Adiru2
 	if (busData[AcBus2]->isAvailable()) {
-		Aircraft->adiru1->connectElectrical(busData[AcBus2]);
+		Aircraft->adiru2->connectElectrical(busData[AcBus2]);
 	}
 	else {
-		// This is time limited: 1.34.97-1
-		Aircraft->adiru1->connectElectrical(busData[HotBus2]);
+		//TODO: This is time limited: 1.34.97-1
+		Aircraft->adiru2->connectElectrical(busData[HotBus2]);
 	}
 
 	// ATA34::Adiru3
 	if (busData[AcBus1]->isAvailable()) {
-		Aircraft->adiru1->connectElectrical(busData[AcBus1]);
+		Aircraft->adiru3->connectElectrical(busData[AcBus1]);
 	}
 	else {
 		// This has multiple exceptions and pre-conditions 1.34.97-1
@@ -163,7 +165,7 @@ void ElectricNetwork::reconfigureEquipment()
 		// backup suply when: ATT HDG = CAPT 3 
 		// backup suply for 5m when: ATT HDG = NORM || ATT HDG = FO3
 
-		Aircraft->adiru1->connectElectrical(busData[HotBus1]);
+		Aircraft->adiru3->connectElectrical(busData[HotBus1]);
 	}
 
 	// ELAC1

@@ -27,13 +27,17 @@ void ADIRU::updateAirData()
 	// Baro height:
 	if (this->StaticSrc1->currentHealth == Healthy)
 	{
+		this->currentAdiruData.airData.staticPressureHg = this->StaticSrc1->getCurrentStaticPressureInHg();
+
 		this->currentAdiruData.airData.baroHeightFeet =
-			Calculator::pressureAltitudeFt(this->StaticSrc1->getCurrentStaticPressureInHg(), Aircraft->GlobalState->CaptQNHInHg);
+			Calculator::pressureAltitudeFt(this->currentAdiruData.airData.staticPressureHg, Aircraft->GlobalState->CaptQNHInHg);
 	}
 	else if (this->StaticSrc2->currentHealth == Healthy)
 	{
+		this->currentAdiruData.airData.staticPressureHg = this->StaticSrc2->getCurrentStaticPressureInHg();
+
 		this->currentAdiruData.airData.baroHeightFeet =
-			Calculator::pressureAltitudeFt(this->StaticSrc2->getCurrentStaticPressureInHg(), Aircraft->GlobalState->FOQNHInHg);
+			Calculator::pressureAltitudeFt(this->currentAdiruData.airData.staticPressureHg, Aircraft->GlobalState->FOQNHInHg);
 	}
 
 	// Speed

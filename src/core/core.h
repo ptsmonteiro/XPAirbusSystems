@@ -2,10 +2,11 @@
 
 #include "XPLM\XPLMUtilities.h"
 
+//TODO: INOP status might be redundant.
 enum ComponentHealth {
-	Healthy,
-	Failed,
-	Inop
+	Healthy,		// System is healthy
+	Failed,			// System has failled but is recoverable (ie: Power loss)
+	Inop			// System is inoperable and not recoverable.
 };
 
 enum ElectricGeneratorType {
