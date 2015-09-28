@@ -76,9 +76,8 @@ void DebugWindow::WindowRenderCallback(
 
 void DebugWindow::appendLine(char* message)
 {
+	currentLineOffset -= 10;
 	XPLMDrawString(TEXT_COLOR, left + 5, currentLineOffset, message, NULL, xplmFont_Basic);
-	
-	currentLineOffset += 10;
 }
 
 char* DebugWindow::formatString(const char* prefix, float value)
