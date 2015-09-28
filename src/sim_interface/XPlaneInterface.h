@@ -13,7 +13,9 @@ enum DATAREF_LIST {
 	PB_BAT_1,
 	PB_BAT_2,
 
-	BAROMETER_CURRENT_PRESSURE
+	BAROMETER_CURRENT_PRESSURE,
+
+	SPEED_IAS
 };
 
 class XPlaneInterface :
@@ -31,6 +33,9 @@ public:
 	int getRadioAltitudeFt();
 	float getElapsedTimeDecimalSeconds();
 	float getCurrentPressureInHg();
+
+	/* Speeds */
+	float getIASKn();
 	
 
 protected:

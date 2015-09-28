@@ -8,12 +8,15 @@ class DebugWindow
 {
 private:
 	XPLMWindowID	gWindow = NULL;
-
-	// TODO: Move someplace else.
+	
 	static char* formatString(const char* prefix, float value);
 	static char* formatString(const char* prefix, int value);
-
+	static void appendLine(char* message);
+	
+	
 public:
+	
+
 	static int WindowClickCallback(
 		XPLMWindowID         inWindowID,
 		int                  x,

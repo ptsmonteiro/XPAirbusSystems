@@ -2,6 +2,10 @@
 #include "DebugWindow.h"
 #include "A320.h"
 
+static int left, top, right, bottom;
+static float TEXT_COLOR[3] = { 1.0, 1.0, 1.0 };
+static int currentLineOffset;
+
 DebugWindow::DebugWindow()
 {
 	gWindow = XPLMCreateWindow(
@@ -17,8 +21,8 @@ void DebugWindow::WindowRenderCallback(
 	XPLMWindowID         inWindowID,
 	void *               inRefcon)
 {
-	int		left, top, right, bottom;
-	float	color[] = { 1.0, 1.0, 1.0 }; 	/* RGB White */
+	
+	
 
 	/* First we get the location of the window passed in to us. */
 	XPLMGetWindowGeometry(inWindowID, &left, &top, &right, &bottom);
@@ -32,37 +36,49 @@ void DebugWindow::WindowRenderCallback(
 		return;
 	}
 
+	currentLineOffset = top;
+
 	AdiruData adiruData;
 
 	if (Aircraft->adiru1->currentHealth == Healthy) {
 		adiruData = Aircraft->adiru1->getCurrentAdiruData();
-		XPLMDrawString(color, left + 5, top - 20, formatString("ADIRU1.STAT_PRESSURE.HG		= ", adiruData.airData.staticPressureHg), NULL, xplmFont_Basic);
-		XPLMDrawString(color, left + 5, top - 30, formatString("ADIRU1.HEIGHT.FT			= ", adiruData.airData.baroHeightFeet), NULL, xplmFont_Basic);
+		appendLine(formatString("ADIRU1.STAT_PRESSURE.HG		= ", adiruData.airData.staticPressureHg));
+		appendLine(formatString("ADIRU1.HEIGHT.FT			= ",	 adiruData.airData.baroHeightFeet));
+		appendLine(formatString("ADIRU1.IAS.KN				= ", adiruData.airData.indicatedAirspeedKn));
 	}
 	else {
-		XPLMDrawString(color, left + 5, top - 20, "ADIRU1.STAT_PRESSURE.HG		= INOP", NULL, xplmFont_Basic);
-		XPLMDrawString(color, left + 5, top - 30, "ADIRU1.HEIGHT.FT			= INOP", NULL, xplmFont_Basic);
+		appendLine("ADIRU1.STAT_PRESSURE.HG		= INOP");
+		appendLine("ADIRU1.HEIGHT.FT			= INOP");
 	}
 
 	if (Aircraft->adiru2->currentHealth == Healthy) {
 		adiruData = Aircraft->adiru2->getCurrentAdiruData();
-		XPLMDrawString(color, left + 5, top - 40, formatString("ADIRU2.STAT_PRESSURE.HG		= ", adiruData.airData.staticPressureHg), NULL, xplmFont_Basic);
-		XPLMDrawString(color, left + 5, top - 50, formatString("ADIRU2.HEIGHT.FT			= ", adiruData.airData.baroHeightFeet), NULL, xplmFont_Basic);
+		appendLine(formatString("ADIRU2.STAT_PRESSURE.HG		= ", adiruData.airData.staticPressureHg));
+		appendLine(formatString("ADIRU2.HEIGHT.FT			= ", adiruData.airData.baroHeightFeet));
+		appendLine(formatString("ADIRU2.IAS.KN				= ", adiruData.airData.indicatedAirspeedKn));
 	}
 	else {
-		XPLMDrawString(color, left + 5, top - 20, "ADIRU2.STAT_PRESSURE.HG		= INOP", NULL, xplmFont_Basic);
-		XPLMDrawString(color, left + 5, top - 30, "ADIRU2.HEIGHT.FT			= INOP", NULL, xplmFont_Basic);
+		appendLine("ADIRU2.STAT_PRESSURE.HG		= INOP");
+		appendLine("ADIRU2.HEIGHT.FT			= INOP");
 	}
 
 	if (Aircraft->adiru3->currentHealth == Healthy) {
 		adiruData = Aircraft->adiru3->getCurrentAdiruData();
-		XPLMDrawString(color, left + 5, top - 60, formatString("ADIRU3.STAT_PRESSURE.HG		= ", adiruData.airData.staticPressureHg), NULL, xplmFont_Basic);
-		XPLMDrawString(color, left + 5, top - 70, formatString("ADIRU3.HEIGHT.FT			= ", adiruData.airData.baroHeightFeet), NULL, xplmFont_Basic);
+		appendLine(formatString("ADIRU3.STAT_PRESSURE.HG		= ", adiruData.airData.staticPressureHg));
+		appendLine(formatString("ADIRU3.HEIGHT.FT			= ", adiruData.airData.baroHeightFeet));
+		appendLine(formatString("ADIRU3.IAS.KN				= ", adiruData.airData.indicatedAirspeedKn));
 	}
 	else {
-		XPLMDrawString(color, left + 5, top - 20, "ADIRU3.STAT_PRESSURE.HG		= INOP", NULL, xplmFont_Basic);
-		XPLMDrawString(color, left + 5, top - 30, "ADIRU3.HEIGHT.FT			= INOP", NULL, xplmFont_Basic);
+		appendLine("ADIRU3.STAT_PRESSURE.HG		= INOP");
+		appendLine("ADIRU3.HEIGHT.FT			= INOP");
 	}
+}
+
+void DebugWindow::appendLine(char* message)
+{
+	XPLMDrawString(TEXT_COLOR, left + 5, currentLineOffset, message, NULL, xplmFont_Basic);
+	
+	currentLineOffset += 10;
 }
 
 char* DebugWindow::formatString(const char* prefix, float value)
@@ -72,7 +88,6 @@ char* DebugWindow::formatString(const char* prefix, float value)
 
 	return strdup(sstm.str().c_str());
 }
-
 
 char* DebugWindow::formatString(const char* prefix, int value)
 {

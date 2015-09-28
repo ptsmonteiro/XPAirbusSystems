@@ -23,7 +23,7 @@ protected:
 	StaticProbe * StaticSrc2;
 
 public:
-	ADIRU(int, StaticProbe* staticProbe1, StaticProbe* staticProbe2, AOAProbe* aoaProbe);
+	ADIRU(int, StaticProbe* staticProbe1, StaticProbe* staticProbe2, AOAProbe* aoaProbe, PitotProbe* pitotProbe);
 	~ADIRU();
 
 	void update();

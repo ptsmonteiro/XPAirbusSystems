@@ -13,6 +13,8 @@ XPlaneInterface::XPlaneInterface()
 
 	// Sensores
 	DataRefMap[BAROMETER_CURRENT_PRESSURE] = findDataRefByName("sim/weather/barometer_current_inhg");
+	DataRefMap[SPEED_IAS] = findDataRefByName("sim/flightmodel/position/indicated_airspeed");
+
 }
 
 XPlaneInterface::~XPlaneInterface()
@@ -61,6 +63,10 @@ float XPlaneInterface::getElapsedTimeDecimalSeconds()
 float XPlaneInterface::getCurrentPressureInHg()
 {
 	return XPLMGetDataf(findDataRefByCode(BAROMETER_CURRENT_PRESSURE));
+}
+
+float XPlaneInterface::getIASKn() {
+	return XPLMGetDataf(findDataRefByCode(SPEED_IAS));
 }
 
 XPLMDataRef XPlaneInterface::findDataRefByCode(DATAREF_LIST value) {

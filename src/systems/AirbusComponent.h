@@ -2,6 +2,12 @@
 #include "core/core.h"
 #include "sim_interface/XPlaneInterface.h"
 
+enum ProbeLocation {
+	Captain,
+	FO,
+	Standby
+};
+
 class ElectricSource;
 
 class AirbusComponent

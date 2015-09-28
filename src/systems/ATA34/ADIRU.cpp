@@ -3,19 +3,20 @@
 #include "core\core.h"
 #include "systems\electric\electric.h"
 
-ADIRU::ADIRU(int, StaticProbe* staticProbe1, StaticProbe* staticProbe2, AOAProbe* aoaProbe)
+ADIRU::ADIRU(int, StaticProbe* staticProbe1, StaticProbe* staticProbe2, AOAProbe* aoaProbe, PitotProbe* pitotProbe)
 {
 	this->number = number;
 	this->StaticSrc1 = staticProbe1;
 	this->StaticSrc2 = staticProbe2;
 	this->AOASrc = aoaProbe;
+	this->PitotSrc = pitotProbe;
 }
 
 void ADIRU::update()
 {
 	updateHealth();
 
-	if (this->currentHealth == Failed){
+	if (this->currentHealth == Failed) {
 		return;
 	}
 
@@ -40,7 +41,14 @@ void ADIRU::updateAirData()
 			Calculator::pressureAltitudeFt(this->currentAdiruData.airData.staticPressureHg, Aircraft->GlobalState->FOQNHInHg);
 	}
 
-	// Speed
+	// Speed (IAS)
+	if (this->PitotSrc->currentHealth == Healthy) {
+		this->currentAdiruData.airData.indicatedAirspeedKn = this->PitotSrc->getIndicatedAirspeedKn();
+	}
+	else {
+		// TODO: airData.speedValid = false.
+		this->currentAdiruData.airData.indicatedAirspeedKn = 0.0f;
+	}
 
 
 	// Speed Mach

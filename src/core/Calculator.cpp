@@ -1,6 +1,7 @@
 #include <math.h>
 #include "core\core.h"
 
+//TODO: Move constants to proper file.
 
 float Calculator::pressureAltitudeFt(float pressureInHg, float qnhInHg) {
 	// http://williams.best.vwh.net/avform.htm#Altimetry

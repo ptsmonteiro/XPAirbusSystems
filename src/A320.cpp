@@ -29,9 +29,9 @@ A320::A320()
 	this->tatProbeCapt = new TATProbe;
 	this->tatProbeFO = new TATProbe;
 
-	this->pitotProbeCapt = new PitotProbe;
-	this->pitotProbeFO = new PitotProbe;
-	this->pitotProbeStandby = new PitotProbe;
+	this->pitotProbeCapt = new PitotProbe(Captain);
+	this->pitotProbeFO = new PitotProbe(FO);
+	this->pitotProbeStandby = new PitotProbe(Standby);
 
 	this->staticProbeCapt1 = new StaticProbe(Captain1);
 	this->staticProbeCapt2 = new StaticProbe(Captain2);
@@ -47,9 +47,9 @@ A320::A320()
 	this->lgciu1 = new ATA32_LGCIU(1);
 	this->lgciu2 = new ATA32_LGCIU(2);
 
-	this->adiru1 = new ADIRU(1, this->staticProbeCapt1, this->staticProbeCapt2, this->aoaProbeCapt);
-	this->adiru2 = new ADIRU(2, this->staticProbeFO1, this->staticProbeFO2, this->aoaProbeFO);
-	this->adiru3 = new ADIRU(3, this->staticProbeStandby1, this->staticProbeStandby2, this->aoaProbeStandby);
+	this->adiru1 = new ADIRU(1, this->staticProbeCapt1, this->staticProbeCapt2, this->aoaProbeCapt, this->pitotProbeCapt);
+	this->adiru2 = new ADIRU(2, this->staticProbeFO1, this->staticProbeFO2, this->aoaProbeFO, this->pitotProbeStandby);
+	this->adiru3 = new ADIRU(3, this->staticProbeStandby1, this->staticProbeStandby2, this->aoaProbeStandby, this->pitotProbeFO);
 
 	this->elac1 = new ATA22_ELAC(1);
 	this->elac2 = new ATA22_ELAC(2);

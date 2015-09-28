@@ -1,20 +1,19 @@
 #pragma once
 #include "systems\AirbusComponent.h"
 
-enum AoaProbeLocation {
-	Captain,
-	FO,
-	Standby
-};
+
 
 class AOAProbe : public AirbusComponent
 {
+	
 private:
-	AoaProbeLocation probeLocation;
+	//Source: thales AOA sensor accuracy: 0.25º 
+	const float PROBE_ACCURACY_DEG = 0.125;
+	ProbeLocation probeLocation;
 	float AOADegrees;
 
 public:
-	AOAProbe(AoaProbeLocation probeLocation);
+	AOAProbe(ProbeLocation probeLocation);
 
 	void update();
 	float getAOADegrees();
