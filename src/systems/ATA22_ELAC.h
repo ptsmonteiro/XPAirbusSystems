@@ -111,6 +111,7 @@ public:
 	// Modes
 	void updatePitchControlMode();
 	void updateLateralControlMode();
+	MODE getConsistentControlMode(MODE);
 
 	// Flight controls calculations
 	void processPitch();

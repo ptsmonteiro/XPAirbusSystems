@@ -26,9 +26,19 @@ void ATA22_ELAC::update()
 	this->processYaw();
 }
 
+ATA22_ELAC::MODE ATA22_ELAC::getConsistentControlMode(MODE m)
+{
+	if (m == GROUND && radioAlt->getAltitudeFt() > 1000) {
+		return FLIGHT;
+	}
+	return m;
+}
+
 void ATA22_ELAC::updatePitchControlMode()
 {
 	AdiruData adiruData = myADIRU->getCurrentAdiruData();
+
+	pitchControlMode = getConsistentControlMode(pitchControlMode);
 
 	if (pitchControlMode == GROUND) {
 		if (adiruData.inertialData.attitudeDegrees  > MIN_PITCH_ATT_DEG_GROUND_TO_FLIGHT_MODE) {
@@ -83,6 +93,9 @@ void ATA22_ELAC::updateLateralControlMode()
 	else if (lateralControlMode == FLIGHT_TO_GROUND &&
 			simulator->getElapsedTimeDecimalSeconds() - lateralControlModeTransitionStartTime >= TRANSITION_TIME_SEC_LATERAL_FLIGHT_TO_GROUND_MODE) {
 		lateralControlMode = GROUND;
+	}
+	else {
+		lateralControlMode = getConsistentControlMode(lateralControlMode);
 	}
 }
 
