@@ -14,6 +14,7 @@ XPlaneInterface::XPlaneInterface()
 	// Sensores
 	DataRefMap[BAROMETER_CURRENT_PRESSURE] = findDataRefByName("sim/weather/barometer_current_inhg");
 	DataRefMap[SPEED_IAS] = findDataRefByName("sim/flightmodel/position/indicated_airspeed");
+	DataRefMap[ONGROUND_ANY] = findDataRefByName("sim/flightmodel/failures/onground_all");
 
 }
 
@@ -67,6 +68,11 @@ float XPlaneInterface::getCurrentPressureInHg()
 
 float XPlaneInterface::getIASKn() {
 	return XPLMGetDataf(findDataRefByCode(SPEED_IAS));
+}
+
+bool XPlaneInterface::isMainGearCompressed() {
+	int onGround = XPLMGetDatai(findDataRefByCode(ONGROUND_ANY));
+	return onGround == 1;
 }
 
 XPLMDataRef XPlaneInterface::findDataRefByCode(DATAREF_LIST value) {

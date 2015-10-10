@@ -15,7 +15,9 @@ enum DATAREF_LIST {
 
 	BAROMETER_CURRENT_PRESSURE,
 
-	SPEED_IAS
+	SPEED_IAS,
+
+	ONGROUND_ANY
 };
 
 class XPlaneInterface :
@@ -36,6 +38,9 @@ public:
 
 	/* Speeds */
 	float getIASKn();
+
+	// Gear
+	bool isMainGearCompressed();
 	
 
 protected:

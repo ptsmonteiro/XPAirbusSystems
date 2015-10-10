@@ -17,5 +17,7 @@ public:
 
 	/* Speeds */
 	virtual float getIASKn() = 0;
+
+	virtual bool isMainGearCompressed() = 0;
 };
 

@@ -51,8 +51,8 @@ A320::A320()
 	this->adiru2 = new ADIRU(2, this->staticProbeFO1, this->staticProbeFO2, this->aoaProbeFO, this->pitotProbeStandby);
 	this->adiru3 = new ADIRU(3, this->staticProbeStandby1, this->staticProbeStandby2, this->aoaProbeStandby, this->pitotProbeFO);
 
-	this->elac1 = new ATA22_ELAC(1);
-	this->elac2 = new ATA22_ELAC(2);
+	this->elac1 = new ATA22_ELAC(1, this->ra1, this->lgciu1, this->adiru1);
+	this->elac2 = new ATA22_ELAC(2, this->ra2, this->lgciu2, this->adiru2);
 
 	this->fwc1 = new ATA31_FWC(1);
 	this->fwc2 = new ATA31_FWC(2);
@@ -111,7 +111,7 @@ void A320::updateComputers()
 	this->adiru2->update();
 	this->adiru3->update();
 
-//	this->elac1->update();
+	this->elac1->update();
 //	this->elac2->update();
 
 }

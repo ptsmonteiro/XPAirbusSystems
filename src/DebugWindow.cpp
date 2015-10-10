@@ -72,6 +72,9 @@ void DebugWindow::WindowRenderCallback(
 		appendLine("ADIRU3.STAT_PRESSURE.HG		= INOP");
 		appendLine("ADIRU3.HEIGHT.FT			= INOP");
 	}
+
+	appendLine(formatString("ELAC1 Lat Control Mode			= ", Aircraft->elac1->lateralControlMode));
+	appendLine(formatString("ELAC1 Pitch Control Mode			= ", Aircraft->elac1->pitchControlMode));
 }
 
 void DebugWindow::appendLine(char* message)

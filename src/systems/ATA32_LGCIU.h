@@ -15,7 +15,7 @@ public:
 
 protected:
 	int number;
-
+	bool gearCompressed = true;
 
 };
 

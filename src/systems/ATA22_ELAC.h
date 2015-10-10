@@ -13,7 +13,7 @@ private:
 	int currentRadioAltimeterHeightFt = 0;
 
 public:
-	ATA22_ELAC(int);
+	ATA22_ELAC(int, RadioAlt *, ATA32_LGCIU *, ADIRU *);
 	~ATA22_ELAC();
 
 	float getAileronPos();
@@ -21,14 +21,10 @@ public:
 	float getRollOrder();
 	float getYawRateOrder();
 
-	void connect(ADIRU *);
-	void connect(ATA32_LGCIU *);
-	void connect(RadioAlt *);
-
 	void update();
 
 
-protected:
+//protected:
 
 	// Ground -> Flight transition
 	const int MIN_PITCH_ATT_DEG_GROUND_TO_FLIGHT_MODE = 8;

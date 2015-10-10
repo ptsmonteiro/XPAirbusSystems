@@ -14,6 +14,6 @@ public:
 protected:
 
 	int number;
-	int altitudeFt;
+	int altitudeFt = 0;
 };
 
