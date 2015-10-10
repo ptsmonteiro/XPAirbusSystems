@@ -14,6 +14,8 @@ class ADIRU : public AirbusComponent
 private:
 	AdiruData currentAdiruData;
 	void updateAirData();
+	void updateInertialData();
+	
 
 protected:
 	AOAProbe * AOASrc;

@@ -4,7 +4,7 @@
 typedef struct  _adiruInertialData {
 	float attitudeDegrees;
 	int groundSpeedKnots;
-	float fpv;
+	float flightPathAngleDegrees;
 	float trackDegrees;
 	float headingDegrees;
 

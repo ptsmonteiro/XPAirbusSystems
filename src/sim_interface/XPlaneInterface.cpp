@@ -16,6 +16,9 @@ XPlaneInterface::XPlaneInterface()
 	DataRefMap[SPEED_IAS] = findDataRefByName("sim/flightmodel/position/indicated_airspeed");
 	DataRefMap[ONGROUND_ANY] = findDataRefByName("sim/flightmodel/failures/onground_all");
 
+	// Attitude
+	DataRefMap[PITCH_ATTITUDE] = findDataRefByName("sim/flightmodel/position/true_theta");
+
 }
 
 XPlaneInterface::~XPlaneInterface()
@@ -73,6 +76,10 @@ float XPlaneInterface::getIASKn() {
 bool XPlaneInterface::isMainGearCompressed() {
 	int onGround = XPLMGetDatai(findDataRefByCode(ONGROUND_ANY));
 	return onGround == 1;
+}
+
+float XPlaneInterface::getPitchAttitudeDegrees() {
+	return XPLMGetDataf(findDataRefByCode(PITCH_ATTITUDE));
 }
 
 XPLMDataRef XPlaneInterface::findDataRefByCode(DATAREF_LIST value) {

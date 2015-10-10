@@ -17,7 +17,9 @@ enum DATAREF_LIST {
 
 	SPEED_IAS,
 
-	ONGROUND_ANY
+	ONGROUND_ANY,
+
+	PITCH_ATTITUDE
 };
 
 class XPlaneInterface :
@@ -39,8 +41,11 @@ public:
 	/* Speeds */
 	float getIASKn();
 
-	// Gear
+	/* Gear */
 	bool isMainGearCompressed();
+
+	/* Attitude */
+	float getPitchAttitudeDegrees();
 	
 
 protected:

@@ -21,6 +21,7 @@ void ADIRU::update()
 	}
 
 	updateAirData();
+	updateInertialData();
 }
 
 void ADIRU::updateAirData()
@@ -61,6 +62,10 @@ void ADIRU::updateAirData()
 
 	// Temperature (TAT, SAT?)
 
+}
+
+void ADIRU::updateInertialData() {
+	this->currentAdiruData.inertialData.attitudeDegrees = SimInterface->getPitchAttitudeDegrees();
 }
 
 AdiruData ADIRU::getCurrentAdiruData()

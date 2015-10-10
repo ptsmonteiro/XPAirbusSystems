@@ -19,5 +19,8 @@ public:
 	virtual float getIASKn() = 0;
 
 	virtual bool isMainGearCompressed() = 0;
+
+	/* Attitude */
+	virtual float getPitchAttitudeDegrees() = 0;
 };
 
