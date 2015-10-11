@@ -18,7 +18,7 @@ ATA22_ELAC::~ATA22_ELAC()
 
 void ATA22_ELAC::initControllers()
 {
-	rollController = new PID(simulator, &rollRateDegreesSecond, &rollOrder, &rollRateDemandDegreesSecond, 1, 1, 1, 1);
+	rollController = new PID(simulator, &rollRateDegreesSecond, &rollOrder, &rollRateDemandDegreesSecond, .025, .025, .025, 1);
 	rollController->SetOutputLimits(-1, 1);
 	rollController->SetMode(AUTOMATIC);
 }

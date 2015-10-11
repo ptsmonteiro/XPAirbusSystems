@@ -22,6 +22,8 @@ enum DATAREF_LIST {
 	PITCH_ATTITUDE,
 	BANK_ANGLE,
 
+	JOYSTICK_AXIS_VALUES,
+
 	YOKE_PITCH_RATIO,
 	YOKE_ROLL_RATIO,
 
@@ -64,6 +66,9 @@ public:
 	
 
 protected:
+	bool isYokeRollOverriden = false;
+	bool isYokePitchOverriden = false;
+
 	XPLMDataRef findDataRefByName(char * datarefName);
 	XPLMDataRef findDataRefByCode(DATAREF_LIST value);
 };

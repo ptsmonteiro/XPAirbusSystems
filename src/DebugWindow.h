@@ -9,6 +9,7 @@ class DebugWindow
 private:
 	XPLMWindowID	gWindow = NULL;
 	
+	static char* formatString(const char* prefix, double value);
 	static char* formatString(const char* prefix, float value);
 	static char* formatString(const char* prefix, int value);
 	static void appendLine(char* message);

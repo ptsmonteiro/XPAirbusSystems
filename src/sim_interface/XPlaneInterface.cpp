@@ -21,6 +21,7 @@ XPlaneInterface::XPlaneInterface()
 	DataRefMap[BANK_ANGLE] = findDataRefByName("sim/flightmodel/position/true_phi");
 
 	// Yoke
+	DataRefMap[JOYSTICK_AXIS_VALUES] = findDataRefByName("sim/joystick/joy_mapped_axis_value");
 	DataRefMap[YOKE_ROLL_RATIO] = findDataRefByName("sim/joystick/yoke_roll_ratio");
 	DataRefMap[YOKE_PITCH_RATIO] = findDataRefByName("sim/joystick/yoke_pitch_ratio");
 	DataRefMap[OVERRIDE_JOYSTICK_ROLL] = findDataRefByName("sim/operation/override/override_joystick_roll");
@@ -99,21 +100,32 @@ float XPlaneInterface::getBankAngleDegrees() {
 }
 
 float XPlaneInterface::getSideStickPitchRatio() {
-	return XPLMGetDataf(findDataRefByCode(YOKE_PITCH_RATIO));
+	float values[100];
+	XPLMGetDatavf(findDataRefByCode(JOYSTICK_AXIS_VALUES), values, 0, 4);
+	return values[1];
 }
 
 float XPlaneInterface::getSideStickRollRatio() {
-	return XPLMGetDataf(findDataRefByCode(YOKE_ROLL_RATIO));
+	float values[100];
+	XPLMGetDatavf(findDataRefByCode(JOYSTICK_AXIS_VALUES), values, 0, 4);
+	return values[2];
 }
 
 void XPlaneInterface::setSideStickRollRatio(float ratio)
 {
-	XPLMSetDatai(findDataRefByCode(OVERRIDE_JOYSTICK_ROLL), true);
+	if (!isYokeRollOverriden) {
+		XPLMSetDatai(findDataRefByCode(OVERRIDE_JOYSTICK_ROLL), true);
+		isYokeRollOverriden = true;
+	}
 	XPLMSetDataf(findDataRefByCode(YOKE_ROLL_RATIO), ratio);
 }
 
 void XPlaneInterface::setSideStickPitchRatio(float ratio)
 {
-	XPLMSetDatai(findDataRefByCode(OVERRIDE_JOYSTICK_PITCH), true);
+	if (!isYokePitchOverriden) {
+		XPLMSetDatai(findDataRefByCode(OVERRIDE_JOYSTICK_PITCH), true);
+		isYokePitchOverriden = true;
+	}
 	XPLMSetDataf(findDataRefByCode(YOKE_PITCH_RATIO), ratio);
 }
+

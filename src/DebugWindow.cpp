@@ -75,6 +75,10 @@ void DebugWindow::WindowRenderCallback(
 
 	appendLine(formatString("ELAC1 Lat Control Mode			= ", Aircraft->elac1->lateralControlMode));
 	appendLine(formatString("ELAC1 Pitch Control Mode			= ", Aircraft->elac1->pitchControlMode));
+
+	appendLine(formatString("ELAC1 Stick Order			= ", Aircraft->elac1->rollRateDemandDegreesSecond));
+	appendLine(formatString("ELAC1 Roll Rate			= ", Aircraft->elac1->rollRateDegreesSecond));
+	appendLine(formatString("ELAC1 Controller Roll Order		= ", Aircraft->elac1->rollOrder));
 }
 
 void DebugWindow::appendLine(char* message)
@@ -82,6 +86,15 @@ void DebugWindow::appendLine(char* message)
 	currentLineOffset -= 10;
 	XPLMDrawString(TEXT_COLOR, left + 5, currentLineOffset, message, NULL, xplmFont_Basic);
 }
+
+char* DebugWindow::formatString(const char* prefix, double value)
+{
+	std::stringstream sstm;
+	sstm << prefix << value;
+
+	return strdup(sstm.str().c_str());
+}
+
 
 char* DebugWindow::formatString(const char* prefix, float value)
 {
