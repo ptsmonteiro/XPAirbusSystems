@@ -7,5 +7,3 @@ SimulatorInterface::SimulatorInterface()
 SimulatorInterface::~SimulatorInterface()
 {
 }
-
-

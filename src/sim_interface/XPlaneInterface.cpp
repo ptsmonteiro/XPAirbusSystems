@@ -18,6 +18,14 @@ XPlaneInterface::XPlaneInterface()
 
 	// Attitude
 	DataRefMap[PITCH_ATTITUDE] = findDataRefByName("sim/flightmodel/position/true_theta");
+	DataRefMap[BANK_ANGLE] = findDataRefByName("sim/flightmodel/position/true_phi");
+
+	// Yoke
+	DataRefMap[YOKE_ROLL_RATIO] = findDataRefByName("sim/joystick/yoke_roll_ratio");
+	DataRefMap[YOKE_PITCH_RATIO] = findDataRefByName("sim/joystick/yoke_pitch_ratio");
+	DataRefMap[OVERRIDE_JOYSTICK_ROLL] = findDataRefByName("sim/operation/override/override_joystick_roll");
+	DataRefMap[OVERRIDE_JOYSTICK_PITCH] = findDataRefByName("sim/operation/override/override_joystick_pitch");
+
 
 }
 
@@ -28,6 +36,10 @@ XPlaneInterface::~XPlaneInterface()
 XPLMDataRef XPlaneInterface::findDataRefByName(char * datarefName)
 {
 	return XPLMFindDataRef(datarefName);
+}
+
+XPLMDataRef XPlaneInterface::findDataRefByCode(DATAREF_LIST value) {
+	return DataRefMap[value];
 }
 
 float XPlaneInterface::getAOADegrees()
@@ -82,6 +94,26 @@ float XPlaneInterface::getPitchAttitudeDegrees() {
 	return XPLMGetDataf(findDataRefByCode(PITCH_ATTITUDE));
 }
 
-XPLMDataRef XPlaneInterface::findDataRefByCode(DATAREF_LIST value) {
-	return DataRefMap[value];
+float XPlaneInterface::getBankAngleDegrees() {
+	return XPLMGetDataf(findDataRefByCode(BANK_ANGLE));
+}
+
+float XPlaneInterface::getSideStickPitchRatio() {
+	return XPLMGetDataf(findDataRefByCode(YOKE_PITCH_RATIO));
+}
+
+float XPlaneInterface::getSideStickRollRatio() {
+	return XPLMGetDataf(findDataRefByCode(YOKE_ROLL_RATIO));
+}
+
+void XPlaneInterface::setSideStickRollRatio(float ratio)
+{
+	XPLMSetDatai(findDataRefByCode(OVERRIDE_JOYSTICK_ROLL), true);
+	XPLMSetDataf(findDataRefByCode(YOKE_ROLL_RATIO), ratio);
+}
+
+void XPlaneInterface::setSideStickPitchRatio(float ratio)
+{
+	XPLMSetDatai(findDataRefByCode(OVERRIDE_JOYSTICK_PITCH), true);
+	XPLMSetDataf(findDataRefByCode(YOKE_PITCH_RATIO), ratio);
 }

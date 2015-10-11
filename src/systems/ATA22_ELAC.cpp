@@ -7,11 +7,20 @@ ATA22_ELAC::ATA22_ELAC(int number, RadioAlt *radioAlt, ATA32_LGCIU *lgciu, ADIRU
 	this->radioAlt = radioAlt;
 	this->LGCIU = lgciu;
 	this->myADIRU = adiru;
+
+	initControllers();
 }
 
 
 ATA22_ELAC::~ATA22_ELAC()
 {
+}
+
+void ATA22_ELAC::initControllers()
+{
+	rollController = new PID(simulator, &rollRateDegreesSecond, &rollOrder, &rollRateDemandDegreesSecond, 1, 1, 1, 1);
+	rollController->SetOutputLimits(-1, 1);
+	rollController->SetMode(AUTOMATIC);
 }
 
 void ATA22_ELAC::update()
@@ -126,14 +135,44 @@ void ATA22_ELAC::processRoll()
 	switch (this->pitchControlMode)
 	{
 		case GROUND:
+			processRollDirect();
 			break;
 		case GROUND_TO_FLIGHT:
 			break;
 		case FLIGHT:
+			processRollRateDemand();
 			break;
 		case FLIGHT_TO_GROUND:
 			break;
 	}
+}
+
+void ATA22_ELAC::processRollDirect()
+{
+	// This is normal simulator behaviour
+}
+
+void ATA22_ELAC::processRollRateDemand()
+{
+	AdiruData adiruData = myADIRU->getCurrentAdiruData();
+
+	// input = measure roll rate
+	rollRateDegreesSecond = adiruData.inertialData.angularRate.roll;
+
+	// setpoint = get joystick values -> to roll rate demand
+	processSideStickRollRateDemand();
+
+	// controller update
+	rollController->Compute();
+
+	// output -> yoke_roll_ratio
+	simulator->setSideStickRollRatio(rollOrder);
+}
+
+void ATA22_ELAC::processSideStickRollRateDemand()
+{
+	float sideStickRoll = simulator->getSideStickRollRatio();
+	rollRateDemandDegreesSecond = sideStickRoll * MAX_ROLL_RATE_NORMAL_LAW_DEG_SEC;
 }
 
 void ATA22_ELAC::processYaw()

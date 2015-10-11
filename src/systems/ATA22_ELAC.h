@@ -75,7 +75,15 @@ public:
 
 	// Flight control demands
 	float pitchDemandG = 1.0f;
-	float rollRateDemandDegreesSecond = 0.0f;
+	double rollRateDemandDegreesSecond = 0.0f;
+
+	// Flight control readings
+	float pitchG = 1.0f;
+	double rollRateDegreesSecond = 0.0f;
+
+	// Flight control controller orders
+	float pitchOrder = 0.0f;
+	double rollOrder = 0.0f;
 
 	ADIRU * myADIRU;
 	RadioAlt * radioAlt;
@@ -86,10 +94,10 @@ public:
 	float accelY;
 	float accelZ;
 
-	float sideStickX;
-	float sideStickY;
+	float sideStickRoll = 0;
+	float sideStickPitch = 0;
 
-	float pedalsPosition;
+	float pedalPosition;
 
 	// Surface deflection limits
 	const int ELEVATOR_MAX_DEGREES = 30;
@@ -108,12 +116,17 @@ public:
 
 	const int SPOILER_MAX_DEGREES = 35;
 
+	// Other limits
+	const int MAX_ROLL_RATE_NORMAL_LAW_DEG_SEC = 15;
+
 	// Modes
 	void updatePitchControlMode();
 	void updateLateralControlMode();
 	MODE getConsistentControlMode(MODE);
 
 	// Flight controls calculations
+	void initControllers();
+
 	void processPitch();
 	void processRoll();
 	void processYaw();
@@ -123,6 +136,8 @@ public:
 
 	void processRollDirect();
 	void processRollRateDemand();
+
+	void processSideStickRollRateDemand();
 
 	// Protections
 	void protectionHighAOA();

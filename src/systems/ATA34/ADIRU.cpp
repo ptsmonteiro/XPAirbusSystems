@@ -16,12 +16,14 @@ void ADIRU::update()
 {
 	updateHealth();
 
-	if (this->currentHealth == Failed) {
+	if (currentHealth == Failed) {
 		return;
 	}
 
 	updateAirData();
 	updateInertialData();
+
+	currentAdiruData.lastUpdateTimeSeconds = simulator->getElapsedTimeDecimalSeconds();
 }
 
 void ADIRU::updateAirData()
@@ -65,7 +67,21 @@ void ADIRU::updateAirData()
 }
 
 void ADIRU::updateInertialData() {
-	this->currentAdiruData.inertialData.attitudeDegrees = SimInterface->getPitchAttitudeDegrees();
+	float now = simulator->getElapsedTimeDecimalSeconds();
+	float timeDelta = now - currentAdiruData.lastUpdateTimeSeconds;
+
+	float pitchAttitude = SimInterface->getPitchAttitudeDegrees();
+	float bankAngle = SimInterface->getBankAngleDegrees();
+
+	// rates
+	currentAdiruData.inertialData.angularRate.pitch = 
+		(pitchAttitude - currentAdiruData.inertialData.attitudeDegrees) / timeDelta;
+
+	currentAdiruData.inertialData.angularRate.roll =
+		(bankAngle - currentAdiruData.inertialData.bankAngleDegrees) / timeDelta;
+
+	currentAdiruData.inertialData.attitudeDegrees = SimInterface->getPitchAttitudeDegrees();
+	currentAdiruData.inertialData.bankAngleDegrees = SimInterface->getBankAngleDegrees();
 }
 
 AdiruData ADIRU::getCurrentAdiruData()

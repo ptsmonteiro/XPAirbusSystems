@@ -19,7 +19,14 @@ enum DATAREF_LIST {
 
 	ONGROUND_ANY,
 
-	PITCH_ATTITUDE
+	PITCH_ATTITUDE,
+	BANK_ANGLE,
+
+	YOKE_PITCH_RATIO,
+	YOKE_ROLL_RATIO,
+
+	OVERRIDE_JOYSTICK_ROLL,
+	OVERRIDE_JOYSTICK_PITCH
 };
 
 class XPlaneInterface :
@@ -46,6 +53,14 @@ public:
 
 	/* Attitude */
 	float getPitchAttitudeDegrees();
+	float getBankAngleDegrees();
+
+	/* Yoke */
+	float getSideStickRollRatio();
+	float getSideStickPitchRatio();
+
+	void setSideStickRollRatio(float);
+	void setSideStickPitchRatio(float);
 	
 
 protected:

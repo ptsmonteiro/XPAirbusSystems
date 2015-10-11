@@ -2,7 +2,9 @@
 #include "core/core.h"
 
 typedef struct  _adiruInertialData {
-	float attitudeDegrees;
+	float attitudeDegrees = 0;
+	float bankAngleDegrees = 0;
+
 	int groundSpeedKnots;
 	float flightPathAngleDegrees;
 	float trackDegrees;
@@ -16,6 +18,7 @@ typedef struct  _adiruInertialData {
 
 	// Angular Rate
 	GyroData angularRate;
+
 } AdiruInertialData;
 
 typedef struct _adiruAirData {
@@ -30,6 +33,7 @@ typedef struct _adiruAirData {
 typedef struct _AdiruData {
 	AdiruAirData		airData;
 	AdiruInertialData	inertialData;
+	float				lastUpdateTimeSeconds = 0;
 } AdiruData;
 
 

@@ -22,5 +22,14 @@ public:
 
 	/* Attitude */
 	virtual float getPitchAttitudeDegrees() = 0;
+	virtual float getBankAngleDegrees() = 0;
+
+	/* Sidestick */
+	virtual float getSideStickRollRatio() = 0;
+	virtual float getSideStickPitchRatio() = 0;
+
+	virtual void setSideStickRollRatio(float) = 0;
+	virtual void setSideStickPitchRatio(float) = 0;
+
 };
 
