@@ -37,7 +37,7 @@
 extern float AirbusSystemsFlightLoopCB(float elapsedMe, float elapsedSim, int counter, void * refcon);
 
 /* Privates*/
-const float AirbusSystemsFlightLoopIntervalSeconds = 0.5;
+const float AirbusSystemsFlightLoopIntervalSeconds = 0.1;
 const char VersionNumber[] = "v1.00";
 char Buffer[256];
 
