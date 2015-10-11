@@ -118,6 +118,11 @@ public:
 
 	// Other limits
 	const int MAX_ROLL_RATE_NORMAL_LAW_DEG_SEC = 15;
+	const int BANK_ANGLE_NEUTRAL_STICK_NORMAL_LIMIT_DEG = 33;
+	const int BAKN_ANGLE_FULL_STICK_NORMAL_LIMIT_DEG = 67;
+
+	const int BANK_ANGLE_NEUTRAL_STICK_AOA_HS_PROT_ON_LIMIT_DEG = 0;
+	const int BAKN_ANGLE_FULL_STICK_AOA_HS_PROT_ON_LIMIT_DEG = 45;
 
 	// Modes
 	void updatePitchControlMode();
@@ -145,6 +150,9 @@ public:
 	void protectionLoadFactor();
 	void protectionPitchAttitude();
 	void protectionBankAngle();
+
+	bool isHighAOAProtectionActive = false;
+	bool isHighSpeedProtectionActive = false;
 
 };
 

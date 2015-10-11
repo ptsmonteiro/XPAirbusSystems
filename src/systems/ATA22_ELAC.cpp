@@ -163,6 +163,11 @@ void ATA22_ELAC::processRollRateDemand()
 	// setpoint = get joystick values -> to roll rate demand
 	processSideStickRollRateDemand();
 
+	// protections
+	if (this->rollLaw == LAW_NORMAL) {
+		protectionBankAngle();
+	}
+
 	// controller update
 	rollController->Compute();
 
@@ -176,7 +181,30 @@ void ATA22_ELAC::processSideStickRollRateDemand()
 	rollRateDemandDegreesSecond = sideStickRoll * MAX_ROLL_RATE_NORMAL_LAW_DEG_SEC;
 }
 
+void ATA22_ELAC::protectionBankAngle()
+{
+	AdiruData adiruData = myADIRU->getCurrentAdiruData();
+	float bankAngle = adiruData.inertialData.bankAngleDegrees;
+
+	int neutralLimit = BANK_ANGLE_NEUTRAL_STICK_NORMAL_LIMIT_DEG;
+	int fullLimit = BAKN_ANGLE_FULL_STICK_NORMAL_LIMIT_DEG;
+
+	if (isHighAOAProtectionActive || isHighSpeedProtectionActive) {
+		neutralLimit = BANK_ANGLE_NEUTRAL_STICK_AOA_HS_PROT_ON_LIMIT_DEG;
+		fullLimit = BAKN_ANGLE_FULL_STICK_AOA_HS_PROT_ON_LIMIT_DEG;
+	}
+
+	float rollRateCorrection = 1;
+
+	if (abs(bankAngle) >= neutralLimit) {
+		rollRateCorrection = (abs(bankAngle) - neutralLimit) / (fullLimit - neutralLimit) * MAX_ROLL_RATE_NORMAL_LAW_DEG_SEC;
+		int signal = bankAngle > 0 ? 1 : -1;
+		rollRateDemandDegreesSecond =  rollRateDemandDegreesSecond - (rollRateCorrection * signal);
+	}
+}
+
 void ATA22_ELAC::processYaw()
 {
 
 }
+
