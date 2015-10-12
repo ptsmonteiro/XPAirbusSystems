@@ -47,9 +47,9 @@ typedef struct _stCoordinates {
 } Coordinates;
 
 typedef struct _stAccel {
-	float x;
-	float y;
-	float z;
+	float gNormal;
+	float gAxil;
+	float gSide;
 } AccelerometerData;
 
 typedef struct _stGyroData {

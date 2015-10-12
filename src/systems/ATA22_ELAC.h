@@ -74,15 +74,15 @@ public:
 	PID * rollController;
 
 	// Flight control demands
-	float pitchDemandG = 1.0f;
+	double pitchDemandG = 1.0f;
 	double rollRateDemandDegreesSecond = 0.0f;
 
 	// Flight control readings
-	float pitchG = 1.0f;
+	double pitchG = 1.0f;
 	double rollRateDegreesSecond = 0.0f;
 
 	// Flight control controller orders
-	float pitchOrder = 0.0f;
+	double pitchOrder = 0.0f;
 	double rollOrder = 0.0f;
 
 	ADIRU * myADIRU;
@@ -124,6 +124,9 @@ public:
 	const int BANK_ANGLE_NEUTRAL_STICK_AOA_HS_PROT_ON_LIMIT_DEG = 0;
 	const int BAKN_ANGLE_FULL_STICK_AOA_HS_PROT_ON_LIMIT_DEG = 45;
 
+	const float MIN_G_NORMAL_LAW = -1.0;
+	const float MAX_G_NORMAL_LAW = 2.5;
+
 	// Modes
 	void updatePitchControlMode();
 	void updateLateralControlMode();
@@ -143,6 +146,7 @@ public:
 	void processRollRateDemand();
 
 	void processSideStickRollRateDemand();
+	void processSideStickPitchDemand();
 
 	// Protections
 	void protectionHighAOA();

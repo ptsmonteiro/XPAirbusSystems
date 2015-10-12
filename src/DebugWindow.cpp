@@ -76,9 +76,13 @@ void DebugWindow::WindowRenderCallback(
 	appendLine(formatString("ELAC1 Lat Control Mode			= ", Aircraft->elac1->lateralControlMode));
 	appendLine(formatString("ELAC1 Pitch Control Mode			= ", Aircraft->elac1->pitchControlMode));
 
-	appendLine(formatString("ELAC1 Stick Order			= ", Aircraft->elac1->rollRateDemandDegreesSecond));
+	appendLine(formatString("ELAC1 Stick Roll Demand			= ", Aircraft->elac1->rollRateDemandDegreesSecond));
 	appendLine(formatString("ELAC1 Roll Rate			= ", Aircraft->elac1->rollRateDegreesSecond));
 	appendLine(formatString("ELAC1 Controller Roll Order		= ", Aircraft->elac1->rollOrder));
+
+	appendLine(formatString("ELAC1 Stick Pitch/G Demand			= ", Aircraft->elac1->pitchDemandG));
+	appendLine(formatString("ELAC1 Gs			= ", Aircraft->elac1->pitchG));
+	appendLine(formatString("ELAC1 Controller Pitch Order		= ", Aircraft->elac1->pitchOrder));
 }
 
 void DebugWindow::appendLine(char* message)

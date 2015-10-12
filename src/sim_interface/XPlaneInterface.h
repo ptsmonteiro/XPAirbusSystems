@@ -17,6 +17,8 @@ enum DATAREF_LIST {
 
 	SPEED_IAS,
 
+	G_NORMAL,
+
 	ONGROUND_ANY,
 
 	PITCH_ATTITUDE,
@@ -63,6 +65,9 @@ public:
 
 	void setSideStickRollRatio(float);
 	void setSideStickPitchRatio(float);
+
+	/* Forces */
+	float getGNormal();
 	
 
 protected:

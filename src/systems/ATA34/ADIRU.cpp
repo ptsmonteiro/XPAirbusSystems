@@ -82,6 +82,9 @@ void ADIRU::updateInertialData() {
 
 	currentAdiruData.inertialData.attitudeDegrees = SimInterface->getPitchAttitudeDegrees();
 	currentAdiruData.inertialData.bankAngleDegrees = SimInterface->getBankAngleDegrees();
+
+	// forces
+	currentAdiruData.inertialData.acceleration.gNormal = SimInterface->getGNormal();
 }
 
 AdiruData ADIRU::getCurrentAdiruData()

@@ -15,6 +15,7 @@ XPlaneInterface::XPlaneInterface()
 	DataRefMap[BAROMETER_CURRENT_PRESSURE] = findDataRefByName("sim/weather/barometer_current_inhg");
 	DataRefMap[SPEED_IAS] = findDataRefByName("sim/flightmodel/position/indicated_airspeed");
 	DataRefMap[ONGROUND_ANY] = findDataRefByName("sim/flightmodel/failures/onground_all");
+	DataRefMap[G_NORMAL] = findDataRefByName("sim/flightmodel/forces/g_nrml");
 
 	// Attitude
 	DataRefMap[PITCH_ATTITUDE] = findDataRefByName("sim/flightmodel/position/true_theta");
@@ -129,3 +130,6 @@ void XPlaneInterface::setSideStickPitchRatio(float ratio)
 	XPLMSetDataf(findDataRefByCode(YOKE_PITCH_RATIO), ratio);
 }
 
+float XPlaneInterface::getGNormal() {
+	return XPLMGetDataf(findDataRefByCode(G_NORMAL));
+}

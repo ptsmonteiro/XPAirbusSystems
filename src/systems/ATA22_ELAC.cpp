@@ -18,10 +18,17 @@ ATA22_ELAC::~ATA22_ELAC()
 
 void ATA22_ELAC::initControllers()
 {
+	// Roll controller
 	rollController = new PID(simulator, &rollRateDegreesSecond, &rollOrder, &rollRateDemandDegreesSecond, 
 		0.1, 0.1, 0, DIRECT);
 	rollController->SetOutputLimits(-1, 1);
 	rollController->SetMode(AUTOMATIC);
+
+	// Pitch controller
+	pitchController = new PID(simulator, &pitchG, &pitchOrder, &pitchDemandG,
+		0.4, 0, 0, DIRECT);
+	pitchController->SetOutputLimits(-1, 1);
+	pitchController->SetMode(AUTOMATIC);
 }
 
 void ATA22_ELAC::update()
@@ -114,10 +121,12 @@ void ATA22_ELAC::processPitch()
 	switch (this->pitchControlMode)
 	{
 		case GROUND:
+			processPitchDirect();
 			break;
 		case GROUND_TO_FLIGHT:
 			break;
 		case FLIGHT:
+			processPitchLoadFactorDemand();
 			break;
 		case FLIGHT_TO_FLARE:
 			break;
@@ -129,6 +138,50 @@ void ATA22_ELAC::processPitch()
 void ATA22_ELAC::processPitchDirect()
 {
 	
+}
+
+void ATA22_ELAC::processPitchLoadFactorDemand()
+{
+	AdiruData adiruData = myADIRU->getCurrentAdiruData();
+
+	// input = measure roll rate
+	pitchG = adiruData.inertialData.acceleration.gNormal;
+
+	// setpoint = get joystick values -> to roll rate demand
+	processSideStickPitchDemand();
+
+	// protections
+	if (this->pitchLaw == LAW_NORMAL) {
+		protectionHighAOA();
+		protectionHighSpeed();
+	}
+
+	// controller update
+	pitchController->Compute();
+
+	// output -> yoke_roll_ratio
+	simulator->setSideStickPitchRatio(pitchOrder);
+}
+
+void ATA22_ELAC::processSideStickPitchDemand()
+{
+	float sideStickPitch = simulator->getSideStickPitchRatio();
+	if (sideStickPitch < 0) {
+		pitchDemandG = 1 + (sideStickPitch * (1 - MIN_G_NORMAL_LAW));
+	}
+	else {
+		pitchDemandG = 1 + (sideStickPitch * (MAX_G_NORMAL_LAW - 1));
+	}
+}
+
+void ATA22_ELAC::protectionHighAOA() 
+{
+
+}
+
+void ATA22_ELAC::protectionHighSpeed()
+{
+
 }
 
 void ATA22_ELAC::processRoll()
@@ -194,7 +247,7 @@ void ATA22_ELAC::protectionBankAngle()
 		fullLimit = BAKN_ANGLE_FULL_STICK_AOA_HS_PROT_ON_LIMIT_DEG;
 	}
 
-	float rollRateCorrection = 1;
+	float rollRateCorrection = 0;
 
 	if (abs(bankAngle) >= neutralLimit) {
 		rollRateCorrection = (abs(bankAngle) - neutralLimit) / (fullLimit - neutralLimit) * MAX_ROLL_RATE_NORMAL_LAW_DEG_SEC;

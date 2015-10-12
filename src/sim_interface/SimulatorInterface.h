@@ -31,5 +31,8 @@ public:
 	virtual void setSideStickRollRatio(float) = 0;
 	virtual void setSideStickPitchRatio(float) = 0;
 
+	/* Forces */
+	virtual float getGNormal() = 0;
+
 };
 
