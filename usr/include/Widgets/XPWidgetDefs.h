@@ -15,7 +15,7 @@
  *
  */
 
-#include "XPLM\XPLMDefs.h"
+#include "XPLM/XPLMDefs.h"
 
 #ifdef __cplusplus
 extern "C" {

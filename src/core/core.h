@@ -1,6 +1,6 @@
 #pragma once
 
-#include "XPLM\XPLMUtilities.h"
+#include "XPLM/XPLMUtilities.h"
 
 //TODO: INOP status might be redundant.
 enum ComponentHealth {

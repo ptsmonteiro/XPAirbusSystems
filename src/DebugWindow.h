@@ -1,8 +1,8 @@
 #pragma once
 #include <stdio.h>
 #include <string.h>
-#include "XPLM\XPLMDisplay.h"
-#include "XPLM\XPLMGraphics.h"
+#include "XPLM/XPLMDisplay.h"
+#include "XPLM/XPLMGraphics.h"
 
 class DebugWindow
 {

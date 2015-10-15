@@ -1,8 +1,8 @@
 #pragma once
 #include <vector>
 #include <map>
-#include "core\core.h"
-#include "systems\airbuscomponent.h"
+#include "core/core.h"
+#include "systems/airbuscomponent.h"
 
 class ElectricSource;
 
