@@ -1,5 +1,5 @@
 #include "A320.h"
-#include "systems\ATA34\RadioAlt.h"
+#include "systems/ATA34/RadioAlt.h"
 
 RadioAlt::RadioAlt(int number)
 {

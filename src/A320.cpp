@@ -1,7 +1,7 @@
 #include <vector>
-#include "core\core.h"
+#include "core/core.h"
 #include "A320.h"
-#include "sim_interface\XPlaneInterface.h"
+#include "sim_interface/XPlaneInterface.h"
 
 /* Globals */
 A320* Aircraft;

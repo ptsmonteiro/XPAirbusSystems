@@ -1,5 +1,5 @@
 #include <math.h>
-#include "core\core.h"
+#include "core/core.h"
 
 //TODO: Move constants to proper file.
 

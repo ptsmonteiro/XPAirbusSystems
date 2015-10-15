@@ -13,7 +13,7 @@ bool ElectricBus::isAvailable()
 {
 	ElectricSource *upstream = this->getUpstreamSource();
 
-	if (upstream == nullptr) {
+	if (upstream == NULL) {
 		return false;
 	}
 	else {

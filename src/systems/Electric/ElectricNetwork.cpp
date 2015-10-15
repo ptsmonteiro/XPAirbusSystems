@@ -131,7 +131,7 @@ void ElectricNetwork::resetNetwork()
 	typedef std::map<ElectricBusType, ElectricBus *>::iterator it_type;
 
 	for (it_type iterator = busData.begin(); iterator != busData.end(); iterator++) {
-		iterator->second->setUpstreamSource(nullptr);
+		iterator->second->setUpstreamSource(NULL);
 		iterator->second->coupledSinks.clear();
 	}
 

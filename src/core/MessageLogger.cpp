@@ -1,4 +1,4 @@
-#include "core\core.h"
+#include "core/core.h"
 
 MessageLogger::MessageLogger()
 {

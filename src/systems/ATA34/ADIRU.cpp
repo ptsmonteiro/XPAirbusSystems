@@ -1,7 +1,7 @@
 #include "ADIRU.h"
 #include "A320.h"
-#include "core\core.h"
-#include "systems\electric\electric.h"
+#include "core/core.h"
+#include "systems/electric/electric.h"
 
 ADIRU::ADIRU(int, StaticProbe* staticProbe1, StaticProbe* staticProbe2, AOAProbe* aoaProbe, PitotProbe* pitotProbe)
 {
