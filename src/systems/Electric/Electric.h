@@ -82,4 +82,5 @@ public:
 	void couple(ElectricSource* source, ElectricSink* sink);
 
 	ElectricNetwork();
+	~ElectricNetwork();
 };

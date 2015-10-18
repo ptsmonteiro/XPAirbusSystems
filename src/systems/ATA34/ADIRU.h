@@ -4,7 +4,7 @@
 #include "systems/ATA34/PitotProbe.h"
 #include "systems/ATA34/StaticProbe.h"
 #include "systems/ATA34/TATProbe.h"
-#include "core/AdiruData.h"
+#include "systems/ATA34/AdiruData.h"
 
 /*
  * ATA34 :: ADIRU

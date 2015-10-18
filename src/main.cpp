@@ -3,7 +3,7 @@
 // Callback for Error Tests
 void AirbusSystemsErrorCB(const char * msg)
 {
-	Logger->LogMessage((char*) msg);
+	Logger->LogMessage((char*)msg);
 }
 
 // Prototype for Draw Object tests
@@ -21,9 +21,11 @@ PLUGIN_API int XPluginStart(
 	strcpy(outSig, "matiasmonteiro.projects.AirbusSystems");
 	strcpy(outDesc, "Airbus Systems Plugin - A320");
 
-	// Allocate aircraft
-	Aircraft = new A320();
-	Aircraft->init();
+	CurrentPluginID = XPLMGetMyID();
+	
+	sprintf(Buffer, "XPAS :: XPluginStart ID=%d.\n", CurrentPluginID);
+	XPLMDebugString(Buffer);
+
 
 	// Allocate debug window
 	FbwOutputWindow = new DebugWindow();
@@ -31,29 +33,33 @@ PLUGIN_API int XPluginStart(
 	// Register the callback for errors
 	XPLMSetErrorCallback(AirbusSystemsErrorCB);
 
-	// Main flight loop
-	XPLMRegisterFlightLoopCallback(AirbusSystemsFlightLoopCB, AirbusSystemsFlightLoopIntervalSeconds, NULL);
-
 	// This used for the Draw Objects tests
 	XPLMRegisterDrawCallback(AirbusSystemsDrawCB, xplm_Phase_Objects, 0, 0);
 
+	LoadAircraft();
+
 	return 1;
+}
+
+void LoadAircraft() {
+	Aircraft = new A320();
+	Aircraft->init();
+
+	// Main flight loop
+	XPLMRegisterFlightLoopCallback(AirbusSystemsFlightLoopCB, AirbusSystemsFlightLoopIntervalSeconds, NULL);
+}
+
+void UnloadAircraft() {
+	XPLMUnregisterFlightLoopCallback(AirbusSystemsFlightLoopCB, NULL);
+
+	// Clean up
+	delete Aircraft;
 }
 
 PLUGIN_API void	XPluginStop(void)
 {
 	XPLMUnregisterDrawCallback(AirbusSystemsDrawCB, xplm_Phase_Objects, 0, 0);
-	XPLMUnregisterFlightLoopCallback(AirbusSystemsFlightLoopCB, NULL);
-
-
-	// TODO: Call destructor on Debugwindows.
-	// TODO: Unregister drawing callbacks
-	// TODO: Delete debug Window ?
-
-
-	// Clean up
-	delete Aircraft;
-
+	UnloadAircraft();
 }
 
 PLUGIN_API int XPluginEnable(void)
@@ -67,14 +73,25 @@ PLUGIN_API void XPluginDisable(void)
 
 PLUGIN_API void XPluginReceiveMessage(XPLMPluginID inFrom, int inMsg, void * inParam)
 {
-	sprintf(Buffer, "AirbusSystems: XPluginReceiveMessage - Type %d.\n", inMsg);
+	sprintf(Buffer, "AirbusSystems: XPluginReceiveMessage - Type:%d From:%d\n", inMsg, inFrom);
 	XPLMDebugString(Buffer);
+
+	/* Messages defined in XPLMPlugin.h */
+	switch (inMsg) {
+		case XPLM_MSG_PLANE_UNLOADED:
+			UnloadAircraft();
+			break;
+
+		case XPLM_MSG_PLANE_LOADED:
+			LoadAircraft();
+
+			break;
+	}
 }
 
 float AirbusSystemsFlightLoopCB(float elapsedMe, float elapsedSim, int counter, void * refcon)
 {
 	Aircraft->update(elapsedMe, elapsedSim, counter);
-
 	return AirbusSystemsFlightLoopIntervalSeconds;
 }
 

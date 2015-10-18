@@ -59,10 +59,10 @@
     <ClInclude Include="core\core.h" />
     <ClInclude Include="systems\Electric\Electric.h" />
     <ClInclude Include="core\PID_v1.h" />
-    <ClInclude Include="core\AdiruData.h" />
     <ClInclude Include="core\AircraftState.h" />
     <ClInclude Include="DebugWindow.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="systems\ATA34\AdiruData.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="todo.txt" />

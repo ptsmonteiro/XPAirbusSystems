@@ -69,6 +69,50 @@ A320::A320()
 
 A320::~A320()
 {
+	delete this->du6;
+	delete this->du5;
+	delete this->du4;
+	delete this->du3;
+	delete this->du2;
+	delete this->du1;
+	
+	delete this->fwc1;
+	delete this->fwc2;
+
+	delete this->elac1;
+	delete this->elac2;
+
+	delete this->adiru1;
+	delete this->adiru2;
+	delete this->adiru3;
+
+	delete this->lgciu1;
+	delete this->lgciu2;
+
+	delete this->ra1;
+	delete this->ra2;
+
+	delete this->staticProbeStandby1;
+	delete this->staticProbeStandby2;
+
+	delete this->staticProbeFO1;
+	delete this->staticProbeFO2;
+
+	delete this->staticProbeCapt1;
+	delete this->staticProbeCapt2;
+
+	delete this->pitotProbeCapt;
+	delete this->pitotProbeFO;
+	delete this->pitotProbeStandby;
+
+	delete this->tatProbeCapt;
+	delete this->tatProbeFO;
+
+	delete this->aoaProbeCapt;
+	delete this->aoaProbeFO;
+	delete this->aoaProbeStandby;
+
+	delete this->electricNetwork;
 }
 
 void A320::init()
