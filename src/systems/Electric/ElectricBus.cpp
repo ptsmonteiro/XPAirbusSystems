@@ -20,4 +20,3 @@ bool ElectricBus::isAvailable()
 		return upstream->isAvailable();
 	}
 }
-

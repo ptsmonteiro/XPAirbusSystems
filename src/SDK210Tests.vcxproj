@@ -285,6 +285,7 @@
     <ClCompile Include="core\MessageLogger.cpp" />
     <ClCompile Include="core\PID_v1.cpp" />
     <ClCompile Include="DebugWindow.cpp" />
+    <ClCompile Include="systems\ATA22\FAC.cpp" />
     <ClCompile Include="systems\Electric\ElectricGenerator.cpp" />
     <ClCompile Include="systems\Electric\ElectricSink.cpp" />
     <ClCompile Include="systems\Electric\ElectricBus.cpp" />
@@ -318,6 +319,7 @@
     <ClInclude Include="core\core.h" />
     <ClInclude Include="core\PID_v1.h" />
     <ClInclude Include="DebugWindow.h" />
+    <ClInclude Include="systems\ATA22\FAC.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="systems\ATA34\AdiruData.h" />
     <ClInclude Include="systems\Electric\Electric.h" />

@@ -20,6 +20,7 @@ enum ElectricGeneratorType {
 };
 
 enum ElectricBusType {
+	Empty,			// Virtual Bus to represent an unconnected component.	
 	HotBus1,
 	HotBus2,
 	DcBatBus,

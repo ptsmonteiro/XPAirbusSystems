@@ -29,7 +29,7 @@ public:
 	~ADIRU();
 
 	void update();
-
 	AdiruData getCurrentAdiruData();
+	ElectricBusType connectElectrical();
 };
 

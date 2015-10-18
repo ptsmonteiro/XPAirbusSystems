@@ -74,7 +74,7 @@ protected:
 	bool isYokeRollOverriden = false;
 	bool isYokePitchOverriden = false;
 
-	XPLMDataRef findDataRefByName(const char * datarefName);
+	XPLMDataRef findDataRefByName(char * datarefName);
 	XPLMDataRef findDataRefByCode(DATAREF_LIST value);
 };
 

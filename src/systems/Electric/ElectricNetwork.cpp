@@ -12,7 +12,7 @@ ElectricNetwork::ElectricNetwork()
 	generatorData[ExtPwr] = new ElectricGenerator(ExtPwr, Healthy);
 	generatorData[ApuGen] = new ElectricGenerator(ApuGen, Healthy);
 
-	// Initializes Buses.
+	// Initialize Buses.
 	busData[HotBus1] = new ElectricBus(HotBus1);
 	busData[HotBus2] = new ElectricBus(HotBus2);
 	busData[DcBatBus] = new ElectricBus(DcBatBus);
@@ -39,6 +39,10 @@ ElectricNetwork::~ElectricNetwork()
 	for (gen_it_type iterator = generatorData.begin(); iterator != generatorData.end(); iterator++) {
 		delete iterator->second;
 	}
+
+	busData.clear();
+	generatorData.clear();
+	connectedEquipmentMap.clear();
 }
 
 void ElectricNetwork::reconfigure(ElectricNetworkMode mode)
@@ -60,8 +64,6 @@ void ElectricNetwork::reconfigure(ElectricNetworkMode mode)
 		case DEBUG_CONFIG_1:
 			prepareDebugConfigOne();
 			break;
-        case Emerg_Elec:
-            prepareEmerElecConfig();
 	}
 
 	reconfigureEquipment();
@@ -131,22 +133,33 @@ void ElectricNetwork::prepareNormalGroundConfig()
 	}
 }
 
-void ElectricNetwork::prepareEmerElecConfig()
-{
-}
-
 void ElectricNetwork::couple(ElectricSource* source, ElectricSink* sink)
 {
 	source->coupledSinks.push_back(sink);
 	sink->setUpstreamSource(source);
 }
 
+void ElectricNetwork::connectEquipment(AirbusComponent *component)
+{
+	if (component == nullptr) {
+		return;
+	}
+	else {
+		ElectricBusType targetBus = component->connectElectrical();
+		connectedEquipmentMap[component] = busData[targetBus];
+	}
+}
+
 void ElectricNetwork::resetNetwork()
 {
-	// Disconnect all equipment.
-	Aircraft->adiru1->disconnectElectrical();
-	Aircraft->adiru2->disconnectElectrical();
-	Aircraft->adiru3->disconnectElectrical();
+	// Disconnect all connected components.
+	typedef std::map<AirbusComponent*, ElectricBus *>::iterator con_comp_it_type;
+
+	for (con_comp_it_type iterator = connectedEquipmentMap.begin(); iterator != connectedEquipmentMap.end(); iterator++) {
+		if (iterator->first != NULL) {
+			iterator->first->disconnectElectrical();
+		}
+	}
 
 	// Disconnect all buses
 	typedef std::map<ElectricBusType, ElectricBus *>::iterator it_type;
@@ -157,60 +170,22 @@ void ElectricNetwork::resetNetwork()
 	}
 
 	// Disconnect all generators
-	
 	typedef std::map<ElectricGeneratorType, ElectricGenerator*>::iterator gen_it_type;
 
 	for (gen_it_type iterator = generatorData.begin(); iterator != generatorData.end(); iterator++) {
 		iterator->second->coupledSinks.clear();
 	}
-
 }
 
 void ElectricNetwork::reconfigureEquipment()
 {
-	// ATA34::Adiru1
-	if (busData[AcEssBus]->isAvailable()) {
-		Aircraft->adiru1->connectElectrical(busData[AcEssBus]);
-	}
-	else {
-		Aircraft->adiru1->connectElectrical(busData[HotBus2]);
-	}
+	connectEquipment(Aircraft->adiru1);
+	connectEquipment(Aircraft->adiru2);
+	connectEquipment(Aircraft->adiru3);
 
-	// ATA34::Adiru2
-	if (busData[AcBus2]->isAvailable()) {
-		Aircraft->adiru2->connectElectrical(busData[AcBus2]);
-	}
-	else {
-		//TODO: This is time limited: 1.34.97-1
-		Aircraft->adiru2->connectElectrical(busData[HotBus2]);
-	}
+	connectEquipment(Aircraft->elac1);
+	connectEquipment(Aircraft->elac2);
 
-	// ATA34::Adiru3
-	if (busData[AcBus1]->isAvailable()) {
-		Aircraft->adiru3->connectElectrical(busData[AcBus1]);
-	}
-	else {
-		// This has multiple exceptions and pre-conditions 1.34.97-1
-		// Rules: 
-		// backup suply when: ATT HDG = CAPT 3 
-		// backup suply for 5m when: ATT HDG = NORM || ATT HDG = FO3
-
-		Aircraft->adiru3->connectElectrical(busData[HotBus1]);
-	}
-
-	// ELAC1
-	if (busData[DcEssBus]->isAvailable()) {
-		Aircraft->elac1->connectElectrical(busData[DcEssBus]);
-	}
-	else {
-		Aircraft->elac1->connectElectrical(busData[HotBus1]);
-	}
-
-	// ELAC2
-	if (busData[DcEssBus]->isAvailable()) {
-		Aircraft->elac2->connectElectrical(busData[DcBus2]);
-	}
-	else {
-		Aircraft->elac2->connectElectrical(busData[HotBus2]);
-	}	
+	connectEquipment(Aircraft->fac1);
+	connectEquipment(Aircraft->fac2);
 }

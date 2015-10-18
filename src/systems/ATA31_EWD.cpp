@@ -2,7 +2,7 @@
 
 ATA31_EWD::ATA31_EWD(int number)
 {
-	this->number = number;
+	this->componentNumber = number;
 }
 
 

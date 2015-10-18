@@ -1,10 +1,10 @@
 #include "A320.h"
 #include "systems/ATA34/RadioAlt.h"
 
-RadioAlt::RadioAlt(int number)
+RadioAlt::RadioAlt(int componentNumber)
 {
 	this->currentHealth = Healthy;
-	this->number = number;
+	this->componentNumber = componentNumber;
 }
  
 void RadioAlt::update()

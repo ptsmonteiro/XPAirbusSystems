@@ -33,6 +33,7 @@
     <ClCompile Include="core\Calculator.cpp" />
     <ClCompile Include="core\AircraftState.cpp" />
     <ClCompile Include="DebugWindow.cpp" />
+    <ClCompile Include="systems\ATA22\FAC.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="A320.h" />
@@ -63,6 +64,7 @@
     <ClInclude Include="DebugWindow.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="systems\ATA34\AdiruData.h" />
+    <ClInclude Include="systems\ATA22\FAC.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="todo.txt" />

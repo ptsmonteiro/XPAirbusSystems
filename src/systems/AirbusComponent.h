@@ -13,10 +13,11 @@ class ElectricSource;
 class AirbusComponent
 {
 protected:
-	int number;
+	int componentNumber;
 	SimulatorInterface* simulator;
-
-	void updateHealth();
+	
+	void				updateHealth();
+	virtual void		setSource(ElectricSource *source);
 
 public:
 	AirbusComponent();
@@ -26,8 +27,7 @@ public:
 	ElectricSource* currentElectricSource;
 	ComponentHealth currentHealth;
 
-	virtual void update();
-	virtual void connectElectrical(ElectricSource* source);
-	virtual void disconnectElectrical();
+	virtual void				update();
+	virtual ElectricBusType		connectElectrical();
+	virtual void				disconnectElectrical();
 };
-

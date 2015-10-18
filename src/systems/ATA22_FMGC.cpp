@@ -3,7 +3,7 @@
 
 ATA22_FMGC::ATA22_FMGC(int number)
 {
-	this->number = number;
+	this->componentNumber = number;
 }
 
 
