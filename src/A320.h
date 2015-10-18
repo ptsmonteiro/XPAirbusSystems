@@ -98,6 +98,7 @@ protected:
 };
 
 // Global variables
+//A320* Aircraft;
 extern A320* Aircraft;
 extern SimulatorInterface* SimInterface;
 extern MessageLogger* Logger;

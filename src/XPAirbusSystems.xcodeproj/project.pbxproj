@@ -40,6 +40,7 @@
 		EB0725D11BD03E3900119F20 /* ElectricNetwork.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB071D591BD03E3800119F20 /* ElectricNetwork.cpp */; settings = {ASSET_TAGS = (); }; };
 		EB0725D21BD03E3900119F20 /* ElectricSink.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB071D5A1BD03E3800119F20 /* ElectricSink.cpp */; settings = {ASSET_TAGS = (); }; };
 		EB0725D31BD03E3900119F20 /* ElectricSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB071D5B1BD03E3800119F20 /* ElectricSource.cpp */; settings = {ASSET_TAGS = (); }; };
+		EB21DAB11BD2DB1500A9A10B /* A320.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB0707D11BD03E3400119F20 /* A320.cpp */; settings = {ASSET_TAGS = (); }; };
 		EBD4FD801BCF29B8003905E7 /* XPLM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBD4FD7F1BCF29B8003905E7 /* XPLM.framework */; settings = {ASSET_TAGS = (); }; };
 		EBD4FD821BCF29C1003905E7 /* XPWidgets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBD4FD811BCF29C1003905E7 /* XPWidgets.framework */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
@@ -319,6 +320,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB21DAB11BD2DB1500A9A10B /* A320.cpp in Sources */,
 				EB071D681BD03E3800119F20 /* SimulatorInterface.cpp in Sources */,
 				EB071D631BD03E3800119F20 /* Calculator.cpp in Sources */,
 				EB0725C41BD03E3900119F20 /* ATA31_ND.cpp in Sources */,
@@ -447,6 +449,7 @@
 		D607B19C09A556E400699BC3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				HEADER_SEARCH_PATHS = (
 					"${XPSDK_ROOT}/include",
@@ -463,6 +466,7 @@
 		D607B19D09A556E400699BC3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				HEADER_SEARCH_PATHS = (
 					"${XPSDK_ROOT}/include",
