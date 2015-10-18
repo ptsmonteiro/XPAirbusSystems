@@ -85,10 +85,12 @@ void DebugWindow::WindowRenderCallback(
 	appendLine(formatString("ELAC1 Controller Pitch Order		= ", Aircraft->elac1->pitchOrder));
 }
 
-void DebugWindow::appendLine(char* message)
+void DebugWindow::appendLine(const char* message)
 {
+    char *m = (char *) message;
+    //strncpy(m, message, strlen(message));
 	currentLineOffset -= 10;
-	XPLMDrawString(TEXT_COLOR, left + 5, currentLineOffset, message, NULL, xplmFont_Basic);
+	XPLMDrawString(TEXT_COLOR, left + 5, currentLineOffset, m, NULL, xplmFont_Basic);
 }
 
 char* DebugWindow::formatString(const char* prefix, double value)

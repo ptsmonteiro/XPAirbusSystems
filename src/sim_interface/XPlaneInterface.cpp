@@ -35,7 +35,7 @@ XPlaneInterface::~XPlaneInterface()
 {
 }
 
-XPLMDataRef XPlaneInterface::findDataRefByName(char * datarefName)
+XPLMDataRef XPlaneInterface::findDataRefByName(const char * datarefName)
 {
 	return XPLMFindDataRef(datarefName);
 }

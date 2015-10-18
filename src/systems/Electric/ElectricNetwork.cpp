@@ -45,6 +45,8 @@ void ElectricNetwork::reconfigure(ElectricNetworkMode mode)
 		case DEBUG_CONFIG_1:
 			prepareDebugConfigOne();
 			break;
+        case Emerg_Elec:
+            prepareEmerElecConfig();
 	}
 
 	reconfigureEquipment();
@@ -112,6 +114,10 @@ void ElectricNetwork::prepareNormalGroundConfig()
 		couple(rootGen, busData[AcBus1]);
 		couple(rootGen, busData[AcBus2]);
 	}
+}
+
+void ElectricNetwork::prepareEmerElecConfig()
+{
 }
 
 void ElectricNetwork::couple(ElectricSource* source, ElectricSink* sink)
