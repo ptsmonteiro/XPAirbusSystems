@@ -32,6 +32,7 @@ typedef struct _adiruAirData {
 typedef struct _AdiruData {
 	AdiruAirData		airData;
 	AdiruInertialData	inertialData;
+	float				lastUpdateTimeSeconds = 0;
 } AdiruData;
 
 

@@ -26,6 +26,21 @@ ElectricNetwork::ElectricNetwork()
 	busData[AcBus2] = new ElectricBus(AcBus2);
 }
 
+ElectricNetwork::~ElectricNetwork()
+{
+	typedef std::map<ElectricBusType, ElectricBus *>::iterator it_type;
+
+	for (it_type iterator = busData.begin(); iterator != busData.end(); iterator++) {
+		delete iterator->second;
+	}
+
+	typedef std::map<ElectricGeneratorType, ElectricGenerator*>::iterator gen_it_type;
+
+	for (gen_it_type iterator = generatorData.begin(); iterator != generatorData.end(); iterator++) {
+		delete iterator->second;
+	}
+}
+
 void ElectricNetwork::reconfigure(ElectricNetworkMode mode)
 {
 	resetNetwork();
@@ -141,7 +156,7 @@ void ElectricNetwork::resetNetwork()
 		iterator->second->coupledSinks.clear();
 	}
 
-	// Disconnect all generator
+	// Disconnect all generators
 	
 	typedef std::map<ElectricGeneratorType, ElectricGenerator*>::iterator gen_it_type;
 

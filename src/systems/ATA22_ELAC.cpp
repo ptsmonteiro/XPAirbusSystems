@@ -14,6 +14,8 @@ ATA22_ELAC::ATA22_ELAC(int number, RadioAlt *radioAlt, ATA32_LGCIU *lgciu, ADIRU
 
 ATA22_ELAC::~ATA22_ELAC()
 {
+	delete rollController;
+	delete pitchController;
 }
 
 void ATA22_ELAC::initControllers()
@@ -25,8 +27,7 @@ void ATA22_ELAC::initControllers()
 	rollController->SetMode(AUTOMATIC);
 
 	// Pitch controller
-	pitchController = new PID(simulator, &pitchG, &pitchOrder, &pitchDemandG,
-		0.4, 0, 0, DIRECT);
+	pitchController = new PID(simulator, &pitchG, &pitchOrder, &pitchDemandG,	0.4, 0, 0, DIRECT);
 	pitchController->SetOutputLimits(-1, 1);
 	pitchController->SetMode(AUTOMATIC);
 }
