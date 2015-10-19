@@ -41,6 +41,7 @@
 		EB0725D21BD03E3900119F20 /* ElectricSink.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB071D5A1BD03E3800119F20 /* ElectricSink.cpp */; settings = {ASSET_TAGS = (); }; };
 		EB0725D31BD03E3900119F20 /* ElectricSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB071D5B1BD03E3800119F20 /* ElectricSource.cpp */; settings = {ASSET_TAGS = (); }; };
 		EB21DAB11BD2DB1500A9A10B /* A320.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB0707D11BD03E3400119F20 /* A320.cpp */; settings = {ASSET_TAGS = (); }; };
+		EBCDFA071BD58A32003E63E8 /* FAC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EBCDFA051BD58A32003E63E8 /* FAC.cpp */; settings = {ASSET_TAGS = (); }; };
 		EBD4FD801BCF29B8003905E7 /* XPLM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBD4FD7F1BCF29B8003905E7 /* XPLM.framework */; settings = {ASSET_TAGS = (); }; };
 		EBD4FD821BCF29C1003905E7 /* XPWidgets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBD4FD811BCF29C1003905E7 /* XPWidgets.framework */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
@@ -110,6 +111,8 @@
 		EB071D5A1BD03E3800119F20 /* ElectricSink.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ElectricSink.cpp; sourceTree = "<group>"; };
 		EB071D5B1BD03E3800119F20 /* ElectricSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ElectricSource.cpp; sourceTree = "<group>"; };
 		EB071D5C1BD03E3800119F20 /* todo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todo.txt; sourceTree = "<group>"; };
+		EBCDFA051BD58A32003E63E8 /* FAC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FAC.cpp; sourceTree = "<group>"; };
+		EBCDFA061BD58A32003E63E8 /* FAC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FAC.h; sourceTree = "<group>"; };
 		EBD4FD7F1BCF29B8003905E7 /* XPLM.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XPLM.framework; path = ../usr/lib/XPLM.framework; sourceTree = "<group>"; };
 		EBD4FD811BCF29C1003905E7 /* XPWidgets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XPWidgets.framework; path = ../usr/lib/XPWidgets.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -203,6 +206,7 @@
 		EB071D2F1BD03E3800119F20 /* systems */ = {
 			isa = PBXGroup;
 			children = (
+				EBCDFA041BD58A32003E63E8 /* ATA22 */,
 				EB071D301BD03E3800119F20 /* AirbusComponent.cpp */,
 				EB071D311BD03E3800119F20 /* AirbusComponent.h */,
 				EB071D321BD03E3800119F20 /* ATA22_ELAC.cpp */,
@@ -263,6 +267,15 @@
 				EB071D5B1BD03E3800119F20 /* ElectricSource.cpp */,
 			);
 			path = Electric;
+			sourceTree = "<group>";
+		};
+		EBCDFA041BD58A32003E63E8 /* ATA22 */ = {
+			isa = PBXGroup;
+			children = (
+				EBCDFA051BD58A32003E63E8 /* FAC.cpp */,
+				EBCDFA061BD58A32003E63E8 /* FAC.h */,
+			);
+			path = ATA22;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -356,6 +369,7 @@
 				EB071D641BD03E3800119F20 /* MessageLogger.cpp in Sources */,
 				EB0725CF1BD03E3900119F20 /* ElectricBus.cpp in Sources */,
 				EB071D651BD03E3800119F20 /* PID_v1.cpp in Sources */,
+				EBCDFA071BD58A32003E63E8 /* FAC.cpp in Sources */,
 				EB0725C91BD03E3900119F20 /* ADIRU.cpp in Sources */,
 				EB071D691BD03E3800119F20 /* XPlaneInterface.cpp in Sources */,
 				EB0725D21BD03E3900119F20 /* ElectricSink.cpp in Sources */,

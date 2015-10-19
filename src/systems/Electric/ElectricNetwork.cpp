@@ -141,7 +141,7 @@ void ElectricNetwork::couple(ElectricSource* source, ElectricSink* sink)
 
 void ElectricNetwork::connectEquipment(AirbusComponent *component)
 {
-	if (component == nullptr) {
+	if (component == NULL) {
 		return;
 	}
 	else {
