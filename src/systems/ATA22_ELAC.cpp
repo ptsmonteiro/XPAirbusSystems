@@ -1,3 +1,4 @@
+#include <math.h>
 #include "ATA22_ELAC.h"
 #include "systems/ATA34/ADIRU.h"
 
@@ -27,7 +28,7 @@ void ATA22_ELAC::initControllers()
 	rollController->SetMode(AUTOMATIC);
 
 	// Pitch controller
-	pitchController = new PID(simulator, &pitchG, &pitchOrder, &pitchDemandG,	0.4, 0, 0, DIRECT);
+	pitchController = new PID(simulator, &pitchG, &pitchOrder, &pitchDemandG, 0.4, 0, 0, DIRECT);
 	pitchController->SetOutputLimits(-1, 1);
 	pitchController->SetMode(AUTOMATIC);
 }
@@ -173,6 +174,17 @@ void ATA22_ELAC::processSideStickPitchDemand()
 	else {
 		pitchDemandG = 1 + (sideStickPitch * (MAX_G_NORMAL_LAW - 1));
 	}
+    
+    // Correct G demand for bank
+    AdiruData adiruData = myADIRU->getCurrentAdiruData();
+    
+    pitchDemandG *= 1 / cos(adiruData.inertialData.bankAngleDegrees / 180 * M_PI);
+    if (pitchDemandG > MAX_G_NORMAL_LAW) {
+        pitchDemandG = MAX_G_NORMAL_LAW;
+    }
+    else if (pitchDemandG < MIN_G_NORMAL_LAW) {
+        pitchDemandG = MIN_G_NORMAL_LAW;
+    }
 }
 
 void ATA22_ELAC::protectionHighAOA() 
@@ -250,8 +262,8 @@ void ATA22_ELAC::protectionBankAngle()
 
 	float rollRateCorrection = 0;
 
-	if (abs(bankAngle) >= neutralLimit) {
-		rollRateCorrection = (abs(bankAngle) - neutralLimit) / (fullLimit - neutralLimit) * MAX_ROLL_RATE_NORMAL_LAW_DEG_SEC;
+	if (abs((int) bankAngle) >= neutralLimit) {
+		rollRateCorrection = (abs((int) bankAngle) - neutralLimit) / (fullLimit - neutralLimit) * MAX_ROLL_RATE_NORMAL_LAW_DEG_SEC;
 		int signal = bankAngle > 0 ? 1 : -1;
 		rollRateDemandDegreesSecond =  rollRateDemandDegreesSecond - (rollRateCorrection * signal);
 	}
