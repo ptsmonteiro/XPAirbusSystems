@@ -30,7 +30,7 @@ void ATA22_ELAC::initControllers()
 	rollController->SetMode(AUTOMATIC);
 
 	// Pitch controller
-	pitchController = new PID(simulator, &pitchG, &pitchOrder, &pitchDemandG, 0.4, 0, 0, DIRECT);
+	pitchController = new PID(simulator, &pitchG, &pitchOrder, &pitchDemandG, 0.3, 15, 0.0001, DIRECT);
 	pitchController->SetOutputLimits(-1, 1);
 	pitchController->SetMode(AUTOMATIC);
 }
