@@ -130,6 +130,18 @@ void XPlaneInterface::setSideStickPitchRatio(float ratio)
 	XPLMSetDataf(findDataRefByCode(YOKE_PITCH_RATIO), ratio);
 }
 
+void XPlaneInterface::unsetSideStickRollRatio()
+{
+    XPLMSetDatai(findDataRefByCode(OVERRIDE_JOYSTICK_ROLL), false);
+    isYokeRollOverriden = false;
+}
+
+void XPlaneInterface::unsetSideStickPitchRatio()
+{
+    XPLMSetDatai(findDataRefByCode(OVERRIDE_JOYSTICK_PITCH), false);
+    isYokePitchOverriden = false;
+}
+
 float XPlaneInterface::getGNormal() {
 	return XPLMGetDataf(findDataRefByCode(G_NORMAL));
 }

@@ -128,20 +128,26 @@ void ATA22_ELAC::processPitch()
 			processPitchDirect();
 			break;
 		case GROUND_TO_FLIGHT:
+            // TODO do this right
+            processPitchDirect();
 			break;
 		case FLIGHT:
 			processPitchLoadFactorDemand();
 			break;
 		case FLIGHT_TO_FLARE:
+            // TODO do this right
+            processPitchDirect();
 			break;
 		case FLARE_TO_GROUND:
+            // TODO do this right
+            processPitchDirect();
 			break;
 	};
 }
 
 void ATA22_ELAC::processPitchDirect()
 {
-	
+    simulator->unsetSideStickPitchRatio();
 }
 
 void ATA22_ELAC::processPitchLoadFactorDemand()
@@ -207,18 +213,22 @@ void ATA22_ELAC::processRoll()
 			processRollDirect();
 			break;
 		case GROUND_TO_FLIGHT:
+            // TODO do this right
+            processRollDirect();
 			break;
 		case FLIGHT:
 			processRollRateDemand();
 			break;
 		case FLIGHT_TO_GROUND:
+            // TODO do this right
+            processRollDirect();
 			break;
 	}
 }
 
 void ATA22_ELAC::processRollDirect()
 {
-	// This is normal simulator behaviour
+    simulator->unsetSideStickRollRatio();
 }
 
 void ATA22_ELAC::processRollRateDemand()
