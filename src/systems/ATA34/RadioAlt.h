@@ -12,8 +12,6 @@ public:
 	int getAltitudeFt();
 	
 protected:
-
-	int number;
 	int altitudeFt = 0;
 };
 

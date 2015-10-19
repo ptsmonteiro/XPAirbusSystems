@@ -16,6 +16,8 @@ public:
 	ATA22_ELAC(int, RadioAlt *, ATA32_LGCIU *, ADIRU *);
 	~ATA22_ELAC();
 
+	ElectricBusType connectElectrical();
+
 	float getAileronPos();
 	float getElevatorPos();
 	float getRollOrder();

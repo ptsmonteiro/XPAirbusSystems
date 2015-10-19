@@ -11,9 +11,8 @@ AirbusComponent::AirbusComponent()
 }
 
 AirbusComponent::AirbusComponent(int number)
-// : AirbusComponent()
 {
-	this->number = number;
+	this->componentNumber = number;
 	AirbusComponent::AirbusComponent();
 }
 
@@ -25,7 +24,11 @@ void AirbusComponent::update()
 {
 }
 
-void AirbusComponent::connectElectrical(ElectricSource* source)
+ElectricBusType AirbusComponent::connectElectrical() {
+	return Empty;
+}
+
+void AirbusComponent::setSource(ElectricSource *source)
 {
 	this->currentElectricSource = source;
 }

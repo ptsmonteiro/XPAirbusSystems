@@ -1,17 +1,19 @@
 #include <math.h>
-#include "ATA22_ELAC.h"
+#include "A320.h"
+#include "core/core.h"
+#include "systems/electric/electric.h"
 #include "systems/ATA34/ADIRU.h"
+#include "ATA22_ELAC.h"
 
 ATA22_ELAC::ATA22_ELAC(int number, RadioAlt *radioAlt, ATA32_LGCIU *lgciu, ADIRU *adiru)
 {
-	this->number = number;
+	this->componentNumber = number;
 	this->radioAlt = radioAlt;
 	this->LGCIU = lgciu;
 	this->myADIRU = adiru;
 
 	initControllers();
 }
-
 
 ATA22_ELAC::~ATA22_ELAC()
 {
@@ -274,3 +276,38 @@ void ATA22_ELAC::processYaw()
 
 }
 
+ElectricBusType ATA22_ELAC::connectElectrical()
+{
+	switch (this->componentNumber) {
+	case 1:
+
+		if (Aircraft->electricNetwork->busData[DcEssBus]->isAvailable()) {
+			setSource(Aircraft->electricNetwork->busData[DcEssBus]);
+			return DcEssBus;
+		}
+		else if (Aircraft->electricNetwork->busData[HotBus1]->isAvailable()) {
+			setSource(Aircraft->electricNetwork->busData[HotBus1]);
+			return HotBus1;
+		}
+		else {
+			return Empty;
+		}
+
+		break;
+
+	case 2:
+		if (Aircraft->electricNetwork->busData[DcBus2]->isAvailable()) {
+			setSource(Aircraft->electricNetwork->busData[DcBus2]);
+			return DcBus2;
+		}
+		else if (Aircraft->electricNetwork->busData[HotBus2]->isAvailable()) {
+			setSource(Aircraft->electricNetwork->busData[HotBus2]);
+			return HotBus2;
+		}
+		else {
+			return Empty;
+		}
+	}
+
+	return Empty;
+}

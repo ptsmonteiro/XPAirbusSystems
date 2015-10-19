@@ -12,7 +12,7 @@ private:
 	static char* formatString(const char* prefix, double value);
 	static char* formatString(const char* prefix, float value);
 	static char* formatString(const char* prefix, int value);
-	static void appendLine(const char* message);
+	static void appendLine(char* message);
 	
 	
 public:

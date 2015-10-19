@@ -1,6 +1,7 @@
 #pragma once
 
 #include "systems/AirbusComponent.h"
+#include "systems/ATA22/FAC.h"
 #include "systems/ATA22_ELAC.h"
 #include "systems/ATA31_DMC.h"
 #include "systems/ATA31_DU.h"
@@ -38,6 +39,9 @@ public:
 	// ATA 22 - Auto Flight
 	ATA22_ELAC * elac1;
 	ATA22_ELAC * elac2;
+
+	FAC * fac1;
+	FAC * fac2;
 
 	ATA22_FMGC * fmgc1;
 	ATA22_FMGC * fmgc2;

@@ -68,19 +68,20 @@ public:
 
 class ElectricNetwork
 {
+public:
 	ElectricNetworkMode									mode;
 	std::map<ElectricGeneratorType, ElectricGenerator*> generatorData;
 	std::map<ElectricBusType, ElectricBus *>			busData;
+	std::map<AirbusComponent*, ElectricBus *>			connectedEquipmentMap;
 
-public:
 	void reconfigure(ElectricNetworkMode mode);
 	void reconfigureEquipment();
 	void resetNetwork();
 	void prepareNormalFlightConfig();
 	void prepareNormalGroundConfig();
 	void prepareDebugConfigOne();
-    void prepareEmerElecConfig();
 	void couple(ElectricSource* source, ElectricSink* sink);
+	void connectEquipment(AirbusComponent *component);
 
 	ElectricNetwork();
 	~ElectricNetwork();

@@ -53,6 +53,9 @@ A320::A320()
 
 	this->elac1 = new ATA22_ELAC(1, this->ra1, this->lgciu1, this->adiru1);
 	this->elac2 = new ATA22_ELAC(2, this->ra2, this->lgciu2, this->adiru2);
+	
+	this->fac1 = new FAC(1);
+	this->fac2 = new FAC(2);
 
 	this->fwc1 = new ATA31_FWC(1);
 	this->fwc2 = new ATA31_FWC(2);
@@ -81,6 +84,8 @@ A320::~A320()
 
 	delete this->elac1;
 	delete this->elac2;
+	delete this->fac1;
+	delete this->fac2;
 
 	delete this->adiru1;
 	delete this->adiru2;
@@ -121,7 +126,6 @@ void A320::init()
 	resetColdAndDark();
 }
 
-
 void A320::updateProbes()
 {
 	this->aoaProbeCapt->update();
@@ -157,6 +161,9 @@ void A320::updateComputers()
 
 	this->elac1->update();
 //	this->elac2->update();
+
+	this->fac1->update();
+	this->fac2->update();
 
 }
 
