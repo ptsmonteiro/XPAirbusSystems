@@ -274,8 +274,10 @@ void ATA22_ELAC::protectionBankAngle()
 
 	float rollRateCorrection = 0;
 
-	if (abs((int) bankAngle) >= neutralLimit) {
-		rollRateCorrection = (abs((int) bankAngle) - neutralLimit) / (fullLimit - neutralLimit) * MAX_ROLL_RATE_NORMAL_LAW_DEG_SEC;
+    int absBankAngle = abs( (int) bankAngle );
+	if (absBankAngle >= neutralLimit) {
+		rollRateCorrection = (absBankAngle - neutralLimit) * MAX_ROLL_RATE_NORMAL_LAW_DEG_SEC /
+            (fullLimit - neutralLimit);
 		int signal = bankAngle > 0 ? 1 : -1;
 		rollRateDemandDegreesSecond =  rollRateDemandDegreesSecond - (rollRateCorrection * signal);
 	}
