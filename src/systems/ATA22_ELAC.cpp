@@ -31,7 +31,7 @@ void ATA22_ELAC::initControllers()
 	rollController->SetMode(AUTOMATIC);
 
 	// Pitch controller
-	pitchController = new PID(simulator, &pitchG, &pitchOrder, &pitchDemandG, 0.4, 0, 0, DIRECT);
+	pitchController = new PID(simulator, &pitchG, &pitchOrder, &pitchDemandG, 0.3, 15, 0.0001, DIRECT);
 	pitchController->SetOutputLimits(-1, 1);
 	pitchController->SetMode(AUTOMATIC);
 }
@@ -129,20 +129,26 @@ void ATA22_ELAC::processPitch()
 			processPitchDirect();
 			break;
 		case GROUND_TO_FLIGHT:
+            // TODO do this right
+            processPitchDirect();
 			break;
 		case FLIGHT:
 			processPitchLoadFactorDemand();
 			break;
 		case FLIGHT_TO_FLARE:
+            // TODO do this right
+            processPitchDirect();
 			break;
 		case FLARE_TO_GROUND:
+            // TODO do this right
+            processPitchDirect();
 			break;
 	};
 }
 
 void ATA22_ELAC::processPitchDirect()
 {
-	
+    simulator->unsetSideStickPitchRatio();
 }
 
 void ATA22_ELAC::processPitchLoadFactorDemand()
@@ -208,18 +214,22 @@ void ATA22_ELAC::processRoll()
 			processRollDirect();
 			break;
 		case GROUND_TO_FLIGHT:
+            // TODO do this right
+            processRollDirect();
 			break;
 		case FLIGHT:
 			processRollRateDemand();
 			break;
 		case FLIGHT_TO_GROUND:
+            // TODO do this right
+            processRollDirect();
 			break;
 	}
 }
 
 void ATA22_ELAC::processRollDirect()
 {
-	// This is normal simulator behaviour
+    simulator->unsetSideStickRollRatio();
 }
 
 void ATA22_ELAC::processRollRateDemand()
@@ -265,8 +275,10 @@ void ATA22_ELAC::protectionBankAngle()
 
 	float rollRateCorrection = 0;
 
-	if (abs((int) bankAngle) >= neutralLimit) {
-		rollRateCorrection = (abs((int) bankAngle) - neutralLimit) / (fullLimit - neutralLimit) * MAX_ROLL_RATE_NORMAL_LAW_DEG_SEC;
+    int absBankAngle = abs( (int) bankAngle );
+	if (absBankAngle >= neutralLimit) {
+		rollRateCorrection = (absBankAngle - neutralLimit) * MAX_ROLL_RATE_NORMAL_LAW_DEG_SEC /
+            (fullLimit - neutralLimit);
 		int signal = bankAngle > 0 ? 1 : -1;
 		rollRateDemandDegreesSecond =  rollRateDemandDegreesSecond - (rollRateCorrection * signal);
 	}

@@ -65,6 +65,9 @@ public:
 
 	void setSideStickRollRatio(float);
 	void setSideStickPitchRatio(float);
+    
+    void unsetSideStickRollRatio();
+    void unsetSideStickPitchRatio();
 
 	/* Forces */
 	float getGNormal();
