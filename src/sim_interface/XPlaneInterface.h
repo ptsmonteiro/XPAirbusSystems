@@ -28,15 +28,20 @@ enum DATAREF_LIST {
 
 	YOKE_PITCH_RATIO,
 	YOKE_ROLL_RATIO,
+	YOKE_HEADING_RATIO,
 
 	OVERRIDE_JOYSTICK_ROLL,
-	OVERRIDE_JOYSTICK_PITCH
+	OVERRIDE_JOYSTICK_PITCH,
+	OVERRIDE_JOYSTICK_HEADING
 };
 
 class XPlaneInterface :
 	public SimulatorInterface
 {
 	std::map<DATAREF_LIST, XPLMDataRef> DataRefMap;
+
+private:
+	float joystickAxisValueBuffer[100];
 
 public:
 	XPlaneInterface();
@@ -69,6 +74,13 @@ public:
     void unsetSideStickRollRatio();
     void unsetSideStickPitchRatio();
 
+	/* Rudder Pedals*/
+	float getRudderRatio();
+
+	void setRudderRatio(float);
+
+	void unsetRudderRatio();
+
 	/* Forces */
 	float getGNormal();
 	
@@ -76,6 +88,7 @@ public:
 protected:
 	bool isYokeRollOverriden = false;
 	bool isYokePitchOverriden = false;
+	bool isRudderOverriden = false;
 
 	XPLMDataRef findDataRefByName(char * datarefName);
 	XPLMDataRef findDataRefByCode(DATAREF_LIST value);

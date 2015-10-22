@@ -31,11 +31,15 @@ public:
 	virtual void setSideStickRollRatio(float) = 0;
 	virtual void setSideStickPitchRatio(float) = 0;
 
-    virtual void unsetSideStickRollRatio() = 0;
-    virtual void unsetSideStickPitchRatio() = 0;
-    
+	virtual void unsetSideStickRollRatio() = 0;
+	virtual void unsetSideStickPitchRatio() = 0;
+
+	/* Rudder */
+	virtual float getRudderRatio() = 0;
+	virtual void setRudderRatio(float) = 0;
+	virtual void unsetRudderRatio() = 0;
+
 	/* Forces */
 	virtual float getGNormal() = 0;
-
 };
 

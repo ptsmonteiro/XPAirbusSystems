@@ -40,6 +40,8 @@ public:
 	const float MAX_PITCH_ATT_DEG_FLARE_TO_GROUND_MODE = 2.5;
 	const float TRANSITION_TIME_SEC_LATERAL_FLIGHT_TO_GROUND_MODE = 0.5;
 
+	const float MAX_RUDDER_DEFLECTION = 25;
+
 	float pitchControlModeTransitionStartTime = 0;
 	float lateralControlModeTransitionStartTime = 0;
 

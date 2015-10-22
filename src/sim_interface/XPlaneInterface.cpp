@@ -6,7 +6,7 @@ XPlaneInterface::XPlaneInterface()
 	DataRefMap[TEMPERATURE_LE] = findDataRefByName("sim/weather/temperature_le_c");
 	DataRefMap[TEMPERATURE_AMBIENT] = findDataRefByName("sim/weather/temperature_le_c");
 	DataRefMap[RADIO_ALTITUDE_CAPT] = findDataRefByName("sim/cockpit2/gauges/indicators/radio_altimeter_height_ft_pilot");
-	
+
 	// OH Panel
 	DataRefMap[PB_BAT_1] = findDataRefByName("sim/custom/xap/elec/bat1_o");
 	DataRefMap[PB_BAT_2] = findDataRefByName("sim/custom/xap/elec/bat1_o");
@@ -28,7 +28,8 @@ XPlaneInterface::XPlaneInterface()
 	DataRefMap[OVERRIDE_JOYSTICK_ROLL] = findDataRefByName("sim/operation/override/override_joystick_roll");
 	DataRefMap[OVERRIDE_JOYSTICK_PITCH] = findDataRefByName("sim/operation/override/override_joystick_pitch");
 
-
+	DataRefMap[OVERRIDE_JOYSTICK_HEADING] = findDataRefByName("sim/operation/override/override_joystick_heading");
+	DataRefMap[YOKE_HEADING_RATIO] = findDataRefByName("sim/joystick/yoke_heading_ratio");
 }
 
 XPlaneInterface::~XPlaneInterface()
@@ -70,7 +71,7 @@ int XPlaneInterface::getRadioAltitudeFt()
 {
 	// this should be improved
 	float value = XPLMGetDataf(findDataRefByCode(RADIO_ALTITUDE_CAPT));
-	return (int) value;
+	return (int)value;
 }
 
 float XPlaneInterface::getElapsedTimeDecimalSeconds()
@@ -132,16 +133,36 @@ void XPlaneInterface::setSideStickPitchRatio(float ratio)
 
 void XPlaneInterface::unsetSideStickRollRatio()
 {
-    XPLMSetDatai(findDataRefByCode(OVERRIDE_JOYSTICK_ROLL), false);
-    isYokeRollOverriden = false;
+	XPLMSetDatai(findDataRefByCode(OVERRIDE_JOYSTICK_ROLL), false);
+	isYokeRollOverriden = false;
 }
 
 void XPlaneInterface::unsetSideStickPitchRatio()
 {
-    XPLMSetDatai(findDataRefByCode(OVERRIDE_JOYSTICK_PITCH), false);
-    isYokePitchOverriden = false;
+	XPLMSetDatai(findDataRefByCode(OVERRIDE_JOYSTICK_PITCH), false);
+	isYokePitchOverriden = false;
 }
 
 float XPlaneInterface::getGNormal() {
 	return XPLMGetDataf(findDataRefByCode(G_NORMAL));
+}
+
+void XPlaneInterface::unsetRudderRatio()
+{
+	XPLMSetDatai(findDataRefByCode(OVERRIDE_JOYSTICK_HEADING), false);
+	isRudderOverriden = false;
+}
+
+void XPlaneInterface::setRudderRatio(float ratio)
+{
+	if (!isRudderOverriden) {
+		XPLMSetDatai(findDataRefByCode(OVERRIDE_JOYSTICK_HEADING), true);
+		isRudderOverriden = true;
+	}
+	XPLMSetDataf(findDataRefByCode(YOKE_HEADING_RATIO), ratio);
+}
+
+float XPlaneInterface::getRudderRatio() {
+	XPLMGetDatavf(findDataRefByCode(JOYSTICK_AXIS_VALUES), joystickAxisValueBuffer, 0, 4);
+	return joystickAxisValueBuffer[3];
 }

@@ -25,7 +25,7 @@ ATA22_ELAC::~ATA22_ELAC()
 void ATA22_ELAC::initControllers()
 {
 	// Roll controller
-	rollController = new PID(simulator, &rollRateDegreesSecond, &rollOrder, &rollRateDemandDegreesSecond, 
+	rollController = new PID(simulator, &rollRateDegreesSecond, &rollOrder, &rollRateDemandDegreesSecond,
 		0.1, 0.1, 0, DIRECT);
 	rollController->SetOutputLimits(-1, 1);
 	rollController->SetMode(AUTOMATIC);
@@ -63,14 +63,14 @@ void ATA22_ELAC::updatePitchControlMode()
 	pitchControlMode = getConsistentControlMode(pitchControlMode);
 
 	if (pitchControlMode == GROUND) {
-		if (adiruData.inertialData.attitudeDegrees  > MIN_PITCH_ATT_DEG_GROUND_TO_FLIGHT_MODE) {
+		if (adiruData.inertialData.attitudeDegrees > MIN_PITCH_ATT_DEG_GROUND_TO_FLIGHT_MODE) {
 			pitchControlModeTransitionStartTime = simulator->getElapsedTimeDecimalSeconds();
 			pitchControlMode = GROUND_TO_FLIGHT;
 		}
 	}
-	else if (pitchControlMode == GROUND_TO_FLIGHT && 
-		(simulator->getElapsedTimeDecimalSeconds() - pitchControlModeTransitionStartTime) 
-			>= TRANSITION_TIME_SEC_PITCH_GROUND_TO_FLIGHT_MODE) 
+	else if (pitchControlMode == GROUND_TO_FLIGHT &&
+		(simulator->getElapsedTimeDecimalSeconds() - pitchControlModeTransitionStartTime)
+		>= TRANSITION_TIME_SEC_PITCH_GROUND_TO_FLIGHT_MODE)
 	{
 		pitchControlMode = FLIGHT;
 	}
@@ -80,17 +80,17 @@ void ATA22_ELAC::updatePitchControlMode()
 		pitchControlMode = FLIGHT_TO_FLARE;
 	}
 	else if (pitchControlMode == FLIGHT_TO_FLARE &&
-			simulator->getElapsedTimeDecimalSeconds() - pitchControlModeTransitionStartTime >= TRANSITION_TIME_SEC_PITCH_FLIGHT_TO_FLARE_MODE) {
+		simulator->getElapsedTimeDecimalSeconds() - pitchControlModeTransitionStartTime >= TRANSITION_TIME_SEC_PITCH_FLIGHT_TO_FLARE_MODE) {
 		pitchControlMode = FLARE;
 	}
 	else if (pitchControlMode == FLARE &&
-			LGCIU->isGearCompressed() &&
+		LGCIU->isGearCompressed() &&
 		adiruData.inertialData.attitudeDegrees < MAX_PITCH_ATT_DEG_FLARE_TO_GROUND_MODE) {
 		pitchControlModeTransitionStartTime = simulator->getElapsedTimeDecimalSeconds();
 		pitchControlMode = FLARE_TO_GROUND;
 	}
 	else if (pitchControlMode == FLARE_TO_GROUND &&
-			simulator->getElapsedTimeDecimalSeconds() - pitchControlModeTransitionStartTime >= TRANSITION_TIME_SEC_PITCH_FLARE_TO_GROUND_MODE) {
+		simulator->getElapsedTimeDecimalSeconds() - pitchControlModeTransitionStartTime >= TRANSITION_TIME_SEC_PITCH_FLARE_TO_GROUND_MODE) {
 		pitchControlMode = GROUND;
 	}
 }
@@ -101,7 +101,7 @@ void ATA22_ELAC::updateLateralControlMode()
 
 	if (lateralControlMode == GROUND && adiruData.inertialData.attitudeDegrees > MIN_PITCH_ATT_DEG_GROUND_TO_FLIGHT_MODE) {
 		lateralControlModeTransitionStartTime = simulator->getElapsedTimeDecimalSeconds();
-		lateralControlMode = GROUND_TO_FLIGHT;		
+		lateralControlMode = GROUND_TO_FLIGHT;
 	}
 	else if (lateralControlMode == GROUND_TO_FLIGHT &&
 		simulator->getElapsedTimeDecimalSeconds() - lateralControlModeTransitionStartTime >= TRANSITION_TIME_SEC_LATERAL_GROUND_TO_FLIGHT_MODE)
@@ -113,7 +113,7 @@ void ATA22_ELAC::updateLateralControlMode()
 		lateralControlMode = FLIGHT_TO_GROUND;
 	}
 	else if (lateralControlMode == FLIGHT_TO_GROUND &&
-			simulator->getElapsedTimeDecimalSeconds() - lateralControlModeTransitionStartTime >= TRANSITION_TIME_SEC_LATERAL_FLIGHT_TO_GROUND_MODE) {
+		simulator->getElapsedTimeDecimalSeconds() - lateralControlModeTransitionStartTime >= TRANSITION_TIME_SEC_LATERAL_FLIGHT_TO_GROUND_MODE) {
 		lateralControlMode = GROUND;
 	}
 	else {
@@ -125,30 +125,30 @@ void ATA22_ELAC::processPitch()
 {
 	switch (this->pitchControlMode)
 	{
-		case GROUND:
-			processPitchDirect();
-			break;
-		case GROUND_TO_FLIGHT:
-            // TODO do this right
-            processPitchDirect();
-			break;
-		case FLIGHT:
-			processPitchLoadFactorDemand();
-			break;
-		case FLIGHT_TO_FLARE:
-            // TODO do this right
-            processPitchDirect();
-			break;
-		case FLARE_TO_GROUND:
-            // TODO do this right
-            processPitchDirect();
-			break;
+	case GROUND:
+		processPitchDirect();
+		break;
+	case GROUND_TO_FLIGHT:
+		// TODO do this right
+		processPitchDirect();
+		break;
+	case FLIGHT:
+		processPitchLoadFactorDemand();
+		break;
+	case FLIGHT_TO_FLARE:
+		// TODO do this right
+		processPitchDirect();
+		break;
+	case FLARE_TO_GROUND:
+		// TODO do this right
+		processPitchDirect();
+		break;
 	};
 }
 
 void ATA22_ELAC::processPitchDirect()
 {
-    simulator->unsetSideStickPitchRatio();
+	simulator->unsetSideStickPitchRatio();
 }
 
 void ATA22_ELAC::processPitchLoadFactorDemand()
@@ -183,20 +183,20 @@ void ATA22_ELAC::processSideStickPitchDemand()
 	else {
 		pitchDemandG = 1 + (sideStickPitch * (MAX_G_NORMAL_LAW - 1));
 	}
-    
-    // Correct G demand for bank
-    AdiruData adiruData = myADIRU->getCurrentAdiruData();
-    
-    pitchDemandG *= 1 / cos(adiruData.inertialData.bankAngleDegrees / 180 * M_PI);
-    if (pitchDemandG > MAX_G_NORMAL_LAW) {
-        pitchDemandG = MAX_G_NORMAL_LAW;
-    }
-    else if (pitchDemandG < MIN_G_NORMAL_LAW) {
-        pitchDemandG = MIN_G_NORMAL_LAW;
-    }
+
+	// Correct G demand for bank
+	AdiruData adiruData = myADIRU->getCurrentAdiruData();
+
+	pitchDemandG *= 1 / cos(adiruData.inertialData.bankAngleDegrees / 180 * M_PI);
+	if (pitchDemandG > MAX_G_NORMAL_LAW) {
+		pitchDemandG = MAX_G_NORMAL_LAW;
+	}
+	else if (pitchDemandG < MIN_G_NORMAL_LAW) {
+		pitchDemandG = MIN_G_NORMAL_LAW;
+	}
 }
 
-void ATA22_ELAC::protectionHighAOA() 
+void ATA22_ELAC::protectionHighAOA()
 {
 
 }
@@ -210,26 +210,26 @@ void ATA22_ELAC::processRoll()
 {
 	switch (this->pitchControlMode)
 	{
-		case GROUND:
-			processRollDirect();
-			break;
-		case GROUND_TO_FLIGHT:
-            // TODO do this right
-            processRollDirect();
-			break;
-		case FLIGHT:
-			processRollRateDemand();
-			break;
-		case FLIGHT_TO_GROUND:
-            // TODO do this right
-            processRollDirect();
-			break;
+	case GROUND:
+		processRollDirect();
+		break;
+	case GROUND_TO_FLIGHT:
+		// TODO do this right
+		processRollDirect();
+		break;
+	case FLIGHT:
+		processRollRateDemand();
+		break;
+	case FLIGHT_TO_GROUND:
+		// TODO do this right
+		processRollDirect();
+		break;
 	}
 }
 
 void ATA22_ELAC::processRollDirect()
 {
-    simulator->unsetSideStickRollRatio();
+	simulator->unsetSideStickRollRatio();
 }
 
 void ATA22_ELAC::processRollRateDemand()
@@ -275,17 +275,25 @@ void ATA22_ELAC::protectionBankAngle()
 
 	float rollRateCorrection = 0;
 
-    int absBankAngle = abs( (int) bankAngle );
+	int absBankAngle = abs((int)bankAngle);
 	if (absBankAngle >= neutralLimit) {
 		rollRateCorrection = (absBankAngle - neutralLimit) * MAX_ROLL_RATE_NORMAL_LAW_DEG_SEC /
-            (fullLimit - neutralLimit);
+			(fullLimit - neutralLimit);
 		int signal = bankAngle > 0 ? 1 : -1;
-		rollRateDemandDegreesSecond =  rollRateDemandDegreesSecond - (rollRateCorrection * signal);
+		rollRateDemandDegreesSecond = rollRateDemandDegreesSecond - (rollRateCorrection * signal);
 	}
 }
 
 void ATA22_ELAC::processYaw()
 {
+	//
+	float rollRateDemandDegreesSecond = simulator->getRudderRatio()  * MAX_RUDDER_DEFLECTION;
+	//
+
+	//
+
+	// 
+
 
 }
 
