@@ -165,8 +165,9 @@ void ATA22_ELAC::processPitchLoadFactorDemand()
 	if (this->pitchLaw == LAW_NORMAL) {
 		protectionHighAOA();
 		protectionHighSpeed();
+        protectionPitchAttitude();
 	}
-
+    
 	// controller update
 	pitchController->Compute();
 
@@ -196,7 +197,88 @@ void ATA22_ELAC::processSideStickPitchDemand()
 	}
 }
 
-void ATA22_ELAC::protectionHighAOA()
+void ATA22_ELAC::protectionPitchAttitude()
+{
+    AdiruData adiruData = myADIRU->getCurrentAdiruData();
+    
+    float pitchAttitude = adiruData.inertialData.attitudeDegrees;
+    
+    float minG = MIN_G_NORMAL_LAW;
+    float maxG = MAX_G_NORMAL_LAW;
+    
+    float minPitch = MIN_PITCH_ATT_DEG;
+    float maxPitch = MAX_PITCH_ATT_DEG_CONF_OTHER;
+    
+    bool upperLimit = true;
+
+    if (pitchAttitude >= MAX_PITCH_ATT_DEG_CONF_OTHER)
+    {
+        upperLimit = true;
+        minG = MIN_G_NORMAL_LAW;
+        maxG = 1;
+        minPitch = MAX_PITCH_ATT_DEG_CONF_OTHER;
+        maxPitch = MAX_PITCH_ATT_DEG_CONF_OTHER + PITCH_ATT_SOFT_LIMIT_MARGIN;
+    }
+    else if (pitchAttitude >= MAX_PITCH_ATT_DEG_CONF_OTHER - PITCH_ATT_SOFT_LIMIT_MARGIN)
+    {
+        upperLimit = true;
+        minG = 1;
+        maxG = MAX_G_NORMAL_LAW;
+        maxPitch = MAX_PITCH_ATT_DEG_CONF_OTHER;
+        minPitch = MAX_PITCH_ATT_DEG_CONF_OTHER - PITCH_ATT_SOFT_LIMIT_MARGIN;
+    }
+    else if (pitchAttitude <= MIN_PITCH_ATT_DEG)
+    {
+        upperLimit = false;
+        minG = 1;
+        maxG = MAX_G_NORMAL_LAW;
+        maxPitch = MIN_PITCH_ATT_DEG;
+        minPitch = MIN_PITCH_ATT_DEG - PITCH_ATT_SOFT_LIMIT_MARGIN;
+    }
+    else if (pitchAttitude <= MIN_PITCH_ATT_DEG + PITCH_ATT_SOFT_LIMIT_MARGIN)
+    {
+        upperLimit = false;
+        minG = MIN_PITCH_ATT_DEG;
+        maxG = 1;
+        maxPitch = MIN_PITCH_ATT_DEG + PITCH_ATT_SOFT_LIMIT_MARGIN;
+        minPitch = MIN_PITCH_ATT_DEG;
+    }
+    else
+    {
+        return;
+    }
+
+    if (upperLimit)
+    {
+        float maxlimitG = (1 - (pitchAttitude - minPitch) / (maxPitch - minPitch)) * (maxG - minG) + minG;
+        if (pitchDemandG > maxlimitG)
+        {
+            pitchDemandG = maxlimitG;
+        }
+    }
+    else
+    {
+        float minlimitG = (1 - (pitchAttitude - minPitch) / (maxPitch - minPitch)) * (maxG - minG) + minG;
+        if (pitchDemandG < minlimitG)
+        {
+            pitchDemandG = minlimitG;
+        }
+    }
+    
+        
+    // enforce pitch envelope
+    if (pitchDemandG < MIN_G_NORMAL_LAW)
+    {
+        pitchDemandG = MIN_G_NORMAL_LAW;
+    }
+    else if (pitchDemandG > MAX_G_NORMAL_LAW)
+    {
+        pitchDemandG = MAX_G_NORMAL_LAW;
+    }
+    
+}
+
+void ATA22_ELAC::protectionHighAOA() 
 {
 
 }
@@ -265,8 +347,8 @@ void ATA22_ELAC::protectionBankAngle()
 	AdiruData adiruData = myADIRU->getCurrentAdiruData();
 	float bankAngle = adiruData.inertialData.bankAngleDegrees;
 
-	int neutralLimit = BANK_ANGLE_NEUTRAL_STICK_NORMAL_LIMIT_DEG;
-	int fullLimit = BAKN_ANGLE_FULL_STICK_NORMAL_LIMIT_DEG;
+	float neutralLimit = BANK_ANGLE_NEUTRAL_STICK_NORMAL_LIMIT_DEG;
+	float fullLimit = BAKN_ANGLE_FULL_STICK_NORMAL_LIMIT_DEG;
 
 	if (isHighAOAProtectionActive || isHighSpeedProtectionActive) {
 		neutralLimit = BANK_ANGLE_NEUTRAL_STICK_AOA_HS_PROT_ON_LIMIT_DEG;
@@ -275,11 +357,15 @@ void ATA22_ELAC::protectionBankAngle()
 
 	float rollRateCorrection = 0;
 
+<<<<<<< .mine
 	int absBankAngle = abs((int)bankAngle);
+=======
+    float absBankAngle = abs( (int) bankAngle );
+>>>>>>> .theirs
 	if (absBankAngle >= neutralLimit) {
 		rollRateCorrection = (absBankAngle - neutralLimit) * MAX_ROLL_RATE_NORMAL_LAW_DEG_SEC /
 			(fullLimit - neutralLimit);
-		int signal = bankAngle > 0 ? 1 : -1;
+		float signal = bankAngle > 0 ? 1 : -1;
 		rollRateDemandDegreesSecond = rollRateDemandDegreesSecond - (rollRateCorrection * signal);
 	}
 }
