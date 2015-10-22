@@ -125,6 +125,11 @@ public:
 
 	const int BANK_ANGLE_NEUTRAL_STICK_AOA_HS_PROT_ON_LIMIT_DEG = 0;
 	const int BAKN_ANGLE_FULL_STICK_AOA_HS_PROT_ON_LIMIT_DEG = 45;
+    
+    const float MAX_PITCH_ATT_DEG_CONF_OTHER = 30.0;
+    const float MAX_PITCH_ATT_DEG_CONF_FULL = 25.0;
+    const float MIN_PITCH_ATT_DEG = -15.0;
+    const float PITCH_ATT_SOFT_LIMIT_MARGIN = 10;
 
 	const float MIN_G_NORMAL_LAW = -1.0;
 	const float MAX_G_NORMAL_LAW = 2.5;
