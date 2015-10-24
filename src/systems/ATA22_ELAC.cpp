@@ -357,11 +357,8 @@ void ATA22_ELAC::protectionBankAngle()
 
 	float rollRateCorrection = 0;
 
-<<<<<<< .mine
-	int absBankAngle = abs((int)bankAngle);
-=======
     float absBankAngle = abs( (int) bankAngle );
->>>>>>> .theirs
+
 	if (absBankAngle >= neutralLimit) {
 		rollRateCorrection = (absBankAngle - neutralLimit) * MAX_ROLL_RATE_NORMAL_LAW_DEG_SEC /
 			(fullLimit - neutralLimit);
