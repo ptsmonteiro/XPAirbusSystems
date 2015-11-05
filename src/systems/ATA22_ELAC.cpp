@@ -1,3 +1,4 @@
+#define _USE_MATH_DEFINES
 #include <math.h>
 #include "A320.h"
 #include "core/core.h"
@@ -158,7 +159,7 @@ void ATA22_ELAC::processPitchLoadFactorDemand()
 	pitchG = adiruData.inertialData.acceleration.gNormal;
 
 	// setpoint = get joystick values -> to roll rate demand
-	processSideStickPitchDemand();
+	//processSideStickPitchDemand();
 
 	// protections
 	if (this->pitchLaw == LAW_NORMAL) {
@@ -168,10 +169,13 @@ void ATA22_ELAC::processPitchLoadFactorDemand()
 	}
     
 	// controller update
-	pitchController->Compute();
+	//pitchController->Compute();
 
 	// output -> yoke_roll_ratio
-	simulator->setSideStickPitchRatio(pitchOrder);
+	//simulator->setSideStickPitchRatio(pitchOrder);
+	pitchLoadFactorConstant = 1000 * (1 - pitchG) / (pow(adiruData.airData.indicatedAirspeedKn, 2) * simulator->getSideStickPitchRatio());
+
+
 }
 
 void ATA22_ELAC::processSideStickPitchDemand()
@@ -321,7 +325,7 @@ void ATA22_ELAC::processRollRateDemand()
 	rollRateDegreesSecond = adiruData.inertialData.angularRate.roll;
 
 	// setpoint = get joystick values -> to roll rate demand
-	processSideStickRollRateDemand();
+	//processSideStickRollRateDemand();
 
 	// protections
 	if (this->rollLaw == LAW_NORMAL) {
@@ -329,10 +333,11 @@ void ATA22_ELAC::processRollRateDemand()
 	}
 
 	// controller update
-	rollController->Compute();
+	//rollController->Compute();
 
 	// output -> yoke_roll_ratio
-	simulator->setSideStickRollRatio(rollOrder);
+	//simulator->setSideStickRollRatio(rollOrder);
+	rollRateConstant = 1000 * rollRateDegreesSecond / (pow(adiruData.airData.indicatedAirspeedKn, 2) * simulator->getSideStickRollRatio());
 }
 
 void ATA22_ELAC::processSideStickRollRateDemand()

@@ -165,5 +165,8 @@ public:
 	bool isHighAOAProtectionActive = false;
 	bool isHighSpeedProtectionActive = false;
 
+	// experiments
+	float rollRateConstant = 0.0f;
+	float pitchLoadFactorConstant = 0.0f;
 };
 
