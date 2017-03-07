@@ -11,7 +11,7 @@ XPlaneInterface::XPlaneInterface()
 	DataRefMap[PB_BAT_1] = findDataRefByName("sim/custom/xap/elec/bat1_o");
 	DataRefMap[PB_BAT_2] = findDataRefByName("sim/custom/xap/elec/bat1_o");
 
-	// Sensores
+	// Sensors
 	DataRefMap[BAROMETER_CURRENT_PRESSURE] = findDataRefByName("sim/weather/barometer_current_inhg");
 	DataRefMap[SPEED_IAS] = findDataRefByName("sim/flightmodel/position/indicated_airspeed");
 	DataRefMap[ONGROUND_ANY] = findDataRefByName("sim/flightmodel/failures/onground_all");
@@ -159,6 +159,7 @@ void XPlaneInterface::setRudderRatio(float ratio)
 		XPLMSetDatai(findDataRefByCode(OVERRIDE_JOYSTICK_HEADING), true);
 		isRudderOverriden = true;
 	}
+
 	XPLMSetDataf(findDataRefByCode(YOKE_HEADING_RATIO), ratio);
 }
 

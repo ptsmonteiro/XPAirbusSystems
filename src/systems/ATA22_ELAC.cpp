@@ -165,9 +165,9 @@ void ATA22_ELAC::processPitchLoadFactorDemand()
 	if (this->pitchLaw == LAW_NORMAL) {
 		protectionHighAOA();
 		protectionHighSpeed();
-        protectionPitchAttitude();
+		protectionPitchAttitude();
 	}
-    
+
 	// controller update
 	pitchController->Compute();
 
@@ -199,86 +199,86 @@ void ATA22_ELAC::processSideStickPitchDemand()
 
 void ATA22_ELAC::protectionPitchAttitude()
 {
-    AdiruData adiruData = myADIRU->getCurrentAdiruData();
-    
-    float pitchAttitude = adiruData.inertialData.attitudeDegrees;
-    
-    float minG = MIN_G_NORMAL_LAW;
-    float maxG = MAX_G_NORMAL_LAW;
-    
-    float minPitch = MIN_PITCH_ATT_DEG;
-    float maxPitch = MAX_PITCH_ATT_DEG_CONF_OTHER;
-    
-    bool upperLimit = true;
+	AdiruData adiruData = myADIRU->getCurrentAdiruData();
 
-    if (pitchAttitude >= MAX_PITCH_ATT_DEG_CONF_OTHER)
-    {
-        upperLimit = true;
-        minG = MIN_G_NORMAL_LAW;
-        maxG = 1;
-        minPitch = MAX_PITCH_ATT_DEG_CONF_OTHER;
-        maxPitch = MAX_PITCH_ATT_DEG_CONF_OTHER + PITCH_ATT_SOFT_LIMIT_MARGIN;
-    }
-    else if (pitchAttitude >= MAX_PITCH_ATT_DEG_CONF_OTHER - PITCH_ATT_SOFT_LIMIT_MARGIN)
-    {
-        upperLimit = true;
-        minG = 1;
-        maxG = MAX_G_NORMAL_LAW;
-        maxPitch = MAX_PITCH_ATT_DEG_CONF_OTHER;
-        minPitch = MAX_PITCH_ATT_DEG_CONF_OTHER - PITCH_ATT_SOFT_LIMIT_MARGIN;
-    }
-    else if (pitchAttitude <= MIN_PITCH_ATT_DEG)
-    {
-        upperLimit = false;
-        minG = 1;
-        maxG = MAX_G_NORMAL_LAW;
-        maxPitch = MIN_PITCH_ATT_DEG;
-        minPitch = MIN_PITCH_ATT_DEG - PITCH_ATT_SOFT_LIMIT_MARGIN;
-    }
-    else if (pitchAttitude <= MIN_PITCH_ATT_DEG + PITCH_ATT_SOFT_LIMIT_MARGIN)
-    {
-        upperLimit = false;
-        minG = MIN_PITCH_ATT_DEG;
-        maxG = 1;
-        maxPitch = MIN_PITCH_ATT_DEG + PITCH_ATT_SOFT_LIMIT_MARGIN;
-        minPitch = MIN_PITCH_ATT_DEG;
-    }
-    else
-    {
-        return;
-    }
+	float pitchAttitude = adiruData.inertialData.attitudeDegrees;
 
-    if (upperLimit)
-    {
-        float maxlimitG = (1 - (pitchAttitude - minPitch) / (maxPitch - minPitch)) * (maxG - minG) + minG;
-        if (pitchDemandG > maxlimitG)
-        {
-            pitchDemandG = maxlimitG;
-        }
-    }
-    else
-    {
-        float minlimitG = (1 - (pitchAttitude - minPitch) / (maxPitch - minPitch)) * (maxG - minG) + minG;
-        if (pitchDemandG < minlimitG)
-        {
-            pitchDemandG = minlimitG;
-        }
-    }
-    
-        
-    // enforce pitch envelope
-    if (pitchDemandG < MIN_G_NORMAL_LAW)
-    {
-        pitchDemandG = MIN_G_NORMAL_LAW;
-    }
-    else if (pitchDemandG > MAX_G_NORMAL_LAW)
-    {
-        pitchDemandG = MAX_G_NORMAL_LAW;
-    }
-    
+	float minG = MIN_G_NORMAL_LAW;
+	float maxG = MAX_G_NORMAL_LAW;
+
+	float minPitch = MIN_PITCH_ATT_DEG;
+	float maxPitch = MAX_PITCH_ATT_DEG_CONF_OTHER;
+
+	bool upperLimit = true;
+
+	if (pitchAttitude >= MAX_PITCH_ATT_DEG_CONF_OTHER)
+	{
+		upperLimit = true;
+		minG = MIN_G_NORMAL_LAW;
+		maxG = 1;
+		minPitch = MAX_PITCH_ATT_DEG_CONF_OTHER;
+		maxPitch = MAX_PITCH_ATT_DEG_CONF_OTHER + PITCH_ATT_SOFT_LIMIT_MARGIN;
+	}
+	else if (pitchAttitude >= MAX_PITCH_ATT_DEG_CONF_OTHER - PITCH_ATT_SOFT_LIMIT_MARGIN)
+	{
+		upperLimit = true;
+		minG = 1;
+		maxG = MAX_G_NORMAL_LAW;
+		maxPitch = MAX_PITCH_ATT_DEG_CONF_OTHER;
+		minPitch = MAX_PITCH_ATT_DEG_CONF_OTHER - PITCH_ATT_SOFT_LIMIT_MARGIN;
+	}
+	else if (pitchAttitude <= MIN_PITCH_ATT_DEG)
+	{
+		upperLimit = false;
+		minG = 1;
+		maxG = MAX_G_NORMAL_LAW;
+		maxPitch = MIN_PITCH_ATT_DEG;
+		minPitch = MIN_PITCH_ATT_DEG - PITCH_ATT_SOFT_LIMIT_MARGIN;
+	}
+	else if (pitchAttitude <= MIN_PITCH_ATT_DEG + PITCH_ATT_SOFT_LIMIT_MARGIN)
+	{
+		upperLimit = false;
+		minG = MIN_PITCH_ATT_DEG;
+		maxG = 1;
+		maxPitch = MIN_PITCH_ATT_DEG + PITCH_ATT_SOFT_LIMIT_MARGIN;
+		minPitch = MIN_PITCH_ATT_DEG;
+	}
+	else
+	{
+		return;
+	}
+
+	if (upperLimit)
+	{
+		float maxlimitG = (1 - (pitchAttitude - minPitch) / (maxPitch - minPitch)) * (maxG - minG) + minG;
+		if (pitchDemandG > maxlimitG)
+		{
+			pitchDemandG = maxlimitG;
+		}
+	}
+	else
+	{
+		float minlimitG = (1 - (pitchAttitude - minPitch) / (maxPitch - minPitch)) * (maxG - minG) + minG;
+		if (pitchDemandG < minlimitG)
+		{
+			pitchDemandG = minlimitG;
+		}
+	}
+
+
+	// enforce pitch envelope
+	if (pitchDemandG < MIN_G_NORMAL_LAW)
+	{
+		pitchDemandG = MIN_G_NORMAL_LAW;
+	}
+	else if (pitchDemandG > MAX_G_NORMAL_LAW)
+	{
+		pitchDemandG = MAX_G_NORMAL_LAW;
+	}
+
 }
 
-void ATA22_ELAC::protectionHighAOA() 
+void ATA22_ELAC::protectionHighAOA()
 {
 
 }
@@ -357,7 +357,7 @@ void ATA22_ELAC::protectionBankAngle()
 
 	float rollRateCorrection = 0;
 
-    float absBankAngle = abs( (int) bankAngle );
+	float absBankAngle = abs((int)bankAngle);
 
 	if (absBankAngle >= neutralLimit) {
 		rollRateCorrection = (absBankAngle - neutralLimit) * MAX_ROLL_RATE_NORMAL_LAW_DEG_SEC /
@@ -369,15 +369,15 @@ void ATA22_ELAC::protectionBankAngle()
 
 void ATA22_ELAC::processYaw()
 {
-	//
-	float rollRateDemandDegreesSecond = simulator->getRudderRatio()  * MAX_RUDDER_DEFLECTION;
-	//
+	processRudderDemand();
 
-	//
+	// send this value to the facs.
+	Aircraft->fac1->setYawOrder(yawDemandDegrees);
+	Aircraft->fac2->setYawOrder(yawDemandDegrees);
+}
 
-	// 
-
-
+void ATA22_ELAC::processRudderDemand() {
+	yawDemandDegrees = simulator->getRudderRatio() * RUDDER_MAX_DEFLECTION_DEG;
 }
 
 ElectricBusType ATA22_ELAC::connectElectrical()

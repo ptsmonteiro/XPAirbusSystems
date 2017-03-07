@@ -5,6 +5,7 @@
 #include "ATA32_LGCIU.h"
 #include "ATA34/RadioAlt.h"
 #include "ATA22_FMGC.h"
+#include "ATA22/FAC.h"
 #include "core/PID_v1.h"
 
 class ATA22_ELAC : public AirbusComponent
@@ -39,8 +40,6 @@ public:
 	const int TRANSITION_TIME_SEC_PITCH_FLARE_TO_GROUND_MODE = 5;
 	const float MAX_PITCH_ATT_DEG_FLARE_TO_GROUND_MODE = 2.5;
 	const float TRANSITION_TIME_SEC_LATERAL_FLIGHT_TO_GROUND_MODE = 0.5;
-
-	const float MAX_RUDDER_DEFLECTION = 25;
 
 	float pitchControlModeTransitionStartTime = 0;
 	float lateralControlModeTransitionStartTime = 0;
@@ -80,6 +79,7 @@ public:
 	// Flight control demands
 	double pitchDemandG = 1.0f;
 	double rollRateDemandDegreesSecond = 0.0f;
+	double yawDemandDegrees = 0.0f;
 
 	// Flight control readings
 	double pitchG = 1.0f;
@@ -93,6 +93,8 @@ public:
 	RadioAlt * radioAlt;
 	ATA32_LGCIU * LGCIU;
 	ATA22_FMGC * FMGC;
+	FAC * fac1;
+	FAC * fac2;
 
 	float accelX;
 	float accelY;
@@ -124,6 +126,7 @@ public:
 	const int MAX_ROLL_RATE_NORMAL_LAW_DEG_SEC = 15;
 	const int BANK_ANGLE_NEUTRAL_STICK_NORMAL_LIMIT_DEG = 33;
 	const int BAKN_ANGLE_FULL_STICK_NORMAL_LIMIT_DEG = 67;
+	const int RUDDER_MAX_DEFLECTION_DEG = 25;
 
 	const int BANK_ANGLE_NEUTRAL_STICK_AOA_HS_PROT_ON_LIMIT_DEG = 0;
 	const int BAKN_ANGLE_FULL_STICK_AOA_HS_PROT_ON_LIMIT_DEG = 45;
@@ -156,6 +159,9 @@ public:
 
 	void processSideStickRollRateDemand();
 	void processSideStickPitchDemand();
+
+	void processRudderDemand();
+
 
 	// Protections
 	void protectionHighAOA();

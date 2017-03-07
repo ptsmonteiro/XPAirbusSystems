@@ -1,3 +1,9 @@
+*	Connect all 3 ADIRUS to the FAC
+*	FAC::Function to read IAS from 3 adirus, compute value
+*	Use ias to RTLU
+
+
+
 
 *	Make simulatorInterface static.
 *	Add Interface for push buttons (electrical panel)

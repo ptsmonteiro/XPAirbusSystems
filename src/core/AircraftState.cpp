@@ -10,7 +10,6 @@ AircraftState::AircraftState()
 {
 }
 
-
 AircraftState::~AircraftState()
 {
 }

@@ -93,8 +93,8 @@ public:
 
 protected:
 	void resetColdAndDark();
-	void propagateSignals();
-	void updateSystems();
+//	void propagateSignals();
+//	void updateSystems();
 	void reconfigureSystems();
 	void updateProbes();
 	void updateComputers();
@@ -102,7 +102,6 @@ protected:
 };
 
 // Global variables
-//A320* Aircraft;
 extern A320* Aircraft;
 extern SimulatorInterface* SimInterface;
 extern MessageLogger* Logger;

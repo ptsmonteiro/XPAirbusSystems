@@ -23,7 +23,7 @@ typedef struct  _adiruInertialData {
 typedef struct _adiruAirData {
 	float staticPressureHg;
 	int baroHeightFeet;
-	int indicatedAirspeedKn;
+	float indicatedAirspeedKn;
 	float speedMach;
 	float angleOfAttack;
 	float temperatureKelvin;
