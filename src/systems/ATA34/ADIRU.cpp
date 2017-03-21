@@ -80,8 +80,8 @@ void ADIRU::updateInertialData() {
 	currentAdiruData.inertialData.angularRate.roll =
 		(bankAngle - currentAdiruData.inertialData.bankAngleDegrees) / timeDelta;
 
-	currentAdiruData.inertialData.attitudeDegrees = SimInterface->getPitchAttitudeDegrees();
-	currentAdiruData.inertialData.bankAngleDegrees = SimInterface->getBankAngleDegrees();
+	currentAdiruData.inertialData.attitudeDegrees = pitchAttitude;
+	currentAdiruData.inertialData.bankAngleDegrees = bankAngle;
 
 	// forces
 	currentAdiruData.inertialData.acceleration.gNormal = SimInterface->getGNormal();
