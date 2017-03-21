@@ -23,7 +23,7 @@ PID::PID(SimulatorInterface* simulator, double* Input, double* Output, double* S
 	PID::SetOutputLimits(0, 255);				//default output limit corresponds to 
 												//the arduino pwm limits
 
-	SampleTime = 1;							//default Controller Sample Time is 0.1 seconds
+	SampleTime = 10;							//default Controller Sample Time is 10 ms
 
 	PID::SetControllerDirection(ControllerDirection);
 	PID::SetTunings(Kp, Ki, Kd);
@@ -101,8 +101,7 @@ void PID::SetSampleTime(int NewSampleTime)
 {
 	if (NewSampleTime > 0)
 	{
-		double ratio = (double)NewSampleTime
-			/ (double)SampleTime;
+		double ratio = (double)NewSampleTime / (double)SampleTime;
 		ki *= ratio;
 		kd /= ratio;
 		SampleTime = (unsigned long)NewSampleTime;
@@ -162,7 +161,7 @@ void PID::Initialize()
 
 unsigned long PID::getNowMilliSeconds()
 {
-	return mySimulator->getElapsedTimeDecimalSeconds() * 100;
+	return mySimulator->getElapsedTimeDecimalSeconds() * 1000;
 }
 
 /* SetControllerDirection(...)*************************************************
