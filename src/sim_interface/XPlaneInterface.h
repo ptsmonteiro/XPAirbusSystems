@@ -33,7 +33,9 @@ enum DATAREF_LIST {
 
 	OVERRIDE_JOYSTICK_ROLL,
 	OVERRIDE_JOYSTICK_PITCH,
-	OVERRIDE_JOYSTICK_HEADING
+	OVERRIDE_JOYSTICK_HEADING,
+
+	PITCH_TRIM
 };
 
 enum COMMANDREF_LIST {
@@ -85,6 +87,8 @@ public:
 	virtual void holdPitchTrimUp();
 	virtual void holdPitchTrimDown();
 	virtual void releasePitchTrim();
+
+	float getPitchTrimPosition();
 
 	/* Rudder Pedals*/
 	float getRudderRatio();

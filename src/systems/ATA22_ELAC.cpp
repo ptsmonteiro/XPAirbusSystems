@@ -130,10 +130,10 @@ void ATA22_ELAC::processPitch()
 		break;
 	case GROUND_TO_FLIGHT:
 		// TODO do this right
-		processPitchTrim();
 		processPitchDirect();
 		break;
 	case FLIGHT:
+		processPitchTrim();
 		processPitchLoadFactorDemand();
 		break;
 	case FLIGHT_TO_FLARE:
@@ -205,7 +205,7 @@ void ATA22_ELAC::processPitchTrim()
 		return;
 	}
 
-	if (this->simulator->getSideStickPitchRatio() < 0) {
+	if (this->pitchOrder > 0) {
 		this->simulator->holdPitchTrimUp();
 	}
 	else {

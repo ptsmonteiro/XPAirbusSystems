@@ -31,6 +31,7 @@ XPlaneInterface::XPlaneInterface()
 	DataRefMap[OVERRIDE_JOYSTICK_HEADING] = findDataRefByName("sim/operation/override/override_joystick_heading");
 	DataRefMap[YOKE_HEADING_RATIO] = findDataRefByName("sim/joystick/yoke_heading_ratio");
 
+	DataRefMap[PITCH_TRIM] = findDataRefByName("sim/cockpit2/controls/elevator_trim");
 	CommandRefMap[PITCH_TRIM_UP] = XPLMFindCommand("sim/flight_controls/pitch_trim_up");
 	CommandRefMap[PITCH_TRIM_DOWN] = XPLMFindCommand("sim/flight_controls/pitch_trim_down");
 }
@@ -173,6 +174,10 @@ void XPlaneInterface::releasePitchTrim()
 		XPLMCommandEnd(CommandRefMap[PITCH_TRIM_UP]);
 	}
 	pitchTrimDirection = 0;
+}
+
+float XPlaneInterface::getPitchTrimPosition() {
+	return XPLMGetDataf(DataRefMap[PITCH_TRIM]);
 }
 
 float XPlaneInterface::getGNormal() {

@@ -3,6 +3,7 @@
 #include "systems/AirbusComponent.h"
 #include "systems/ATA22/FAC.h"
 #include "systems/ATA22_ELAC.h"
+#include "systems/ATA27/FCDC.h"
 #include "systems/ATA31_DMC.h"
 #include "systems/ATA31_DU.h"
 #include "systems/ATA31_EWD.h"
@@ -42,6 +43,10 @@ public:
 
 	FAC * fac1;
 	FAC * fac2;
+
+	// ATA 27 - Flight Controls
+	FCDC * fcdc1;
+	FCDC * fcdc2;
 
 	ATA22_FMGC * fmgc1;
 	ATA22_FMGC * fmgc2;

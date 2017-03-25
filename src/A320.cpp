@@ -57,7 +57,11 @@ A320::A320()
 	// Fix this: All adirus are connected to each ELAC.
 	this->elac1 = new ATA22_ELAC(1, this->ra1, this->lgciu1, this->adiru1);
 	this->elac2 = new ATA22_ELAC(2, this->ra2, this->lgciu2, this->adiru2);
-	
+
+	// ATA 27 Flight Controls Data Concentrator
+	this->fcdc1 = new FCDC(1);
+	this->fcdc2 = new FCDC(2);
+
 	this->fwc1 = new ATA31_FWC(1);
 	this->fwc2 = new ATA31_FWC(2);
 
@@ -166,6 +170,8 @@ void A320::updateComputers()
 	this->fac1->update();
 	this->fac2->update();
 
+	this->fcdc1->update();
+	this->fcdc2->update();
 }
 
 void A320::updateDisplays()

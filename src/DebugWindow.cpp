@@ -86,6 +86,8 @@ void DebugWindow::WindowRenderCallback(
 	appendLine(formatString("ELAC1 Stick Pitch/G Demand			= ", Aircraft->elac1->pitchDemandG));
 	appendLine(formatString("ELAC1 Gs			= ", Aircraft->elac1->pitchG));
 	appendLine(formatString("ELAC1 Controller Pitch Order		= ", Aircraft->elac1->pitchOrder));
+
+	appendLine(formatString("Pitch Trim	Position				= ", Aircraft->fcdc1->pitchTrimPosition));
 }
 
 void DebugWindow::appendLine(char* message)

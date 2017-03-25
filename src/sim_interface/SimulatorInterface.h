@@ -39,6 +39,8 @@ public:
 	virtual void holdPitchTrimDown() = 0;
 	virtual void releasePitchTrim() = 0;
 
+	virtual float getPitchTrimPosition() = 0;
+
 	/* Rudder */
 	virtual float getRudderRatio() = 0;
 	virtual void setRudderRatio(float) = 0;
