@@ -34,6 +34,11 @@ public:
 	virtual void unsetSideStickRollRatio() = 0;
 	virtual void unsetSideStickPitchRatio() = 0;
 
+	/* Pitch Trim */
+	virtual void holdPitchTrimUp() = 0;
+	virtual void holdPitchTrimDown() = 0;
+	virtual void releasePitchTrim() = 0;
+
 	/* Rudder */
 	virtual float getRudderRatio() = 0;
 	virtual void setRudderRatio(float) = 0;

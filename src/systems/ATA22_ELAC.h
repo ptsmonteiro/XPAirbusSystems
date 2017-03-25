@@ -153,6 +153,7 @@ public:
 
 	void processPitchDirect();
 	void processPitchLoadFactorDemand();
+	void processPitchTrim();
 
 	void processRollDirect();
 	void processRollRateDemand();

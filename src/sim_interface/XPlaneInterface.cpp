@@ -30,6 +30,9 @@ XPlaneInterface::XPlaneInterface()
 
 	DataRefMap[OVERRIDE_JOYSTICK_HEADING] = findDataRefByName("sim/operation/override/override_joystick_heading");
 	DataRefMap[YOKE_HEADING_RATIO] = findDataRefByName("sim/joystick/yoke_heading_ratio");
+
+	CommandRefMap[PITCH_TRIM_UP] = XPLMFindCommand("sim/flight_controls/pitch_trim_up");
+	CommandRefMap[PITCH_TRIM_DOWN] = XPLMFindCommand("sim/flight_controls/pitch_trim_down");
 }
 
 XPlaneInterface::~XPlaneInterface()
@@ -141,6 +144,35 @@ void XPlaneInterface::unsetSideStickPitchRatio()
 {
 	XPLMSetDatai(findDataRefByCode(OVERRIDE_JOYSTICK_PITCH), false);
 	isYokePitchOverriden = false;
+}
+
+void XPlaneInterface::holdPitchTrimUp()
+{
+	if (pitchTrimDirection != 1) {
+		releasePitchTrim();
+		XPLMCommandBegin(CommandRefMap[PITCH_TRIM_UP]);
+		pitchTrimDirection = 1;
+	}
+}
+
+void XPlaneInterface::holdPitchTrimDown()
+{
+	if (pitchTrimDirection != -1) {
+		releasePitchTrim();
+		XPLMCommandBegin(CommandRefMap[PITCH_TRIM_DOWN]);
+		pitchTrimDirection = -1;
+	}
+}
+
+void XPlaneInterface::releasePitchTrim()
+{
+	if (pitchTrimDirection == -1) {
+		XPLMCommandEnd(CommandRefMap[PITCH_TRIM_DOWN]);
+	}
+	if (pitchTrimDirection == 1) {
+		XPLMCommandEnd(CommandRefMap[PITCH_TRIM_UP]);
+	}
+	pitchTrimDirection = 0;
 }
 
 float XPlaneInterface::getGNormal() {

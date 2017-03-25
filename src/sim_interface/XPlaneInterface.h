@@ -4,6 +4,7 @@
 #include "SimulatorInterface.h"
 #include "XPLM/XPLMDataAccess.h"
 #include "XPLM/XPLMProcessing.h"
+#include "XPLM/XPLMUtilities.h"
 
 enum DATAREF_LIST {
 	AOA_ANGLE,
@@ -35,10 +36,16 @@ enum DATAREF_LIST {
 	OVERRIDE_JOYSTICK_HEADING
 };
 
+enum COMMANDREF_LIST {
+	PITCH_TRIM_UP,
+	PITCH_TRIM_DOWN
+};
+
 class XPlaneInterface :
 	public SimulatorInterface
 {
 	std::map<DATAREF_LIST, XPLMDataRef> DataRefMap;
+	std::map<COMMANDREF_LIST, XPLMCommandRef> CommandRefMap;
 
 private:
 	float joystickAxisValueBuffer[100];
@@ -74,11 +81,14 @@ public:
     void unsetSideStickRollRatio();
     void unsetSideStickPitchRatio();
 
+	/* Pitch Trim */
+	virtual void holdPitchTrimUp();
+	virtual void holdPitchTrimDown();
+	virtual void releasePitchTrim();
+
 	/* Rudder Pedals*/
 	float getRudderRatio();
-
 	void setRudderRatio(float);
-
 	void unsetRudderRatio();
 
 	/* Forces */
@@ -89,6 +99,8 @@ protected:
 	bool isYokeRollOverriden = false;
 	bool isYokePitchOverriden = false;
 	bool isRudderOverriden = false;
+
+	int pitchTrimDirection = 0; // -1 nose down, 1 nose up, 0 stopped/not trimming
 
 	XPLMDataRef findDataRefByName(char * datarefName);
 	XPLMDataRef findDataRefByCode(DATAREF_LIST value);

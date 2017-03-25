@@ -130,6 +130,7 @@ void ATA22_ELAC::processPitch()
 		break;
 	case GROUND_TO_FLIGHT:
 		// TODO do this right
+		processPitchTrim();
 		processPitchDirect();
 		break;
 	case FLIGHT:
@@ -194,6 +195,21 @@ void ATA22_ELAC::processSideStickPitchDemand()
 	}
 	else if (pitchDemandG < MIN_G_NORMAL_LAW) {
 		pitchDemandG = MIN_G_NORMAL_LAW;
+	}
+}
+
+void ATA22_ELAC::processPitchTrim()
+{
+	if (this->pitchLaw != LAW_NORMAL) {
+		this->simulator->releasePitchTrim();
+		return;
+	}
+
+	if (this->simulator->getSideStickPitchRatio() < 0) {
+		this->simulator->holdPitchTrimUp();
+	}
+	else {
+		this->simulator->holdPitchTrimDown();
 	}
 }
 
