@@ -68,7 +68,4 @@
     <ClInclude Include="systems\ATA22\FAC.h" />
     <ClInclude Include="systems\ATA27\FCDC.h" />
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="todo.txt" />
-  </ItemGroup>
 </Project>
