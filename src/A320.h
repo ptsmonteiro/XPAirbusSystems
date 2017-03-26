@@ -2,20 +2,20 @@
 
 #include "systems/AirbusComponent.h"
 #include "systems/ATA22/FAC.h"
-#include "systems/ATA22_ELAC.h"
+#include "systems/ATA27/ELAC.h"
 #include "systems/ATA27/FCDC.h"
-#include "systems/ATA31_DMC.h"
-#include "systems/ATA31_DU.h"
-#include "systems/ATA31_EWD.h"
-#include "systems/ATA31_FWC.h"
-#include "systems/ATA31_ND.h"
-#include "systems/ATA31_PFD.h"
-#include "systems/ATA31_SD.h"
-#include "systems/ATA31_SDAC.h"
-#include "systems/ATA32_LGCIU.h"
+#include "systems/ATA31/DMC.h"
+#include "systems/ATA31/DU.h"
+#include "systems/ATA31/EWD.h"
+#include "systems/ATA31/FWC.h"
+#include "systems/ATA31/ND.h"
+#include "systems/ATA31/PFD.h"
+#include "systems/ATA31/SD.h"
+#include "systems/ATA31/SDAC.h"
+#include "systems/ATA32/LGCIU.h"
 #include "systems/ATA34/ADIRU.h"
 #include "systems/ATA34/RadioAlt.h"
-#include "systems/ATA22_FMGC.h"
+#include "systems/ATA22/FMGC.h"
 #include "systems/ATA34/AOAProbe.h"
 #include "systems/ATA34/TATProbe.h"
 #include "systems/ATA34/PitotProbe.h"
@@ -38,8 +38,8 @@ public:
 	ElectricNetwork * electricNetwork;
 
 	// ATA 22 - Auto Flight
-	ATA22_ELAC * elac1;
-	ATA22_ELAC * elac2;
+	ELAC * elac1;
+	ELAC * elac2;
 
 	FAC * fac1;
 	FAC * fac2;
@@ -48,23 +48,23 @@ public:
 	FCDC * fcdc1;
 	FCDC * fcdc2;
 
-	ATA22_FMGC * fmgc1;
-	ATA22_FMGC * fmgc2;
+	FMGC * fmgc1;
+	FMGC * fmgc2;
 
 	// ATA 32 - Landing Gear
-	ATA32_LGCIU * lgciu1;
-	ATA32_LGCIU * lgciu2;
+	LGCIU * lgciu1;
+	LGCIU * lgciu2;
 
 	// ATA 31 - Indicating / Recording Systems
-	ATA31_DU * du1;
-	ATA31_DU * du2;
-	ATA31_DU * du3;
-	ATA31_DU * du4;
-	ATA31_DU * du5;
-	ATA31_DU * du6;
+	DU * du1;
+	DU * du2;
+	DU * du3;
+	DU * du4;
+	DU * du5;
+	DU * du6;
 
-	ATA31_FWC * fwc1;
-	ATA31_FWC * fwc2;
+	FWC * fwc1;
+	FWC * fwc2;
 
 	// ATA 34 - Navigation Sensors
 

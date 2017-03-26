@@ -95,12 +95,13 @@
     <TargetName>win</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>..\out\</OutDir>
+    <OutDir>..\..\..\..\..\xp10\Aircraft\Heavy Metal\A320-233_1v2\plugins\AirbusSystems\64</OutDir>
     <IntDir>.\Debug\64\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <TargetExt>.xpl</TargetExt>
     <GenerateManifest>false</GenerateManifest>
     <TargetName>win</TargetName>
+    <PostBuildEventUseInBuild>false</PostBuildEventUseInBuild>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -275,7 +276,8 @@
       <AdditionalDependencies>Opengl32.lib;odbc32.lib;odbccp32.lib;XPLM_64.lib;XPWidgets_64.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>$(ProjectDir)\..\post_build_event.bat $(TargetPath)</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -286,7 +288,18 @@
     <ClCompile Include="core\PID_v1.cpp" />
     <ClCompile Include="DebugWindow.cpp" />
     <ClCompile Include="systems\ATA22\FAC.cpp" />
+    <ClCompile Include="systems\ATA22\FMGC.cpp" />
+    <ClCompile Include="systems\ATA27\ELAC.cpp" />
     <ClCompile Include="systems\ATA27\FCDC.cpp" />
+    <ClCompile Include="systems\ATA31\DMC.cpp" />
+    <ClCompile Include="systems\ATA31\DU.cpp" />
+    <ClCompile Include="systems\ATA31\EWD.cpp" />
+    <ClCompile Include="systems\ATA31\FWC.cpp" />
+    <ClCompile Include="systems\ATA31\ND.cpp" />
+    <ClCompile Include="systems\ATA31\PFD.cpp" />
+    <ClCompile Include="systems\ATA31\SD.cpp" />
+    <ClCompile Include="systems\ATA31\SDAC.cpp" />
+    <ClCompile Include="systems\ATA32\LGCIU.cpp" />
     <ClCompile Include="systems\Electric\ElectricGenerator.cpp" />
     <ClCompile Include="systems\Electric\ElectricSink.cpp" />
     <ClCompile Include="systems\Electric\ElectricBus.cpp" />
@@ -296,19 +309,8 @@
     <ClCompile Include="systems\ATA34\StaticProbe.cpp" />
     <ClCompile Include="systems\ATA34\AOAProbe.cpp" />
     <ClCompile Include="sim_interface\SimulatorInterface.cpp" />
-    <ClCompile Include="systems\ATA22_FMGC.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="systems\AirbusComponent.cpp" />
-    <ClCompile Include="systems\ATA22_ELAC.cpp" />
-    <ClCompile Include="systems\ATA31_DMC.cpp" />
-    <ClCompile Include="systems\ATA31_DU.cpp" />
-    <ClCompile Include="systems\ATA31_EWD.cpp" />
-    <ClCompile Include="systems\ATA31_FWC.cpp" />
-    <ClCompile Include="systems\ATA31_ND.cpp" />
-    <ClCompile Include="systems\ATA31_PFD.cpp" />
-    <ClCompile Include="systems\ATA31_SD.cpp" />
-    <ClCompile Include="systems\ATA31_SDAC.cpp" />
-    <ClCompile Include="systems\ATA32_LGCIU.cpp" />
     <ClCompile Include="systems\ATA34\ADIRU.cpp" />
     <ClCompile Include="systems\ATA34\RadioAlt.cpp" />
     <ClCompile Include="sim_interface\XPlaneInterface.cpp" />
@@ -322,25 +324,25 @@
     <ClInclude Include="DebugWindow.h" />
     <ClInclude Include="systems\ATA22\FAC.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="systems\ATA22\FMGC.h" />
+    <ClInclude Include="systems\ATA27\ELAC.h" />
     <ClInclude Include="systems\ATA27\FCDC.h" />
+    <ClInclude Include="systems\ATA31\DMC.h" />
+    <ClInclude Include="systems\ATA31\DU.h" />
+    <ClInclude Include="systems\ATA31\EWD.h" />
+    <ClInclude Include="systems\ATA31\FWC.h" />
+    <ClInclude Include="systems\ATA31\ND.h" />
+    <ClInclude Include="systems\ATA31\PFD.h" />
+    <ClInclude Include="systems\ATA31\SD.h" />
+    <ClInclude Include="systems\ATA31\SDAC.h" />
+    <ClInclude Include="systems\ATA32\LGCIU.h" />
     <ClInclude Include="systems\ATA34\AdiruData.h" />
     <ClInclude Include="systems\Electric\Electric.h" />
     <ClInclude Include="systems\ATA34\PitotProbe.h" />
     <ClInclude Include="systems\ATA34\StaticProbe.h" />
     <ClInclude Include="systems\ATA34\AOAProbe.h" />
     <ClInclude Include="sim_interface\SimulatorInterface.h" />
-    <ClInclude Include="systems\ATA22_FMGC.h" />
     <ClInclude Include="systems\AirbusComponent.h" />
-    <ClInclude Include="systems\ATA22_ELAC.h" />
-    <ClInclude Include="systems\ATA31_DMC.h" />
-    <ClInclude Include="systems\ATA31_DU.h" />
-    <ClInclude Include="systems\ATA31_EWD.h" />
-    <ClInclude Include="systems\ATA31_FWC.h" />
-    <ClInclude Include="systems\ATA31_ND.h" />
-    <ClInclude Include="systems\ATA31_PFD.h" />
-    <ClInclude Include="systems\ATA31_SD.h" />
-    <ClInclude Include="systems\ATA31_SDAC.h" />
-    <ClInclude Include="systems\ATA32_LGCIU.h" />
     <ClInclude Include="systems\ATA34\ADIRU.h" />
     <ClInclude Include="systems\ATA34\RadioAlt.h" />
     <ClInclude Include="sim_interface\XPlaneInterface.h" />

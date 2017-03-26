@@ -44,8 +44,8 @@ A320::A320()
 	this->ra2 = new RadioAlt(2);
 
 	// Computers
-	this->lgciu1 = new ATA32_LGCIU(1);
-	this->lgciu2 = new ATA32_LGCIU(2);
+	this->lgciu1 = new LGCIU(1);
+	this->lgciu2 = new LGCIU(2);
 
 	this->fac1 = new FAC(1);
 	this->fac2 = new FAC(2);
@@ -55,22 +55,22 @@ A320::A320()
 	this->adiru3 = new ADIRU(3, this->staticProbeStandby1, this->staticProbeStandby2, this->aoaProbeStandby, this->pitotProbeFO);
 
 	// Fix this: All adirus are connected to each ELAC.
-	this->elac1 = new ATA22_ELAC(1, this->ra1, this->lgciu1, this->adiru1);
-	this->elac2 = new ATA22_ELAC(2, this->ra2, this->lgciu2, this->adiru2);
+	this->elac1 = new ELAC(1, this->ra1, this->lgciu1, this->adiru1);
+	this->elac2 = new ELAC(2, this->ra2, this->lgciu2, this->adiru2);
 
 	// ATA 27 Flight Controls Data Concentrator
 	this->fcdc1 = new FCDC(1);
 	this->fcdc2 = new FCDC(2);
 
-	this->fwc1 = new ATA31_FWC(1);
-	this->fwc2 = new ATA31_FWC(2);
+	this->fwc1 = new FWC(1);
+	this->fwc2 = new FWC(2);
 
-	this->du1 = new ATA31_DU(1);
-	this->du2 = new ATA31_DU(2);
-	this->du3 = new ATA31_DU(3);
-	this->du4 = new ATA31_DU(4);
-	this->du5 = new ATA31_DU(5);
-	this->du6 = new ATA31_DU(6);
+	this->du1 = new DU(1);
+	this->du2 = new DU(2);
+	this->du3 = new DU(3);
+	this->du4 = new DU(4);
+	this->du5 = new DU(5);
+	this->du6 = new DU(6);
 
 	//lots of things missing here
 }
