@@ -286,6 +286,7 @@
     <ClCompile Include="core\PID_v1.cpp" />
     <ClCompile Include="DebugWindow.cpp" />
     <ClCompile Include="systems\ATA22\FAC.cpp" />
+    <ClCompile Include="systems\ATA27\FCDC.cpp" />
     <ClCompile Include="systems\Electric\ElectricGenerator.cpp" />
     <ClCompile Include="systems\Electric\ElectricSink.cpp" />
     <ClCompile Include="systems\Electric\ElectricBus.cpp" />
@@ -321,6 +322,7 @@
     <ClInclude Include="DebugWindow.h" />
     <ClInclude Include="systems\ATA22\FAC.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="systems\ATA27\FCDC.h" />
     <ClInclude Include="systems\ATA34\AdiruData.h" />
     <ClInclude Include="systems\Electric\Electric.h" />
     <ClInclude Include="systems\ATA34\PitotProbe.h" />

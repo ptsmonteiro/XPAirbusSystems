@@ -1,1 +1,0 @@
-xcopy /Y "%1" "C:\xplane\Aircraft\Heavy Metal\A320-233_1v2\plugins\AirbusSystems\64"
